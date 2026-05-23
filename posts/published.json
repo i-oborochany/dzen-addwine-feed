@@ -1,12 +1,18 @@
 {
   "posts": [
     {
+      "url": "https://addwine.ru/catalogue/category/servirovka/shtopory",
+      "title": "Как выбрать штопор для вина и не ошибиться: советует сомелье",
+      "published_at": "2026-05-23T21:26:44.115993+00:00"
+    },
+    {
       "url": "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
       "title": "Необычные сочетания: вино и пицца, которые стоит попробовать",
       "published_at": "2026-05-23T19:08:10.949779+00:00"
     }
   ],
   "urls": [
+    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake"
   ]
 }

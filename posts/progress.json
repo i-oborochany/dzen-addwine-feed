@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 0,
+  "cycle_position": 1,
+  "content_plan_index": 1,
   "history": [
+    {
+      "date": "2026-05-23T21:26:44.115696+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Как выбрать штопор для вина и не ошибиться: советует сомелье",
+      "source_url": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
     {
       "date": "2026-05-23T21:16:07.623922+00:00",
       "cycle_position": 4,
