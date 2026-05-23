@@ -4,10 +4,10 @@ on:
   schedule:
     # 10:00 МСК = 07:00 UTC, ежедневно
     - cron: "0 7 * * *"
-  workflow_dispatch:  # ручной запуск кнопкой
+  workflow_dispatch:
 
 permissions:
-  contents: write  # для коммита картинок и feed.xml
+  contents: write
 
 jobs:
   publish:
@@ -30,6 +30,7 @@ jobs:
       - name: Run bot
         env:
           GIGACHAT_AUTH_KEY: ${{ secrets.GIGACHAT_AUTH_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PYTHONUNBUFFERED: "1"
         run: python scripts/main.py
 
