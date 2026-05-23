@@ -1,12 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:yandex="http://news.yandex.ru"
-     xmlns:media="http://search.yahoo.com/mrss/"
-     xmlns:content="http://purl.org/rss/1.0/modules/content/"
-     version="2.0">
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:yandex="http://news.yandex.ru" version="2.0">
   <channel>
     <title>Addwine — о вине</title>
     <link>https://dzen.ru/addwine</link>
     <description>Новости и материалы о вине, виноделии и винной культуре</description>
     <language>ru</language>
-  </channel>
+  <item><title>Необычные сочетания: вино и пицца, которые стоит попробовать</title><link>https://i-oborochany.github.io/dzen-addwine-feed/posts/119551289515</link><guid isPermaLink="false">f602a521-772b-4a16-8b22-8dba1ca54d23</guid><pubDate>Sat, 23 May 2026 19:08:10 +0000</pubDate><description>Пицца давно вышла за рамки простого уличного фастфуда и стала изысканным блюдом высокой кухни. Вино тоже перестало быть только итальянским спутником пасты и теперь легко сочетается с этим вкусным итальянским угощением. Вот несколько удивительных пар, которые вас точно удивят.</description><enclosure url="https://i-oborochany.github.io/dzen-addwine-feed/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.jpg" type="image/jpeg" /><yandex:full-text>&lt;p&gt;&lt;img src="https://i-oborochany.github.io/dzen-addwine-feed/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.jpg" alt="обложка"/&gt;&lt;/p&gt;&lt;p&gt;Пицца и вино – казалось бы, странное сочетание, но современные шефы доказывают обратное. По словам экспертов из Bar Bucce и других ресторанов, эти два продукта могут прекрасно гармонировать друг с другом.&lt;/p&gt;
+&lt;h2&gt;Секрет удачного сочетания&lt;/h2&gt;
+&lt;p&gt;Брендт Кролл, владелец Pop Fizz Bar и Maxwell Park wine bar, утверждает, что секрет успеха кроется в выборе правильного вина. Он рекомендует обратить внимание на Lambrusco, которое отлично подчеркивает жирность и солёность пиццы благодаря своей фруктовой свежести и игристости.&lt;/p&gt;
+&lt;h3&gt;Ламбруско: классика сладкого и соленого&lt;/h3&gt;
+&lt;p&gt;Кролл отмечает, что многие до сих пор считают это вино слишком сладким, однако сухие версии идеально подходят к жирной и соленой пище. Его игристость освежает рот, а лёгкие танины цепляются за жирные ингредиенты вроде пеперони.&lt;/p&gt;
+&lt;h3&gt;Возрастающее разнообразие вкусов&lt;/h3&gt;
+&lt;p&gt;Мишель Паскарелла из Napoli on the Road предпочитает сочетать свою пиццу с более сложными винами, такими как Greco di Tufo или Gragnano. Эти белые и красные сорта подчёркивают сложные ароматы его блюд, добавляя им элегантности и утончённости.&lt;/p&gt;
+&lt;h2&gt;Другие необычные пары&lt;/h2&gt;
+&lt;p&gt;Шеф-повар Бар Буччи использует старое сакэ, известное как koshu, чтобы подчеркнуть земные и ореховые нотки, которые хорошо сочетаются с пиццей. Это необычное сочетание позволяет ощутить новые грани вкуса привычных продуктов.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;«Вино должно быть таким же расслабленным и непринуждённым, как сама пицца», — говорит Кролл.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Таким образом, пицца становится не просто едой быстрого приготовления, а полноценным гастрономическим опытом, который можно дополнить подходящим вином.&lt;/p&gt;
+&lt;br&gt;
+&lt;em&gt;По материалам Decanter&lt;/em&gt;
+
+&lt;p&gt;&lt;em&gt;Материал предназначен для лиц старше 18 лет. Чрезмерное употребление алкоголя вредит вашему здоровью.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;img src="https://i-oborochany.github.io/dzen-addwine-feed/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-2.jpg" alt="иллюстрация 2"/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src="https://i-oborochany.github.io/dzen-addwine-feed/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-3.jpg" alt="иллюстрация 3"/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src="https://i-oborochany.github.io/dzen-addwine-feed/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-4.jpg" alt="иллюстрация 4"/&gt;&lt;/p&gt;</yandex:full-text></item></channel>
 </rss>
