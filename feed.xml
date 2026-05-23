@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:yandex="http://news.yandex.ru"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     version="2.0">
+  <channel>
+    <title>Addwine — о вине</title>
+    <link>https://dzen.ru/addwine</link>
+    <description>Новости и материалы о вине, виноделии и винной культуре</description>
+    <language>ru</language>
+  </channel>
+</rss>
