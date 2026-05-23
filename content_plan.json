@@ -1,0 +1,814 @@
+{
+  "items": [
+    {
+      "number": 1,
+      "theme": "Штопоры",
+      "title": "Как выбрать штопор для вина и не ошибиться",
+      "seo_query": "как выбрать штопор для вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 2,
+      "theme": "Бокалы",
+      "title": "Какие бокалы нужны дома для вина",
+      "seo_query": "какие бокалы купить для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 3,
+      "theme": "Подарки",
+      "title": "Что подарить любителю вина без риска ошибиться",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 4,
+      "theme": "Наборы",
+      "title": "Как выбрать набор аксессуаров для вина",
+      "seo_query": "набор аксессуаров для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "наборы",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
+    },
+    {
+      "number": 5,
+      "theme": "Сервировка",
+      "title": "Как красиво подать вино дома",
+      "seo_query": "сервировка вина дома",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "сервировка",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka"
+    },
+    {
+      "number": 6,
+      "theme": "Аксессуары",
+      "title": "Топ полезных аксессуаров для вина дома",
+      "seo_query": "лучшие аксессуары для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 7,
+      "theme": "Штопоры",
+      "title": "Почему дорогой штопор стоит своих денег",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 8,
+      "theme": "Бокалы",
+      "title": "Один бокал на всё или разные?",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 9,
+      "theme": "Подарки",
+      "title": "Как выбрать подарок руководителю со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 10,
+      "theme": "Бокалы",
+      "title": "Почему бокал влияет на вкус вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 11,
+      "theme": "Штопоры",
+      "title": "Стоит ли покупать электрический штопор",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 12,
+      "theme": "Аксессуары",
+      "title": "Как хранить открытое вино правильно",
+      "seo_query": "лучшие аксессуары для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 13,
+      "theme": "Сервировка",
+      "title": "Как удивить гостей винной подачей",
+      "seo_query": "сервировка вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "сервировка",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka"
+    },
+    {
+      "number": 14,
+      "theme": "Бокалы",
+      "title": "Почему рестораны используют дорогие бокалы",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 15,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для красного вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 16,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для белого вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 17,
+      "theme": "Штопоры",
+      "title": "5 признаков хорошего штопора",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 18,
+      "theme": "Аксессуары",
+      "title": "Декантер или аэратор: что выбрать",
+      "seo_query": "декантер для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 19,
+      "theme": "Штопоры",
+      "title": "Как собрать винный уголок дома",
+      "seo_query": "как выбрать штопор для вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 20,
+      "theme": "Бокалы",
+      "title": "Почему дешевые бокалы мутнеют",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 21,
+      "theme": "Подарки",
+      "title": "Корпоративный подарок со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 22,
+      "theme": "Наборы",
+      "title": "Что должно быть дома у ценителя вина",
+      "seo_query": "набор аксессуаров для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "наборы",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
+    },
+    {
+      "number": 23,
+      "theme": "Штопоры",
+      "title": "Почему некоторые штопоры стоят дорого",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 24,
+      "theme": "Подарки",
+      "title": "Лучшие подарки до 5000 ₽",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 25,
+      "theme": "Штопоры",
+      "title": "Почему дорогой штопор стоит своих денег",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 26,
+      "theme": "Бокалы",
+      "title": "Один бокал на всё или разные?",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 27,
+      "theme": "Подарки",
+      "title": "Как выбрать подарок руководителю со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 28,
+      "theme": "Бокалы",
+      "title": "Почему бокал влияет на вкус вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 29,
+      "theme": "Штопоры",
+      "title": "Стоит ли покупать электрический штопор",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 30,
+      "theme": "Аксессуары",
+      "title": "Как хранить открытое вино правильно",
+      "seo_query": "лучшие аксессуары для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 31,
+      "theme": "Сервировка",
+      "title": "Как удивить гостей винной подачей",
+      "seo_query": "сервировка вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "сервировка",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka"
+    },
+    {
+      "number": 32,
+      "theme": "Бокалы",
+      "title": "Почему рестораны используют дорогие бокалы",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 33,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для красного вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 34,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для белого вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 35,
+      "theme": "Штопоры",
+      "title": "5 признаков хорошего штопора",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 36,
+      "theme": "Аксессуары",
+      "title": "Декантер или аэратор: что выбрать",
+      "seo_query": "декантер для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 37,
+      "theme": "Штопоры",
+      "title": "Как собрать винный уголок дома",
+      "seo_query": "как выбрать штопор для вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 38,
+      "theme": "Бокалы",
+      "title": "Почему дешевые бокалы мутнеют",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 39,
+      "theme": "Подарки",
+      "title": "Корпоративный подарок со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 40,
+      "theme": "Наборы",
+      "title": "Что должно быть дома у ценителя вина",
+      "seo_query": "набор аксессуаров для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "наборы",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
+    },
+    {
+      "number": 41,
+      "theme": "Штопоры",
+      "title": "Почему некоторые штопоры стоят дорого",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 42,
+      "theme": "Подарки",
+      "title": "Лучшие подарки до 5000 ₽",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 43,
+      "theme": "Штопоры",
+      "title": "Почему дорогой штопор стоит своих денег",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 44,
+      "theme": "Бокалы",
+      "title": "Один бокал на всё или разные?",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 45,
+      "theme": "Подарки",
+      "title": "Как выбрать подарок руководителю со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 46,
+      "theme": "Бокалы",
+      "title": "Почему бокал влияет на вкус вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 47,
+      "theme": "Штопоры",
+      "title": "Стоит ли покупать электрический штопор",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 48,
+      "theme": "Аксессуары",
+      "title": "Как хранить открытое вино правильно",
+      "seo_query": "лучшие аксессуары для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 49,
+      "theme": "Сервировка",
+      "title": "Как удивить гостей винной подачей",
+      "seo_query": "сервировка вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "сервировка",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka"
+    },
+    {
+      "number": 50,
+      "theme": "Бокалы",
+      "title": "Почему рестораны используют дорогие бокалы",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 51,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для красного вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 52,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для белого вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 53,
+      "theme": "Штопоры",
+      "title": "5 признаков хорошего штопора",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 54,
+      "theme": "Аксессуары",
+      "title": "Декантер или аэратор: что выбрать",
+      "seo_query": "декантер для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 55,
+      "theme": "Штопоры",
+      "title": "Как собрать винный уголок дома",
+      "seo_query": "как выбрать штопор для вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 56,
+      "theme": "Бокалы",
+      "title": "Почему дешевые бокалы мутнеют",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 57,
+      "theme": "Подарки",
+      "title": "Корпоративный подарок со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 58,
+      "theme": "Наборы",
+      "title": "Что должно быть дома у ценителя вина",
+      "seo_query": "набор аксессуаров для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "наборы",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
+    },
+    {
+      "number": 59,
+      "theme": "Штопоры",
+      "title": "Почему некоторые штопоры стоят дорого",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 60,
+      "theme": "Подарки",
+      "title": "Лучшие подарки до 5000 ₽",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 61,
+      "theme": "Штопоры",
+      "title": "Почему дорогой штопор стоит своих денег",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 62,
+      "theme": "Бокалы",
+      "title": "Один бокал на всё или разные?",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 63,
+      "theme": "Подарки",
+      "title": "Как выбрать подарок руководителю со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 64,
+      "theme": "Бокалы",
+      "title": "Почему бокал влияет на вкус вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 65,
+      "theme": "Штопоры",
+      "title": "Стоит ли покупать электрический штопор",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 66,
+      "theme": "Аксессуары",
+      "title": "Как хранить открытое вино правильно",
+      "seo_query": "лучшие аксессуары для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 67,
+      "theme": "Сервировка",
+      "title": "Как удивить гостей винной подачей",
+      "seo_query": "сервировка вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "сервировка",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka"
+    },
+    {
+      "number": 68,
+      "theme": "Бокалы",
+      "title": "Почему рестораны используют дорогие бокалы",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 69,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для красного вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 70,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для белого вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 71,
+      "theme": "Штопоры",
+      "title": "5 признаков хорошего штопора",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 72,
+      "theme": "Аксессуары",
+      "title": "Декантер или аэратор: что выбрать",
+      "seo_query": "декантер для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 73,
+      "theme": "Штопоры",
+      "title": "Как собрать винный уголок дома",
+      "seo_query": "как выбрать штопор для вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 74,
+      "theme": "Бокалы",
+      "title": "Почему дешевые бокалы мутнеют",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 75,
+      "theme": "Подарки",
+      "title": "Корпоративный подарок со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 76,
+      "theme": "Наборы",
+      "title": "Что должно быть дома у ценителя вина",
+      "seo_query": "набор аксессуаров для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "наборы",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
+    },
+    {
+      "number": 77,
+      "theme": "Штопоры",
+      "title": "Почему некоторые штопоры стоят дорого",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 78,
+      "theme": "Подарки",
+      "title": "Лучшие подарки до 5000 ₽",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 79,
+      "theme": "Штопоры",
+      "title": "Почему дорогой штопор стоит своих денег",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 80,
+      "theme": "Бокалы",
+      "title": "Один бокал на всё или разные?",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 81,
+      "theme": "Подарки",
+      "title": "Как выбрать подарок руководителю со вкусом",
+      "seo_query": "подарок любителю вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "подарки",
+      "promote_link": "https://addwine.ru/catalogue/category/izuchenie"
+    },
+    {
+      "number": 82,
+      "theme": "Бокалы",
+      "title": "Почему бокал влияет на вкус вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 83,
+      "theme": "Штопоры",
+      "title": "Стоит ли покупать электрический штопор",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 84,
+      "theme": "Аксессуары",
+      "title": "Как хранить открытое вино правильно",
+      "seo_query": "лучшие аксессуары для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    },
+    {
+      "number": 85,
+      "theme": "Сервировка",
+      "title": "Как удивить гостей винной подачей",
+      "seo_query": "сервировка вина",
+      "cta_text": "Смотреть подборку на AddWine.ru",
+      "promote_category": "сервировка",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka"
+    },
+    {
+      "number": 86,
+      "theme": "Бокалы",
+      "title": "Почему рестораны используют дорогие бокалы",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Посмотреть коллекции на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 87,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для красного вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Идеи подарков на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 88,
+      "theme": "Бокалы",
+      "title": "Как выбрать бокалы для белого вина",
+      "seo_query": "бокалы для вина",
+      "cta_text": "Смотреть наборы на AddWine.ru",
+      "promote_category": "бокалы",
+      "promote_link": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
+    {
+      "number": 89,
+      "theme": "Штопоры",
+      "title": "5 признаков хорошего штопора",
+      "seo_query": "штопор для вина купить",
+      "cta_text": "Смотреть аксессуары на AddWine.ru",
+      "promote_category": "штопоры",
+      "promote_link": "https://addwine.ru/catalogue/category/servirovka/shtopory"
+    },
+    {
+      "number": 90,
+      "theme": "Аксессуары",
+      "title": "Декантер или аэратор: что выбрать",
+      "seo_query": "декантер для вина",
+      "cta_text": "Подборка на AddWine.ru",
+      "promote_category": "аксессуары",
+      "promote_link": "https://addwine.ru/catalogue"
+    }
+  ]
+}

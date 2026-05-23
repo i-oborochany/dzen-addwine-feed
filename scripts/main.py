@@ -1,50 +1,72 @@
 """
-Точка входа. Запускается из GitHub Actions ежедневно.
+Точка входа. Цикл из 5 статей:
+- статьи 1..4: TREND mode (Claude пишет с нуля по актуальной теме)
+- статья 5: CONTENT_PLAN mode (по строке плана с CTA)
 """
-import os
 import sys
 import traceback
 from pathlib import Path
 
 import yaml
 
-# импорты из того же каталога scripts/
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import sources
-import picker
 import writer
 import gigachat
 import publisher
+import progress as progress_mod
 
 
 def main() -> int:
     config_path = Path(__file__).resolve().parent.parent / "config.yaml"
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
 
+    progress = progress_mod.load_progress()
+    cycle_pos = progress.get("cycle_position", 1)
+    plan_idx = progress.get("content_plan_index", 0)
+
     print("=" * 60)
-    print("[1/6] Собираем кандидатов из источников")
-    candidates = sources.collect_all(config)
-    print(f"  всего кандидатов: {len(candidates)}")
-    if not candidates:
-        print("  пусто, выходим")
-        return 1
+    print(f"Позиция в цикле: {cycle_pos}/5")
 
-    print("\n[2/6] Выбираем тему через GigaChat")
-    published_urls = publisher.load_published()
-    print(f"  ранее опубликовано: {len(published_urls)} статей")
-    topic = picker.pick_topic(candidates, config, published_urls)
-    print(f"  -> {topic['title']}")
-    print(f"  источник: {topic['source']}, url: {topic['url']}")
-    print(f"  причина: {topic.get('pick_reason', '')[:200]}")
+    if cycle_pos == 5:
+        # CONTENT_PLAN режим
+        plan = progress_mod.load_content_plan()
+        if plan_idx >= len(plan):
+            print(f"Контент-план исчерпан ({plan_idx}/{len(plan)}), начинаем сначала")
+            plan_idx = 0
+        plan_row = plan[plan_idx]
 
-    print("\n[3/6] Скачиваем оригинал и рерайтим")
-    full_text = writer.fetch_article_text(topic["url"])
-    print(f"  оригинал: {len(full_text)} символов")
-    article = writer.rewrite_article(topic, full_text, config)
-    print(f"  новый заголовок: {article['title']}")
+        print(f"\n[1/4] Контент-план строка #{plan_row['number']}: {plan_row['title']}")
+        print(f"  Категория: {plan_row['promote_category']} → {plan_row['promote_link']}")
+
+        print("\n[2/4] Claude пишет статью с CTA")
+        article = writer.write_content_plan_article(plan_row)
+        topic_type = "content_plan"
+        source_url = plan_row["promote_link"]
+    else:
+        # TREND режим
+        print("\n[1/4] Собираем заголовки-затравки из источников")
+        seeds = sources.collect_seeds(config)
+        print(f"  всего заголовков: {len(seeds)}")
+        if len(seeds) < 5:
+            print("  слишком мало затравок, выходим")
+            return 1
+
+        recent_titles = progress_mod.recent_titles(progress, days=60)
+        print(f"  заголовков в истории (60 дней): {len(recent_titles)}")
+
+        print("\n[2/4] Claude выбирает тему и пишет статью с нуля")
+        article = writer.write_trend_article(seeds, recent_titles, config.get("brand_colors", {}))
+        topic_type = "trend"
+        source_url = ""
+
+    print(f"  заголовок: {article['title_chosen']}")
     print(f"  длина html: {len(article['html'])} символов")
 
-    print("\n[4/6] Генерим 4 обложки через Kandinsky")
+    # для совместимости с publisher.add_to_feed
+    article["title"] = article["title_chosen"]
+
+    print("\n[3/4] Генерим 4 обложки через Kandinsky")
     images = []
     for i, prompt in enumerate(article["image_prompts"], 1):
         print(f"  обложка {i}/4 ...")
@@ -53,23 +75,32 @@ def main() -> int:
             images.append(img)
             print(f"     ok, {len(img)} байт")
         except Exception as e:
-            print(f"     [!] ошибка: {e}")
-            # если хотя бы одна картинка есть — переиспользуем; иначе падаем
+            print(f"     [!] {e}")
             if images:
                 images.append(images[0])
             else:
                 raise
 
-    print("\n[5/6] Сохраняем картинки в репозитории")
+    print("\n[4/4] Сохраняем картинки + добавляем в feed.xml")
     slug = publisher.slugify(article["title"])
     image_urls = publisher.save_images(images, slug)
     for u in image_urls:
         print(f"  -> {u}")
 
-    print("\n[6/6] Добавляем в feed.xml и помечаем опубликованным")
-    publisher.add_to_feed(article, image_urls, topic["url"], config)
-    publisher.mark_published(topic["url"], article["title"])
-    print("  feed.xml обновлён")
+    publisher.add_to_feed(article, image_urls, source_url, config)
+
+    # обновляем journal
+    progress_mod.append_history(progress, article["title"], cycle_pos, topic_type, source_url)
+    progress_mod.advance_cycle(progress, topic_type)
+    progress_mod.save_progress(progress)
+
+    # дополнительно: дублируем в published.json для дедупликации URL
+    if source_url:
+        publisher.mark_published(source_url, article["title"])
+
+    print("\nСохранили progress.json:")
+    print(f"  следующая позиция: {progress['cycle_position']}/5")
+    print(f"  индекс плана: {progress['content_plan_index']}")
     print("=" * 60)
     print("SUCCESS")
     return 0
