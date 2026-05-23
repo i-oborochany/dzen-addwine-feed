@@ -1,0 +1,46 @@
+name: Daily Wine Post
+
+on:
+  schedule:
+    # 10:00 МСК = 07:00 UTC, ежедневно
+    - cron: "0 7 * * *"
+  workflow_dispatch:  # ручной запуск кнопкой
+
+permissions:
+  contents: write  # для коммита картинок и feed.xml
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          GIGACHAT_AUTH_KEY: ${{ secrets.GIGACHAT_AUTH_KEY }}
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/main.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "addwine-bot"
+          git config user.email "bot@addwine.local"
+          git add feed.xml images/ posts/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Daily post $(date -u +%Y-%m-%d)"
+            git push
+          fi
