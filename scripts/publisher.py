@@ -114,14 +114,20 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
         ET.SubElement(channel, "language").text = config["channel"]["language"]
         tree = ET.ElementTree(rss)
 
-    # формируем item
+    # slug — из имени папки с картинками (формат: YYYY-MM-DD-<title-slug>)
+    import re as _re
+    m = _re.search(r"images/([^/]+)/", image_urls[0])
+    slug = m.group(1) if m else f"{datetime.now(timezone.utc).strftime('%Y-%m-%d')}-{uuid.uuid4().hex[:8]}"
+
+    pub_date = datetime.now(timezone.utc)
+
+    # формируем item для RSS
     item = ET.Element("item")
     ET.SubElement(item, "title").text = article["title"]
-    # фейковая ссылка на исходную статью — Дзен требует уникальный link
-    permalink = f"{pages_base}/posts/{uuid.uuid4().hex[:12]}"
+    permalink = f"{pages_base}/posts/{slug}/"
     ET.SubElement(item, "link").text = permalink
-    ET.SubElement(item, "guid", attrib={"isPermaLink": "false"}).text = str(uuid.uuid4())
-    ET.SubElement(item, "pubDate").text = format_datetime(datetime.now(timezone.utc))
+    ET.SubElement(item, "guid", attrib={"isPermaLink": "true"}).text = permalink
+    ET.SubElement(item, "pubDate").text = format_datetime(pub_date)
     ET.SubElement(item, "description").text = article["lead"]
 
     # главная картинка через <enclosure>
@@ -131,14 +137,13 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
         "type": "image/jpeg",
     })
 
-    # дополнительные картинки вшиваем в начало тела статьи
+    # дополнительные картинки вшиваем в начало тела статьи (для RSS/Дзена)
     extra_imgs_html = "".join(
         f'<p><img src="{pages_base}/{u}" alt="иллюстрация {i+2}"/></p>'
         for i, u in enumerate(image_urls[1:])
     )
     full_html = f'<p><img src="{main_image_url}" alt="обложка"/></p>{article["html"]}{extra_imgs_html}'
 
-    # yandex:full-text — обязателен для Дзена
     full_text = ET.SubElement(item, "{http://news.yandex.ru}full-text")
     full_text.text = full_html
 
@@ -151,5 +156,24 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
     else:
         channel.append(item)
 
-    # сохраняем
     tree.write(str(FEED_PATH), encoding="utf-8", xml_declaration=True)
+
+    # генерируем HTML-страницу статьи и обновляем главную
+    try:
+        import html_renderer
+        article_for_html = {
+            "title": article["title"],
+            "lead": article["lead"],
+            "html": full_html,  # с включёнными картинками
+        }
+        html_renderer.write_post(article_for_html, slug, image_urls, pub_date, pages_base)
+        html_renderer.add_post(
+            slug=slug,
+            title=article["title"],
+            lead=article["lead"],
+            cover_url=main_image_url,
+            published_at=pub_date.isoformat(),
+        )
+        html_renderer.rebuild_index()
+    except Exception as e:
+        print(f"[publisher] HTML-рендер упал (не критично): {e}")
