@@ -1,0 +1,126 @@
+# Настройки бота публикаций для канала Дзен addwine
+
+channel:
+  title: "Addwine — о вине"
+  link: "https://dzen.ru/addwine"
+  description: "Новости и материалы о вине, виноделии и винной культуре"
+  language: "ru"
+  pages_base_url: "https://i-oborochany.github.io/dzen-addwine-feed"
+
+publishing:
+  # Целевая длина статьи (символы)
+  target_length: 2500
+  min_length: 1800
+  max_length: 3500
+  # Дисклеймер 18+ в конце статьи (для алкогольной тематики)
+  add_disclaimer: true
+  disclaimer_text: "Материал предназначен для лиц старше 18 лет. Чрезмерное употребление алкоголя вредит вашему здоровью."
+
+# Цвета для обложек (Pantone)
+brand_colors:
+  primary_pantone: "302"
+  primary_hex: "#003E6B"
+  accent_pantone: "7403"
+  accent_hex: "#EFD79A"
+
+# Стилистика обложек (вшиваем в Kandinsky-промпт)
+image_style: |
+  Стиль: классический но не древний, с новыми технологиями и аксессуарами,
+  приятные люди, красивый и богатый интерьер. Бокалы с тонкой ножкой,
+  большого объёма. Фигура человека (рабочая область, не обязательно целиком),
+  сценарий «за столом, дома или в ресторане». Тёплый кремовый и тёмно-синий
+  как акценты. Лёгкий неброский текст, не закрывающий основную область.
+
+# Источники новостей (русские)
+sources_ru:
+  - name: "Дзен (винный поиск)"
+    type: "html"
+    url: "https://dzen.ru/search?query=вино&from=tabbar"
+    exclude_keywords: ["addwine"]
+  - name: "Simple Wine Blog"
+    type: "html"
+    url: "https://simplewine.ru/blog/"
+  - name: "Simple Wine News"
+    type: "html"
+    url: "https://swn.ru/"
+  - name: "RBC Vin Club"
+    type: "html"
+    url: "https://rbcvinclub.com/"
+  - name: "Vinetime"
+    type: "html"
+    url: "https://vinetime.ru/"
+  - name: "Why Why Wine"
+    type: "html"
+    url: "https://whywhywine.ru/"
+  - name: "Forbes Life"
+    type: "rss"
+    url: "https://www.forbes.ru/forbeslife/rss.xml"
+  - name: "Афиша Daily Eating"
+    type: "rss"
+    url: "https://daily.afisha.ru/rss/eating.xml"
+  - name: "РБК Вино"
+    type: "rss"
+    url: "https://www.rbc.ru/wine/news/feed/"
+  - name: "Коммерсантъ — Сомелье"
+    type: "html"
+    url: "https://www.kommersant.ru/sommelier"
+  - name: "Vino.ru"
+    type: "html"
+    url: "https://vino.ru/novosti/"
+  - name: "Provina"
+    type: "html"
+    url: "https://www.provina.ru/"
+  - name: "About Wine Online"
+    type: "html"
+    url: "https://www.aboutwine.online/"
+
+# Зарубежные топовые источники (рерайт с переводом)
+sources_en:
+  - name: "Decanter"
+    type: "rss"
+    url: "https://www.decanter.com/feed"
+  - name: "Wine Spectator"
+    type: "rss"
+    url: "https://www.winespectator.com/rss/news"
+  - name: "Wine Enthusiast"
+    type: "rss"
+    url: "https://www.wineenthusiast.com/feed/"
+  - name: "VinePair"
+    type: "rss"
+    url: "https://vinepair.com/feed/"
+  - name: "The Drinks Business"
+    type: "rss"
+    url: "https://www.thedrinksbusiness.com/feed/"
+  - name: "Wine-Searcher"
+    type: "rss"
+    url: "https://www.wine-searcher.com/feeds/news.xml"
+
+# Ключевые слова для фильтра «винной» тематики
+wine_keywords:
+  - "вино"
+  - "винодел"
+  - "виноград"
+  - "бокал"
+  - "сомелье"
+  - "ресторан"
+  - "винный"
+  - "шампанск"
+  - "игристое"
+  - "терруар"
+  - "ассамбляж"
+  - "купаж"
+  - "wine"
+  - "winery"
+  - "sommelier"
+  - "vineyard"
+  - "vintage"
+  - "champagne"
+
+# Сколько кандидатов передаём в GigaChat для выбора финальной темы
+candidate_pool_size: 20
+
+# Окно «свежести» (дни) — статьи старше отбрасываются (кроме evergreen-режима)
+freshness_window_days: 30
+
+# Доля evergreen-постов (когда нет горячих новостей)
+evergreen_ratio: 0.1
