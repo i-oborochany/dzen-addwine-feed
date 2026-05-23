@@ -54,8 +54,10 @@ def chat(
     temperature: float = 0.7,
     max_tokens: int = 2000,
     function_call: str | dict | None = None,
+    timeout: int = 300,
+    retries: int = 2,
 ) -> dict:
-    """Один вызов chat completions. Возвращает весь JSON-ответ."""
+    """Один вызов chat completions с ретраями. Возвращает весь JSON-ответ."""
     token = _get_token()
     headers = {
         "Authorization": f"Bearer {token}",
@@ -70,17 +72,29 @@ def chat(
     if function_call is not None:
         payload["function_call"] = function_call
 
-    resp = requests.post(
-        f"{API_BASE}/chat/completions",
-        headers=headers,
-        json=payload,
-        verify=False,
-        timeout=120,
-    )
-    if resp.status_code != 200:
-        print(f"Chat error {resp.status_code}: {resp.text[:500]}")
-    resp.raise_for_status()
-    return resp.json()
+    last_err = None
+    for attempt in range(retries + 1):
+        try:
+            resp = requests.post(
+                f"{API_BASE}/chat/completions",
+                headers=headers,
+                json=payload,
+                verify=False,
+                timeout=timeout,
+            )
+            if resp.status_code != 200:
+                print(f"  Chat error {resp.status_code}: {resp.text[:300]}")
+                resp.raise_for_status()
+            return resp.json()
+        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
+            last_err = e
+            if attempt < retries:
+                wait = 15 * (attempt + 1)
+                print(f"  таймаут (попытка {attempt+1}/{retries+1}), ждём {wait}с и пробуем ещё раз")
+                time.sleep(wait)
+            else:
+                raise
+    raise last_err
 
 
 def chat_text(messages: list, **kwargs) -> str:
@@ -115,6 +129,8 @@ def generate_image(prompt: str) -> bytes:
         model="GigaChat",
         function_call="auto",
         max_tokens=1500,
+        timeout=240,
+        retries=2,
     )
     content = response["choices"][0]["message"].get("content", "")
 
