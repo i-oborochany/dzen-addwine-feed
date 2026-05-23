@@ -5,7 +5,7 @@ channel:
   link: "https://dzen.ru/addwine"
   description: "Новости и материалы о вине, виноделии и винной культуре"
   language: "ru"
-  pages_base_url: "https://i-oborochany.github.io/dzen-addwine-feed"
+  pages_base_url: "https://feed.addwine.ru"
 
 publishing:
   # Целевая длина статьи (символы)
