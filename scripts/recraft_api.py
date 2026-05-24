@@ -10,7 +10,8 @@ ENDPOINT = "https://external.api.recraft.ai/v1/images/generations"
 
 # Размер 1820x1024 — близкий к 16:9, оптимально для обложек Дзена
 DEFAULT_SIZE = "1820x1024"
-DEFAULT_STYLE = "realistic_image/natural_light"
+DEFAULT_STYLE = "realistic_image"
+DEFAULT_SUBSTYLE = "natural_light"
 DEFAULT_MODEL = "recraftv3"
 
 
@@ -21,7 +22,7 @@ def _get_api_key() -> str:
     return key
 
 
-def generate_image(prompt: str, retries: int = 2, style: str = DEFAULT_STYLE) -> bytes:
+def generate_image(prompt: str, retries: int = 2, style: str = DEFAULT_STYLE, substyle: str = DEFAULT_SUBSTYLE) -> bytes:
     """
     Генерирует одну картинку через Recraft V3.
     Возвращает bytes JPEG.
@@ -34,6 +35,7 @@ def generate_image(prompt: str, retries: int = 2, style: str = DEFAULT_STYLE) ->
         "prompt": prompt,
         "model": DEFAULT_MODEL,
         "style": style,
+        "substyle": substyle,
         "size": DEFAULT_SIZE,
         "n": 1,
         "response_format": "url",
