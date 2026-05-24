@@ -4,12 +4,52 @@
 """
 import json
 import os
+import re as _re_top
 import re
 import uuid
 from datetime import datetime, timezone
 from email.utils import format_datetime
 from pathlib import Path
 from xml.etree import ElementTree as ET
+
+
+ALT_BY_INDEX = {1: "обложка", 2: "иллюстрация: проблема", 3: "иллюстрация: решение", 4: "иллюстрация: финал"}
+
+
+def embed_images(html: str, image_urls: list, pages_base: str) -> str:
+    """
+    Подставляет картинки в плейсхолдеры [[IMG_1]]..[[IMG_4]] внутри html.
+    Если плейсхолдеров нет (старый формат) — fallback: обложка сверху, остальные снизу.
+    """
+    if not image_urls:
+        return html
+
+    def _img_tag(i: int) -> str:
+        url = image_urls[i - 1] if i - 1 < len(image_urls) else image_urls[-1]
+        if not url.startswith("http"):
+            url = f"{pages_base}/{url}"
+        alt = ALT_BY_INDEX.get(i, f"иллюстрация {i}")
+        return f'<p><img src="{url}" alt="{alt}"/></p>'
+
+    has_any_placeholder = bool(_re_top.search(r"\[\[IMG_[1-4]\]\]", html))
+    if has_any_placeholder:
+        # заменяем [[IMG_N]] (с обёрткой <p>...</p> или без) на тег картинки
+        result = html
+        for i in range(1, 5):
+            ph_in_p = _re_top.compile(rf"<p>\s*\[\[IMG_{i}\]\]\s*</p>")
+            result = ph_in_p.sub(_img_tag(i), result)
+            ph_bare = _re_top.compile(rf"\[\[IMG_{i}\]\]")
+            result = ph_bare.sub(_img_tag(i), result)
+        return result
+
+    # fallback: старая логика — обложка сверху, остальные снизу
+    main_url = image_urls[0] if image_urls[0].startswith("http") else f"{pages_base}/{image_urls[0]}"
+    top = f'<p><img src="{main_url}" alt="обложка"/></p>'
+    extras = "".join(
+        f'<p><img src="{u if u.startswith("http") else pages_base + "/" + u}" alt="иллюстрация {i+2}"/></p>'
+        for i, u in enumerate(image_urls[1:])
+    )
+    return f"{top}{html}{extras}"
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FEED_PATH = REPO_ROOT / "feed.xml"
@@ -137,12 +177,8 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
         "type": "image/jpeg",
     })
 
-    # дополнительные картинки вшиваем в начало тела статьи (для RSS/Дзена)
-    extra_imgs_html = "".join(
-        f'<p><img src="{pages_base}/{u}" alt="иллюстрация {i+2}"/></p>'
-        for i, u in enumerate(image_urls[1:])
-    )
-    full_html = f'<p><img src="{main_image_url}" alt="обложка"/></p>{article["html"]}{extra_imgs_html}'
+    # подставляем картинки в плейсхолдеры [[IMG_N]]
+    full_html = embed_images(article["html"], image_urls, pages_base)
 
     full_text = ET.SubElement(item, "{http://news.yandex.ru}full-text")
     full_text.text = full_html
