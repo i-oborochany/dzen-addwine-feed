@@ -66,20 +66,13 @@ def main() -> int:
     # для совместимости с publisher.add_to_feed
     article["title"] = article["title_chosen"]
 
-    print("\n[3/4] Генерим 4 обложки через Recraft V3")
+    print("\n[3/4] Генерим заголовочное фото через Recraft V3")
     images = []
-    for i, prompt in enumerate(article["image_prompts"], 1):
-        print(f"  обложка {i}/4 ...")
-        try:
-            img = recraft_api.generate_image(prompt)
-            images.append(img)
-            print(f"     ok, {len(img)} байт")
-        except Exception as e:
-            print(f"     [!] {e}")
-            if images:
-                images.append(images[0])
-            else:
-                raise
+    prompt = article["image_prompts"][0]
+    print(f"  обложка ...")
+    img = recraft_api.generate_image(prompt)
+    images.append(img)
+    print(f"     ok, {len(img)} байт")
 
     print("\n[4/4] Сохраняем картинки + добавляем в feed.xml")
     slug = publisher.slugify(article["title"])
