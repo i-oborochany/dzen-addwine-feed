@@ -3,28 +3,41 @@ name: Bootstrap project files
 on:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (using PAT for workflow permissions)
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_WORKFLOWS }}
 
-      - name: Update files
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Update daily.yml
         run: |
-          echo 'IiIiCtCe0LHRkdGA0YLQutCwINC90LDQtCBSZWNyYWZ0IEFQSSDQtNC70Y8g0LPQtdC90LXRgNCw0YbQuNC4INC40LfQvtCx0YDQsNC20LXQvdC40LkuCtCY0YHQv9C+0LvRjNC30YPQtdC8IFJlY3JhZnQgVjMg0LIg0YHRgtC40LvQtSByZWFsaXN0aWNfaW1hZ2UvbmF0dXJhbF9saWdodCDQtNC70Y8g0L/RgNC10LzQuNGD0Lwt0YTQvtGC0L4uCiIiIgppbXBvcnQgb3MKaW1wb3J0IHRpbWUKaW1wb3J0IHJlcXVlc3RzCgpFTkRQT0lOVCA9ICJodHRwczovL2V4dGVybmFsLmFwaS5yZWNyYWZ0LmFpL3YxL2ltYWdlcy9nZW5lcmF0aW9ucyIKCiMg0KDQsNC30LzQtdGAIDE4MjB4MTAyNCDigJQg0LHQu9C40LfQutC40Lkg0LogMTY6OSwg0L7Qv9GC0LjQvNCw0LvRjNC90L4g0LTQu9GPINC+0LHQu9C+0LbQtdC6INCU0LfQtdC90LAKREVGQVVMVF9TSVpFID0gIjE4MjB4MTAyNCIKREVGQVVMVF9TVFlMRSA9ICJyZWFsaXN0aWNfaW1hZ2UiCkRFRkFVTFRfU1VCU1RZTEUgPSAibmF0dXJhbF9saWdodCIKREVGQVVMVF9NT0RFTCA9ICJyZWNyYWZ0djMiCgoKZGVmIF9nZXRfYXBpX2tleSgpIC0+IHN0cjoKICAgIGtleSA9IG9zLmVudmlyb24uZ2V0KCJSRUNSQUZUX0FQSV9LRVkiKQogICAgaWYgbm90IGtleToKICAgICAgICByYWlzZSBSdW50aW1lRXJyb3IoIlJFQ1JBRlRfQVBJX0tFWSBlbnYgdmFyIG5vdCBzZXQiKQogICAgcmV0dXJuIGtleQoKCmRlZiBnZW5lcmF0ZV9pbWFnZShwcm9tcHQ6IHN0ciwgcmV0cmllczogaW50ID0gMiwgc3R5bGU6IHN0ciA9IERFRkFVTFRfU1RZTEUsIHN1YnN0eWxlOiBzdHIgPSBERUZBVUxUX1NVQlNUWUxFKSAtPiBieXRlczoKICAgICIiIgogICAg0JPQtdC90LXRgNC40YDRg9C10YIg0L7QtNC90YMg0LrQsNGA0YLQuNC90LrRgyDRh9C10YDQtdC3IFJlY3JhZnQgVjMuCiAgICDQktC+0LfQstGA0LDRidCw0LXRgiBieXRlcyBKUEVHLgogICAgIiIiCiAgICBoZWFkZXJzID0gewogICAgICAgICJBdXRob3JpemF0aW9uIjogZiJCZWFyZXIge19nZXRfYXBpX2tleSgpfSIsCiAgICAgICAgIkNvbnRlbnQtVHlwZSI6ICJhcHBsaWNhdGlvbi9qc29uIiwKICAgIH0KICAgIHBheWxvYWQgPSB7CiAgICAgICAgInByb21wdCI6IHByb21wdCwKICAgICAgICAibW9kZWwiOiBERUZBVUxUX01PREVMLAogICAgICAgICJzdHlsZSI6IHN0eWxlLAogICAgICAgICJzdWJzdHlsZSI6IHN1YnN0eWxlLAogICAgICAgICJzaXplIjogREVGQVVMVF9TSVpFLAogICAgICAgICJuIjogMSwKICAgICAgICAicmVzcG9uc2VfZm9ybWF0IjogInVybCIsCiAgICB9CgogICAgbGFzdF9lcnIgPSBOb25lCiAgICBmb3IgYXR0ZW1wdCBpbiByYW5nZShyZXRyaWVzICsgMSk6CiAgICAgICAgdHJ5OgogICAgICAgICAgICByZXNwID0gcmVxdWVzdHMucG9zdChFTkRQT0lOVCwgaGVhZGVycz1oZWFkZXJzLCBqc29uPXBheWxvYWQsIHRpbWVvdXQ9MTIwKQogICAgICAgICAgICBpZiByZXNwLnN0YXR1c19jb2RlICE9IDIwMDoKICAgICAgICAgICAgICAgIHByaW50KGYiICBSZWNyYWZ0IGVycm9yIHtyZXNwLnN0YXR1c19jb2RlfToge3Jlc3AudGV4dFs6MzAwXX0iKQogICAgICAgICAgICAgICAgcmVzcC5yYWlzZV9mb3Jfc3RhdHVzKCkKICAgICAgICAgICAgZGF0YSA9IHJlc3AuanNvbigpCiAgICAgICAgICAgIGltYWdlX3VybCA9IGRhdGFbImRhdGEiXVswXVsidXJsIl0KCiAgICAgICAgICAgIGltZ19yZXNwID0gcmVxdWVzdHMuZ2V0KGltYWdlX3VybCwgdGltZW91dD02MCkKICAgICAgICAgICAgaW1nX3Jlc3AucmFpc2VfZm9yX3N0YXR1cygpCiAgICAgICAgICAgIHJldHVybiBpbWdfcmVzcC5jb250ZW50CiAgICAgICAgZXhjZXB0IChyZXF1ZXN0cy5leGNlcHRpb25zLlJlYWRUaW1lb3V0LCByZXF1ZXN0cy5leGNlcHRpb25zLkNvbm5lY3Rpb25FcnJvcikgYXMgZToKICAgICAgICAgICAgbGFzdF9lcnIgPSBlCiAgICAgICAgICAgIGlmIGF0dGVtcHQgPCByZXRyaWVzOgogICAgICAgICAgICAgICAgd2FpdCA9IDEwICogKGF0dGVtcHQgKyAxKQogICAgICAgICAgICAgICAgcHJpbnQoZiIgIFJlY3JhZnQg0YLQsNC50LzQsNGD0YIgKNC/0L7Qv9GL0YLQutCwIHthdHRlbXB0KzF9L3tyZXRyaWVzKzF9KSwg0LbQtNGR0Lwge3dhaXR90YEiKQogICAgICAgICAgICAgICAgdGltZS5zbGVlcCh3YWl0KQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgcmFpc2UKICAgIHJhaXNlIGxhc3RfZXJyCg==' | base64 -d > scripts/recraft_api.py
+          echo 'bmFtZTogRGFpbHkgV2luZSBQb3N0CgpvbjoKICBzY2hlZHVsZToKICAgICMgMTA6MDAg0JzQodCaID0gMDc6MDAgVVRDLCDQtdC20LXQtNC90LXQstC90L4KICAgIC0gY3JvbjogIjAgNyAqICogKiIKICB3b3JrZmxvd19kaXNwYXRjaDoKCnBlcm1pc3Npb25zOgogIGNvbnRlbnRzOiB3cml0ZQoKam9iczoKICBwdWJsaXNoOgogICAgcnVucy1vbjogdWJ1bnR1LWxhdGVzdAogICAgdGltZW91dC1taW51dGVzOiAzNQoKICAgIHN0ZXBzOgogICAgICAtIG5hbWU6IENoZWNrb3V0CiAgICAgICAgdXNlczogYWN0aW9ucy9jaGVja291dEB2NAoKICAgICAgLSBuYW1lOiBTZXR1cCBQeXRob24KICAgICAgICB1c2VzOiBhY3Rpb25zL3NldHVwLXB5dGhvbkB2NQogICAgICAgIHdpdGg6CiAgICAgICAgICBweXRob24tdmVyc2lvbjogIjMuMTEiCiAgICAgICAgICBjYWNoZTogcGlwCgogICAgICAtIG5hbWU6IEluc3RhbGwgZGVwcwogICAgICAgIHJ1bjogcGlwIGluc3RhbGwgLXIgcmVxdWlyZW1lbnRzLnR4dAoKICAgICAgLSBuYW1lOiBSdW4gYm90CiAgICAgICAgZW52OgogICAgICAgICAgQU5USFJPUElDX0FQSV9LRVk6ICR7eyBzZWNyZXRzLkFOVEhST1BJQ19BUElfS0VZIH19CiAgICAgICAgICBSRUNSQUZUX0FQSV9LRVk6ICR7eyBzZWNyZXRzLlJFQ1JBRlRfQVBJX0tFWSB9fQogICAgICAgICAgUFlUSE9OVU5CVUZGRVJFRDogIjEiCiAgICAgICAgcnVuOiBweXRob24gc2NyaXB0cy9tYWluLnB5CgogICAgICAtIG5hbWU6IENvbW1pdCBhbmQgcHVzaAogICAgICAgIHJ1bjogfAogICAgICAgICAgZ2l0IGNvbmZpZyB1c2VyLm5hbWUgImFkZHdpbmUtYm90IgogICAgICAgICAgZ2l0IGNvbmZpZyB1c2VyLmVtYWlsICJib3RAYWRkd2luZS5sb2NhbCIKICAgICAgICAgIGdpdCBhZGQgZmVlZC54bWwgaW1hZ2VzLyBwb3N0cy8gaW5kZXguaHRtbAogICAgICAgICAgaWYgZ2l0IGRpZmYgLS1jYWNoZWQgLS1xdWlldDsgdGhlbgogICAgICAgICAgICBlY2hvICJOb3RoaW5nIHRvIGNvbW1pdCIKICAgICAgICAgIGVsc2UKICAgICAgICAgICAgZ2l0IGNvbW1pdCAtbSAiRGFpbHkgcG9zdCAkKGRhdGUgLXUgKyVZLSVtLSVkKSIKICAgICAgICAgICAgZ2l0IHB1c2gKICAgICAgICAgIGZpCg==' | base64 -d > .github/workflows/daily.yml
+
+      - name: Rebuild index.html and post pages from feed.xml
+        run: |
+          cd scripts
+          python3 -c "
+          import html_renderer
+          html_renderer.rebuild_from_feed('https://feed.addwine.ru')
+          print('Готово')
+          "
 
       - name: Commit and push
         run: |
           git config user.name "bootstrap"
           git config user.email "bootstrap@local"
-          git add scripts/recraft_api.py
+          git add .github/workflows/daily.yml index.html posts/
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Fix Recraft API: substyle as separate param"
+            git commit -m "Auto-deploy: fix daily.yml + rebuild index.html"
             git push
           fi
