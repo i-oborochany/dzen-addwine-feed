@@ -1,7 +1,14 @@
 {
-  "cycle_position": 2,
+  "cycle_position": 3,
   "content_plan_index": 1,
   "history": [
+    {
+      "date": "2026-05-24T09:33:32.736822+00:00",
+      "cycle_position": 2,
+      "topic_type": "trend",
+      "title": "Почему профессионалы никогда не пьют молодое красное сразу из бутылки",
+      "source_url": ""
+    },
     {
       "date": "2026-05-23T22:22:26.183571+00:00",
       "cycle_position": 1,
