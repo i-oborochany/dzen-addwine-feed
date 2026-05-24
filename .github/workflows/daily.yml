@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "addwine-bot"
           git config user.email "bot@addwine.local"
-          git add feed.xml images/ posts/
+          git add feed.xml images/ posts/ index.html
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
