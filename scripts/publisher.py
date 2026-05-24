@@ -170,6 +170,10 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
     ET.SubElement(item, "pubDate").text = format_datetime(pub_date)
     ET.SubElement(item, "description").text = article["lead"]
 
+    # категории — пишем как <category>
+    for cat in article.get("categories", []):
+        ET.SubElement(item, "category").text = cat
+
     # главная картинка через <enclosure>
     main_image_url = f"{pages_base}/{image_urls[0]}"
     ET.SubElement(item, "enclosure", attrib={
@@ -202,13 +206,14 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
             "lead": article["lead"],
             "html": full_html,  # с включёнными картинками
         }
-        html_renderer.write_post(article_for_html, slug, image_urls, pub_date, pages_base)
+        html_renderer.write_post(article_for_html, slug, image_urls, pub_date, pages_base, categories=article.get("categories", []))
         html_renderer.add_post(
             slug=slug,
             title=article["title"],
             lead=article["lead"],
             cover_url=main_image_url,
             published_at=pub_date.isoformat(),
+            categories=article.get("categories", []),
         )
         html_renderer.rebuild_index()
     except Exception as e:

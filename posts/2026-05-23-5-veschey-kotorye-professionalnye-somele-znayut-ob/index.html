@@ -16,13 +16,6 @@
 <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="AddWine Журнал">
 <link rel="icon" href="https://addwine.ru/favicon.ico">
 <style>
-@font-face {
-  font-family: 'Inter';
-  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
 :root {
   --bg: #ffffff;
   --bg-alt: #fafaf7;
@@ -41,7 +34,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
   font-size: 16px; line-height: 1.55; color: var(--text); background: var(--bg);
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
@@ -56,36 +49,18 @@ a { color: inherit; text-decoration: none; transition: color .15s ease, opacity 
 .topbar a:hover { border-color: rgba(255,255,255,.7); }
 
 /* Main header */
-header.site {
-  background: white; border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100;
-}
-.header-wrap {
-  max-width: 1280px; margin: 0 auto; padding: 18px 24px;
-  display: flex; align-items: center; justify-content: space-between; gap: 32px;
-}
-.brand {
-  display: flex; align-items: baseline; gap: 14px;
-}
-.brand .logo {
-  font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--text);
-}
-.brand .sub {
-  font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em;
-}
+header.site { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.header-wrap { max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.brand { display: flex; align-items: baseline; gap: 14px; }
+.brand .logo { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.brand .sub { font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; }
 .brand .sub::before { content: "/ "; color: var(--text-soft); margin-right: 4px; }
-
 .header-nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
 .header-nav a { color: var(--text); }
 .header-nav a:hover { color: var(--primary); }
-.header-nav .catalog-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--text); color: white; padding: 10px 18px; border-radius: 999px;
-  font-weight: 500;
-}
+.header-nav .catalog-link { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: white; padding: 10px 18px; border-radius: 999px; font-weight: 500; }
 .header-nav .catalog-link:hover { background: var(--primary); color: white; }
 .header-nav .catalog-link::after { content: "→"; font-size: 14px; }
-
 .header-icons { display: flex; align-items: center; gap: 16px; color: var(--text-muted); }
 .header-icons a { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; }
 .header-icons a:hover { color: var(--primary); }
@@ -93,90 +68,67 @@ header.site {
 
 /* Brand strip */
 .brand-strip { background: var(--bg-alt); border-bottom: 1px solid var(--border); }
-.brand-strip-wrap {
-  max-width: 1280px; margin: 0 auto; padding: 12px 24px;
-  display: flex; align-items: center; gap: 4px; overflow-x: auto;
-  scrollbar-width: none;
-}
+.brand-strip-wrap { max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
 .brand-strip-wrap::-webkit-scrollbar { display: none; }
-.brand-strip a {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 16px; border-radius: 999px;
-  font-size: 14px; color: var(--text-muted); white-space: nowrap;
-  transition: background .15s, color .15s;
-}
+.brand-strip a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font-size: 14px; color: var(--text-muted); white-space: nowrap; transition: background .15s, color .15s; }
 .brand-strip a:hover { background: white; color: var(--text); box-shadow: 0 0 0 1px var(--border); }
 .brand-strip a.brand-link { color: var(--text); font-weight: 500; }
-.brand-strip a .ico {
-  display: inline-block; width: 18px; height: 18px; flex-shrink: 0;
-  opacity: 0.65;
-}
-.brand-strip-sep {
-  width: 1px; height: 20px; background: var(--border); margin: 0 8px;
-}
+.brand-strip a .ico { display: inline-block; width: 18px; height: 18px; flex-shrink: 0; opacity: 0.65; }
+.brand-strip-sep { width: 1px; height: 20px; background: var(--border); margin: 0 8px; }
 
 /* Main content */
-main { max-width: 1280px; margin: 0 auto; padding: 56px 24px 80px; }
+main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 
-/* Hero (главная) */
-.hero { margin-bottom: 56px; max-width: 720px; }
-.hero h1 {
-  font-size: clamp(34px, 5vw, 54px); font-weight: 700; line-height: 1.05;
-  letter-spacing: -0.025em; color: var(--text); margin-bottom: 18px;
+/* Blog header (h1 + search) */
+.blog-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+.blog-head h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; color: var(--text); }
+.blog-head .blog-desc { font-size: 16px; color: var(--text-muted); margin-top: 8px; max-width: 540px; }
+.search-box { position: relative; width: 320px; max-width: 100%; }
+.search-box input {
+  width: 100%; padding: 12px 18px 12px 44px; border: 1px solid var(--border); border-radius: 999px;
+  font-size: 14px; color: var(--text); background: white; outline: none; transition: border-color .15s;
+  font-family: inherit;
 }
-.hero p { font-size: 18px; color: var(--text-muted); line-height: 1.5; max-width: 540px; }
+.search-box input:focus { border-color: var(--primary); }
+.search-box svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-soft); pointer-events: none; }
+
+/* Categories pills */
+.categories { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; padding-bottom: 4px; }
+.cat-pill {
+  display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px;
+  font-size: 14px; color: var(--text-muted); background: var(--bg-alt); border: 1px solid transparent;
+  cursor: pointer; transition: background .15s, color .15s, border-color .15s;
+  user-select: none; font-family: inherit;
+}
+.cat-pill:hover { color: var(--text); background: white; border-color: var(--border); }
+.cat-pill.active { background: var(--text); color: white; border-color: var(--text); }
 
 /* Articles grid */
-.grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 24px;
-}
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 28px; }
 .card { display: flex; flex-direction: column; }
-.card a.cover {
-  display: block; aspect-ratio: 16/10; overflow: hidden; border-radius: 8px;
-  background: var(--bg-alt);
-}
-.card img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform .4s ease;
-}
+.card a.cover { display: block; aspect-ratio: 16/10; overflow: hidden; border-radius: 10px; background: var(--bg-alt); }
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
 .card a.cover:hover img { transform: scale(1.03); }
-.card .meta { display: flex; align-items: center; gap: 10px; margin: 14px 0 8px; font-size: 13px; color: var(--text-soft); }
-.card .meta .tag { background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 999px; font-weight: 500; font-size: 12px; }
-.card h2 { font-size: 19px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
+.card .meta { display: flex; align-items: center; gap: 10px; margin: 14px 0 8px; font-size: 13px; color: var(--text-soft); flex-wrap: wrap; }
+.card .meta .date { color: var(--text-soft); }
+.card .meta .cat { color: var(--accent); font-weight: 500; }
+.card h2 { font-size: 19px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
 .card h2 a { color: var(--text); }
 .card h2 a:hover { color: var(--primary); }
-.card p.lead { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-/* Featured article (первая большая карточка) */
-.featured { grid-column: span 3; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; margin-bottom: 8px; }
-.featured a.cover { aspect-ratio: 16/10; }
-.featured .body { padding: 0 12px; }
-.featured h2 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; margin-bottom: 16px; }
-.featured p.lead { font-size: 16px; margin-bottom: 18px; }
-.featured .read-more { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 600; font-size: 14px; }
-.featured .read-more::after { content: "→"; transition: transform .15s; }
-.featured .read-more:hover::after { transform: translateX(4px); }
+.empty { grid-column: 1/-1; text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 16px; }
 
 /* Article page */
 .post-wrap { max-width: 760px; margin: 0 auto; }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
-.breadcrumb a { color: var(--text-muted); border-bottom: 1px solid transparent; }
+.breadcrumb a { color: var(--text-muted); }
 .breadcrumb a:hover { color: var(--primary); }
 .breadcrumb .sep { margin: 0 8px; color: var(--text-soft); }
-
-.post-header { margin-bottom: 36px; }
-.post-header .meta { font-size: 13px; color: var(--text-soft); margin-bottom: 14px; display: flex; gap: 10px; align-items: center; }
-.post-header .meta .tag { background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 999px; font-weight: 500; font-size: 12px; }
-.post-header h1 {
-  font-size: clamp(28px, 4vw, 42px); line-height: 1.15; font-weight: 700;
-  letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px;
-}
-.post-header .lead {
-  font-size: 19px; color: var(--text-muted); line-height: 1.5;
-}
-.post-cover { margin: 0 0 40px; }
-.post-cover img { width: 100%; border-radius: 10px; display: block; }
-
+.post-header { margin-bottom: 32px; }
+.post-header .meta { font-size: 13px; color: var(--text-soft); margin-bottom: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.post-header .meta .cat { background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 999px; font-weight: 500; font-size: 12px; }
+.post-header h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
+.post-header .lead { font-size: 19px; color: var(--text-muted); line-height: 1.5; }
 .post-body { font-size: 17px; line-height: 1.75; color: #2a2a2a; }
 .post-body p { margin-bottom: 20px; }
 .post-body h2 { font-size: 26px; line-height: 1.25; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; color: var(--text); }
@@ -184,10 +136,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 56px 24px 80px; }
 .post-body ul, .post-body ol { margin: 20px 0 20px 26px; }
 .post-body li { margin-bottom: 10px; }
 .post-body img { width: 100%; border-radius: 10px; margin: 32px 0; display: block; }
-.post-body blockquote {
-  border-left: 3px solid var(--accent); padding: 6px 0 6px 22px;
-  margin: 28px 0; color: var(--text); font-style: italic; font-size: 18px;
-}
+.post-body blockquote { border-left: 3px solid var(--accent); padding: 6px 0 6px 22px; margin: 28px 0; color: var(--text); font-style: italic; font-size: 18px; }
 .post-body a { color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 1px; }
 .post-body a:hover { border-color: transparent; }
 .post-body strong { font-weight: 600; }
@@ -203,11 +152,7 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
 .footer-col a:hover { color: var(--primary); }
 .footer-about { font-size: 14px; color: var(--text-muted); line-height: 1.55; max-width: 320px; }
 .footer-about .logo { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; display: block; letter-spacing: -0.02em; }
-.footer-bottom {
-  border-top: 1px solid var(--border); padding-top: 24px;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
-  font-size: 13px; color: var(--text-muted);
-}
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--text-muted); }
 
 /* Mobile */
 @media (max-width: 900px) {
@@ -215,15 +160,15 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
   .header-nav { gap: 14px; }
   .brand .sub { display: none; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
-  .featured { grid-column: span 2; grid-template-columns: 1fr; gap: 18px; }
-  main { padding: 36px 16px 56px; }
+  main { padding: 32px 16px 56px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .blog-head { flex-direction: column; align-items: stretch; }
+  .search-box { width: 100%; }
 }
 @media (max-width: 560px) {
   .header-nav .catalog-link { display: none; }
   .grid { grid-template-columns: 1fr; }
-  .featured { grid-column: span 1; }
-  .hero h1 { font-size: 32px; }
+  .blog-head h1 { font-size: 32px; }
   .post-body { font-size: 16px; }
   .footer-grid { grid-template-columns: 1fr; }
 }
@@ -241,18 +186,18 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
     </a>
     <nav class="header-nav">
       <a href="https://addwine.ru/catalogue" class="catalog-link">Каталог</a>
-      <a href="/" class="active">Журнал</a>
+      <a href="/">Журнал</a>
       <a href="https://dzen.ru/addwine" target="_blank" rel="noopener">Дзен</a>
       <a href="https://addwine.ru/contacts">Контакты</a>
     </nav>
     <div class="header-icons">
-      <a href="https://addwine.ru/user/notifications" title="Уведомления" aria-label="Уведомления">
+      <a href="https://addwine.ru/user/notifications" aria-label="Уведомления">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
       </a>
-      <a href="https://addwine.ru/favorites" title="Избранное" aria-label="Избранное">
+      <a href="https://addwine.ru/favorites" aria-label="Избранное">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </a>
-      <a href="https://addwine.ru/user" title="Профиль" aria-label="Профиль">
+      <a href="https://addwine.ru/user" aria-label="Профиль">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </a>
     </div>
@@ -289,15 +234,12 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
     <article>
       <header class="post-header">
         <div class="meta">
-          <span class="tag">Журнал AddWine</span>
+          
           <span>23 мая 2026</span>
         </div>
         <h1>5 вещей, которые профессиональные сомелье знают об игристом вине, а вы — нет</h1>
         <p class="lead">Игристое вино кажется простым выбором — пока не встаёшь перед полкой с двадцатью этикетками и понимаешь, что не знаешь, чем они отличаются. Разбираем честно и по существу.</p>
       </header>
-      <div class="post-cover">
-        <img src="https://feed.addwine.ru/images/2026-05-23-5-veschey-kotorye-professionalnye-somele-znayut-ob/cover-1.jpg" alt="5 вещей, которые профессиональные сомелье знают об игристом вине, а вы — нет">
-      </div>
       <div class="post-body">
 <p>Игристое вино кажется простым выбором — пока не встаёшь перед полкой с двадцатью этикетками и понимаешь, что не знаешь, чем они отличаются. Разбираем честно и по существу.</p>
 
