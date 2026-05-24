@@ -12,7 +12,7 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import sources
 import writer
-import gigachat
+import recraft_api
 import publisher
 import progress as progress_mod
 
@@ -66,12 +66,12 @@ def main() -> int:
     # для совместимости с publisher.add_to_feed
     article["title"] = article["title_chosen"]
 
-    print("\n[3/4] Генерим 4 обложки через Kandinsky")
+    print("\n[3/4] Генерим 4 обложки через Recraft V3")
     images = []
     for i, prompt in enumerate(article["image_prompts"], 1):
         print(f"  обложка {i}/4 ...")
         try:
-            img = gigachat.generate_image(prompt)
+            img = recraft_api.generate_image(prompt)
             images.append(img)
             print(f"     ok, {len(img)} байт")
         except Exception as e:
