@@ -222,14 +222,10 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
 """
 
 
-HEADER_HTML = """<div class="topbar">
-  <a href="https://addwine.ru/catalogue?have_express_delivery=true">Экспресс-доставка по Москве — получите заказ уже через 2–3 часа</a>
-</div>
-<header class="site">
+HEADER_HTML = """<header class="site">
   <div class="header-wrap">
     <a class="brand" href="https://addwine.ru">
       __LOGO_HEADER__
-      <span class="sub">журнал о вине</span>
     </a>
     <nav class="header-nav">
       <a href="https://addwine.ru/catalogue" class="catalog-link">Каталог</a>
