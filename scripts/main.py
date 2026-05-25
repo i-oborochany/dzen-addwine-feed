@@ -14,7 +14,7 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import sources
 import writer
-import recraft_api
+import openai_api
 import publisher
 import progress as progress_mod
 
@@ -91,11 +91,11 @@ def main() -> int:
     # для совместимости с publisher.add_to_feed
     article["title"] = article["title_chosen"]
 
-    print("\n[3/4] Генерим заголовочное фото через Recraft V3")
+    print("\n[3/4] Генерим заголовочное фото через gpt-image-1 (medium)")
     images = []
     prompt = article["image_prompts"][0]
     print(f"  обложка ...")
-    img = recraft_api.generate_image(prompt)
+    img = openai_api.generate_image(prompt)
     images.append(img)
     print(f"     ok, {len(img)} байт")
 
