@@ -19,6 +19,33 @@ FEED_PATH = REPO_ROOT / "feed.xml"
 
 YANDEX_VERIFY_META = '<meta name="yandex-verification" content="d5940a0d077e7558" />'
 
+# Аналитика на всех страницах
+ANALYTICS_HEAD = """<!-- Yandex.Metrika -->
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109402027','ym');
+ym(109402027,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109402027" style="position:absolute;left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1WDNQ5W20"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-K1WDNQ5W20');
+</script>
+<!-- /Google Analytics -->"""
+
+# Inline SVG логотип addwine — тёмно-синий, жирный
+# Лого как картинка — пользователь кладёт файл /logo.svg (или /logo.png) в корень репо
+LOGO_HEADER = '<img class="addwine-logo" src="/logo.svg" alt="addwine" onerror="this.src=\'/logo.png\'">'
+LOGO_FOOTER = '<img class="addwine-logo-footer" src="/logo.svg" alt="addwine" onerror="this.src=\'/logo.png\'">'
+
 CATEGORIES = [
     "Вино, культура и личности",
     "Винные новости",
@@ -67,9 +94,10 @@ a { color: inherit; text-decoration: none; transition: color .15s ease, opacity 
 /* Main header */
 header.site { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
 .header-wrap { max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.brand { display: flex; align-items: baseline; gap: 14px; }
-.brand .logo { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
-.brand .sub { font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand .addwine-logo { height: 36px; width: auto; display: block; }
+.footer-about .addwine-logo-footer { height: 32px; width: auto; display: block; }
+.brand .sub { font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; line-height: 1; }
 .brand .sub::before { content: "/ "; color: var(--text-soft); margin-right: 4px; }
 .header-nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
 .header-nav a { color: var(--text); }
@@ -197,7 +225,7 @@ HEADER_HTML = """<div class="topbar">
 <header class="site">
   <div class="header-wrap">
     <a class="brand" href="https://addwine.ru">
-      <span class="logo">addwine</span>
+      __LOGO_HEADER__
       <span class="sub">журнал о вине</span>
     </a>
     <nav class="header-nav">
@@ -229,9 +257,9 @@ HEADER_HTML = """<div class="topbar">
       <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
       Дистрибьюция с AddSeller
     </a>
-    <a href="https://addcellar.ru/" target="_blank" rel="noopener" class="brand-link">
-      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-6 9 6v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-      Мебель с AddCellar
+    <a href="https://addwibe.ru/" target="_blank" rel="noopener" class="brand-link">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2v6c0 2 2 4 4 4s4-2 4-4V2H8z"/><path d="M12 12v8M9 22h6"/></svg>
+      Дегустации с AddWibe
     </a>
     <span class="brand-strip-sep"></span>
     <a href="https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina">Бокалы</a>
@@ -245,7 +273,7 @@ FOOTER_HTML = """<footer class="site">
   <div class="footer-wrap">
     <div class="footer-grid">
       <div class="footer-col footer-about">
-        <a class="logo" href="https://addwine.ru">addwine</a>
+        <a href="https://addwine.ru" style="display:inline-block;margin-bottom:12px">__LOGO_FOOTER__</a>
         <p>Журнал о вине, виноделии и винной культуре от команды AddWine — крупнейшего в России магазина аксессуаров для вина.</p>
       </div>
       <div class="footer-col">
@@ -276,7 +304,7 @@ FOOTER_HTML = """<footer class="site">
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© AddWine 2017–2026. Материалы для лиц старше 18 лет.</span>
+      <span>® AddWine 2017-2026. Материалы для лиц старше 18 лет.</span>
       <span><a href="https://addwine.ru/privacy-policy">Политика конфиденциальности</a></span>
     </div>
   </div>
@@ -307,27 +335,31 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 
     cat_html = "".join(f'<span class="cat">{_escape(c)}</span>' for c in cats[:2])
 
+    header = HEADER_HTML.replace("__LOGO_HEADER__", LOGO_HEADER)
+    footer = FOOTER_HTML.replace("__LOGO_FOOTER__", LOGO_FOOTER)
+
     return f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {YANDEX_VERIFY_META}
-<title>{title} — AddWine</title>
+<title>{title} — Журнал AddWine</title>
 <meta name="description" content="{lead}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{lead}">
 <meta property="og:image" content="{og_image}">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:site_name" content="AddWine">
+<meta property="og:site_name" content="Журнал AddWine">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="AddWine Журнал">
+<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Журнал AddWine">
 <link rel="icon" href="https://addwine.ru/favicon.ico">
 <style>{BASE_CSS}</style>
+{ANALYTICS_HEAD}
 </head>
 <body>
-{HEADER_HTML}
+{header}
 <main>
   <div class="post-wrap">
     <nav class="breadcrumb">
@@ -350,7 +382,7 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
     </article>
   </div>
 </main>
-{FOOTER_HTML}
+{footer}
 </body>
 </html>
 """
@@ -428,6 +460,9 @@ def render_index_page(posts_meta: list) -> str:
 })();
 """
 
+    header = HEADER_HTML.replace("__LOGO_HEADER__", LOGO_HEADER)
+    footer = FOOTER_HTML.replace("__LOGO_FOOTER__", LOGO_FOOTER)
+
     return f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -440,17 +475,18 @@ def render_index_page(posts_meta: list) -> str:
 <meta property="og:title" content="Журнал AddWine — о вине">
 <meta property="og:description" content="Экспертные статьи о вине, виноделии и винной культуре.">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:site_name" content="AddWine">
-<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="AddWine Журнал">
+<meta property="og:site_name" content="Журнал AddWine">
+<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Журнал AddWine">
 <link rel="icon" href="https://addwine.ru/favicon.ico">
 <style>{BASE_CSS}</style>
+{ANALYTICS_HEAD}
 </head>
 <body>
-{HEADER_HTML}
+{header}
 <main>
   <section class="blog-head">
     <div>
-      <h1>Блог</h1>
+      <h1>Журнал AddWine</h1>
       <p class="blog-desc">Статьи, новости, экспертные обзоры о вине, виноделии и винных аксессуарах от команды AddWine.</p>
     </div>
     <div class="search-box">
@@ -463,7 +499,7 @@ def render_index_page(posts_meta: list) -> str:
   </nav>
   <section id="articles-grid" class="grid"></section>
 </main>
-{FOOTER_HTML}
+{footer}
 <script>
 window.__POSTS__ = {js_data};
 {js_code}
