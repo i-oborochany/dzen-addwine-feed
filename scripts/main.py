@@ -3,8 +3,10 @@
 - статьи 1..4: TREND mode (Claude пишет с нуля по актуальной теме)
 - статья 5: CONTENT_PLAN mode (по строке плана с CTA)
 """
+import os
 import sys
 import traceback
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
@@ -17,11 +19,34 @@ import publisher
 import progress as progress_mod
 
 
+def already_published_today(progress: dict) -> bool:
+    """Защита от двойного запуска: если сегодня уже публиковали, выходим."""
+    history = progress.get("history", [])
+    if not history:
+        return False
+    try:
+        last_date = datetime.fromisoformat(history[0]["date"])
+        if last_date.tzinfo is None:
+            last_date = last_date.replace(tzinfo=timezone.utc)
+        today = datetime.now(timezone.utc).date()
+        return last_date.date() == today
+    except Exception:
+        return False
+
+
 def main() -> int:
     config_path = Path(__file__).resolve().parent.parent / "config.yaml"
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
 
     progress = progress_mod.load_progress()
+
+    # дедуп: если сегодня уже было — пропускаем (защита от тройного cron)
+    if already_published_today(progress) and not os.environ.get("FORCE_PUBLISH"):
+        last = progress["history"][0]
+        print(f"⚠️  Сегодня уже публиковали: '{last.get('title')}' в {last.get('date')}")
+        print("    Пропускаем запуск. Чтобы форсировать — установи FORCE_PUBLISH=1")
+        return 0
+
     cycle_pos = progress.get("cycle_position", 1)
     plan_idx = progress.get("content_plan_index", 0)
 
