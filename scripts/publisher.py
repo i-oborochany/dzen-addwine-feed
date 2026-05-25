@@ -11,12 +11,12 @@ from pathlib import Path
 import feed_io
 
 
-ALT_BY_INDEX = {1: "обложка", 2: "иллюстрация: проблема", 3: "иллюстрация: решение", 4: "иллюстрация: финал"}
+ALT_BY_INDEX = {1: "обложка статьи", 2: "иллюстрация: проблема", 3: "иллюстрация: решение"}
 
 
 def embed_images(html: str, image_urls: list, pages_base: str) -> str:
     """
-    Подставляет картинки в плейсхолдеры [[IMG_N]] внутри html.
+    Подставляет картинки в плейсхолдеры [[IMG_N]] внутри html (N от 1 до 3).
     Использует <figure><img/></figure> — требование Дзена.
     Если плейсхолдеров нет — fallback: одна обложка сверху.
     """
@@ -30,10 +30,10 @@ def embed_images(html: str, image_urls: list, pages_base: str) -> str:
         alt = ALT_BY_INDEX.get(i, f"иллюстрация {i}")
         return f'<figure><img src="{url}" alt="{alt}"/></figure>'
 
-    has_any = bool(re.search(r"\[\[IMG_[1-4]\]\]", html))
+    has_any = bool(re.search(r"\[\[IMG_[1-3]\]\]", html))
     if has_any:
         result = html
-        for i in range(1, 5):
+        for i in range(1, 4):
             result = re.sub(rf"<p>\s*\[\[IMG_{i}\]\]\s*</p>", _figure(i), result)
             result = re.sub(rf"\[\[IMG_{i}\]\]", _figure(i), result)
         return result

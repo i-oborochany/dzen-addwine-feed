@@ -91,13 +91,20 @@ def main() -> int:
     # для совместимости с publisher.add_to_feed
     article["title"] = article["title_chosen"]
 
-    print("\n[3/4] Генерим заголовочное фото через gpt-image-1 (medium)")
+    print("\n[3/4] Генерим 3 фото через gpt-image-1 (medium)")
     images = []
-    prompt = article["image_prompts"][0]
-    print(f"  обложка ...")
-    img = openai_api.generate_image(prompt)
-    images.append(img)
-    print(f"     ok, {len(img)} байт")
+    for i, prompt in enumerate(article["image_prompts"][:3], 1):
+        print(f"  фото {i}/3 ...")
+        try:
+            img = openai_api.generate_image(prompt)
+            images.append(img)
+            print(f"     ok, {len(img)} байт")
+        except Exception as e:
+            print(f"     [!] {e}")
+            if images:
+                images.append(images[0])
+            else:
+                raise
 
     print("\n[4/4] Сохраняем картинки + добавляем в feed.xml")
     slug = publisher.slugify(article["title"])
