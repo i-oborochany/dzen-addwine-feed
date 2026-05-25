@@ -174,6 +174,8 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .post-header { margin-bottom: 32px; }
 .post-header .meta { font-size: 13px; color: var(--text-soft); margin-bottom: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .post-header .meta .cat { background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 999px; font-weight: 500; font-size: 12px; }
+.post-header .meta .author { color: var(--primary); font-weight: 600; }
+.post-header .meta .dot { color: var(--text-soft); }
 .post-header h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
 .post-header .lead { font-size: 19px; color: var(--text-muted); line-height: 1.5; }
 .post-body { font-size: 17px; line-height: 1.75; color: #2a2a2a; }
@@ -330,9 +332,45 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 
     # картинка для og:image — первое <img> в теле
     m = re.search(r'<img\s+[^>]*src="([^"]+)"', body_html)
-    og_image = m.group(1) if m else ""
+    og_image = m.group(1) if m else "https://feed.addwine.ru/logo.png"
+    canonical_url = f"https://feed.addwine.ru/posts/{slug}/"
+    iso_date = pub_date.isoformat() if isinstance(pub_date, datetime) else str(pub_date)
+    main_section = cats[0] if cats else "Журнал"
 
     cat_html = "".join(f'<span class="cat">{_escape(c)}</span>' for c in cats[:2])
+
+    # JSON-LD Article schema для расширенных сниппетов в поиске
+    import json as _json
+    jsonld = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": article["title"],
+        "image": [og_image],
+        "datePublished": iso_date,
+        "dateModified": iso_date,
+        "author": {
+            "@type": "Organization",
+            "name": "AddWine",
+            "url": "https://addwine.ru"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AddWine",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://feed.addwine.ru/logo.png"
+            }
+        },
+        "description": article["lead"],
+        "articleSection": main_section,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": canonical_url
+        }
+    }
+    jsonld_str = _json.dumps(jsonld, ensure_ascii=False, indent=2)
+
+    article_tags = "".join(f'<meta property="article:tag" content="{_escape(c)}">\n' for c in cats[:2])
 
     header = HEADER_HTML.replace("__LOGO_HEADER__", LOGO_HEADER)
     footer = FOOTER_HTML.replace("__LOGO_FOOTER__", LOGO_FOOTER)
@@ -345,16 +383,30 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 {YANDEX_VERIFY_META}
 <title>{title} — Журнал AddWine</title>
 <meta name="description" content="{lead}">
+<link rel="canonical" href="{canonical_url}">
 <meta property="og:type" content="article">
+<meta property="og:url" content="{canonical_url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{lead}">
 <meta property="og:image" content="{og_image}">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Журнал AddWine">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="{iso_date}">
+<meta property="article:modified_time" content="{iso_date}">
+<meta property="article:author" content="AddWine">
+<meta property="article:section" content="{_escape(main_section)}">
+{article_tags}<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{lead}">
+<meta name="twitter:image" content="{og_image}">
 <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Журнал AddWine">
 <link rel="icon" href="https://addwine.ru/favicon.ico">
 <style>{BASE_CSS}</style>
+<script type="application/ld+json">
+{jsonld_str}
+</script>
 {ANALYTICS_HEAD}
 </head>
 <body>
@@ -370,6 +422,8 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
       <header class="post-header">
         <div class="meta">
           {cat_html}
+          <span class="author">AddWine</span>
+          <span class="dot">·</span>
           <span>{_ru_date(pub_date)}</span>
         </div>
         <h1>{title}</h1>
@@ -470,11 +524,18 @@ def render_index_page(posts_meta: list) -> str:
 {YANDEX_VERIFY_META}
 <title>Журнал AddWine — статьи о вине, виноделии и аксессуарах</title>
 <meta name="description" content="Авторский журнал AddWine. Экспертные статьи о вине, виноделии, сомелье, бокалах, штопорах, декантерах и культуре потребления.">
+<link rel="canonical" href="https://feed.addwine.ru/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://feed.addwine.ru/">
 <meta property="og:title" content="Журнал AddWine — о вине">
 <meta property="og:description" content="Экспертные статьи о вине, виноделии и винной культуре.">
+<meta property="og:image" content="https://feed.addwine.ru/logo.png">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Журнал AddWine">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Журнал AddWine — о вине">
+<meta name="twitter:description" content="Экспертные статьи о вине, виноделии и винной культуре.">
+<meta name="twitter:image" content="https://feed.addwine.ru/logo.png">
 <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Журнал AddWine">
 <link rel="icon" href="https://addwine.ru/favicon.ico">
 <style>{BASE_CSS}</style>
@@ -545,6 +606,12 @@ def rebuild_index() -> None:
     posts = load_posts_index()
     html = render_index_page(posts)
     INDEX_HTML.write_text(html, encoding="utf-8")
+    # параллельно обновляем sitemap.xml и robots.txt
+    try:
+        import sitemap_gen
+        sitemap_gen.generate_all()
+    except Exception as e:
+        print(f"[html_renderer] sitemap не обновился: {e}")
 
 
 def rebuild_from_feed(pages_base: str) -> None:
