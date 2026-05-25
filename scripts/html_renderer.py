@@ -325,7 +325,7 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
     body_html = article["html"]
     cats = categories or []
 
-    # фикс: убираем устаревший <img alt="обложка"> в начале тела (наследие старого формата)
+    # старые <p><img alt="обложка"></p> уже не используются; на всякий случай
     body_html = re.sub(r'^\s*<p>\s*<img[^>]+alt="обложка"[^>]*/?>\s*</p>\s*', '', body_html, count=1)
 
     # картинка для og:image — первое <img> в теле
@@ -548,36 +548,33 @@ def rebuild_index() -> None:
 
 
 def rebuild_from_feed(pages_base: str) -> None:
-    """Перечитывает feed.xml и пересоздаёт страницы статей + главную."""
-    if not FEED_PATH.exists():
+    """Перечитывает feed.xml через feed_io и пересоздаёт страницы статей + главную."""
+    import feed_io
+    data = feed_io.read_feed()
+    if not data["items"]:
         return
 
-    NS = {"yandex": "http://news.yandex.ru"}
-    tree = ET.parse(str(FEED_PATH))
-    root = tree.getroot()
-    channel = root.find("channel")
-    if channel is None:
-        return
+    # пользовательские категории берём из существующего posts_index.json
+    existing_cats = {}
+    for p in load_posts_index():
+        existing_cats[p.get("slug")] = p.get("categories", [])
+
+    # «дзен-зарезервированные» категории, которые НЕ показываем как пользовательские
+    DZEN_RESERVED = {"format-article", "format-post", "comment-all", "comment-subscribers",
+                     "comment-none", "index", "noindex", "native-draft"}
 
     posts = []
-    for item in channel.findall("item"):
-        title = item.findtext("title", default="Без названия")
-        lead = item.findtext("description", default="")
-        pubdate_text = item.findtext("pubDate", default="")
-        enc = item.find("enclosure")
-        cover_url = enc.get("url") if enc is not None else ""
-        ft_el = item.find("yandex:full-text", NS)
-        full_html = ft_el.text if ft_el is not None and ft_el.text else ""
-        cats = [c.text for c in item.findall("category") if c.text]
-
-        try:
-            from email.utils import parsedate_to_datetime
-            pub_date = parsedate_to_datetime(pubdate_text) if pubdate_text else datetime.now(timezone.utc)
-        except Exception:
-            pub_date = datetime.now(timezone.utc)
+    for it in data["items"]:
+        title = it["title"]
+        lead = it["description"]
+        cover_url = it["enclosure_url"]
+        full_html = it["content_html"]
+        pub_date = it["pub_date"] if isinstance(it["pub_date"], datetime) else datetime.now(timezone.utc)
 
         m = re.search(r"/images/([^/]+)/", cover_url)
         slug = m.group(1) if m else _slug_from_title(title, pub_date)
+
+        cats = existing_cats.get(slug, [])
 
         article = {"title": title, "lead": lead, "html": full_html}
         post_dir = POSTS_DIR / slug

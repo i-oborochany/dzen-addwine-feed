@@ -1,16 +1,14 @@
 """
-Сохранение картинок в images/, добавление <item> в feed.xml,
+Сохранение картинок в images/, добавление <item> в feed.xml (в формате Дзена),
 обновление posts/published.json.
 """
 import json
-import os
-import re as _re_top
 import re
 import uuid
 from datetime import datetime, timezone
-from email.utils import format_datetime
 from pathlib import Path
-from xml.etree import ElementTree as ET
+
+import feed_io
 
 
 ALT_BY_INDEX = {1: "обложка", 2: "иллюстрация: проблема", 3: "иллюстрация: решение", 4: "иллюстрация: финал"}
@@ -18,50 +16,37 @@ ALT_BY_INDEX = {1: "обложка", 2: "иллюстрация: проблем�
 
 def embed_images(html: str, image_urls: list, pages_base: str) -> str:
     """
-    Подставляет картинки в плейсхолдеры [[IMG_1]]..[[IMG_4]] внутри html.
-    Если плейсхолдеров нет (старый формат) — fallback: обложка сверху, остальные снизу.
+    Подставляет картинки в плейсхолдеры [[IMG_N]] внутри html.
+    Использует <figure><img/></figure> — требование Дзена.
+    Если плейсхолдеров нет — fallback: одна обложка сверху.
     """
     if not image_urls:
         return html
 
-    def _img_tag(i: int) -> str:
+    def _figure(i: int) -> str:
         url = image_urls[i - 1] if i - 1 < len(image_urls) else image_urls[-1]
         if not url.startswith("http"):
             url = f"{pages_base}/{url}"
         alt = ALT_BY_INDEX.get(i, f"иллюстрация {i}")
-        return f'<p><img src="{url}" alt="{alt}"/></p>'
+        return f'<figure><img src="{url}" alt="{alt}"/></figure>'
 
-    has_any_placeholder = bool(_re_top.search(r"\[\[IMG_[1-4]\]\]", html))
-    if has_any_placeholder:
-        # заменяем [[IMG_N]] (с обёрткой <p>...</p> или без) на тег картинки
+    has_any = bool(re.search(r"\[\[IMG_[1-4]\]\]", html))
+    if has_any:
         result = html
         for i in range(1, 5):
-            ph_in_p = _re_top.compile(rf"<p>\s*\[\[IMG_{i}\]\]\s*</p>")
-            result = ph_in_p.sub(_img_tag(i), result)
-            ph_bare = _re_top.compile(rf"\[\[IMG_{i}\]\]")
-            result = ph_bare.sub(_img_tag(i), result)
+            result = re.sub(rf"<p>\s*\[\[IMG_{i}\]\]\s*</p>", _figure(i), result)
+            result = re.sub(rf"\[\[IMG_{i}\]\]", _figure(i), result)
         return result
 
-    # fallback: старая логика — обложка сверху, остальные снизу
-    main_url = image_urls[0] if image_urls[0].startswith("http") else f"{pages_base}/{image_urls[0]}"
-    top = f'<p><img src="{main_url}" alt="обложка"/></p>'
-    extras = "".join(
-        f'<p><img src="{u if u.startswith("http") else pages_base + "/" + u}" alt="иллюстрация {i+2}"/></p>'
-        for i, u in enumerate(image_urls[1:])
-    )
-    return f"{top}{html}{extras}"
+    # fallback — одна обложка сверху
+    return _figure(1) + html
+
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FEED_PATH = REPO_ROOT / "feed.xml"
 IMAGES_DIR = REPO_ROOT / "images"
 POSTS_DIR = REPO_ROOT / "posts"
 PUBLISHED_LOG = POSTS_DIR / "published.json"
-
-NSMAP = {
-    "yandex": "http://news.yandex.ru",
-    "media": "http://search.yahoo.com/mrss/",
-    "content": "http://purl.org/rss/1.0/modules/content/",
-}
 
 
 def load_published() -> set:
@@ -86,7 +71,6 @@ def mark_published(url: str, title: str) -> None:
         "title": title,
         "published_at": datetime.now(timezone.utc).isoformat(),
     })
-    # храним только последние 500 записей
     data["posts"] = data["posts"][:500]
     PUBLISHED_LOG.write_text(
         json.dumps(data, ensure_ascii=False, indent=2),
@@ -95,10 +79,6 @@ def mark_published(url: str, title: str) -> None:
 
 
 def save_images(images: list, slug: str) -> list:
-    """
-    Сохраняет 4 картинки в images/<YYYY-MM-DD>-<slug>/.
-    Возвращает список публичных URL.
-    """
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     folder_name = f"{date_str}-{slug}"
     folder = IMAGES_DIR / folder_name
@@ -114,7 +94,6 @@ def save_images(images: list, slug: str) -> list:
 
 def slugify(text: str) -> str:
     text = text.lower()
-    # транслитерация
     table = {
         "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo","ж":"zh","з":"z",
         "и":"i","й":"y","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r",
@@ -128,75 +107,48 @@ def slugify(text: str) -> str:
 
 def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) -> None:
     """
-    Добавляет новый <item> в feed.xml.
+    Добавляет новый <item> в feed.xml в формате Дзена.
     article: {title, lead, html}
-    image_urls: список из 4 относительных путей; первый идёт в <enclosure>,
-                остальные вшиваем как <img> в начало <yandex:full-text>.
     """
     pages_base = config["channel"]["pages_base_url"].rstrip("/")
 
-    # читаем существующий feed
-    if FEED_PATH.exists():
-        # регистрируем namespaces чтобы при записи они сохранились
-        for prefix, uri in NSMAP.items():
-            ET.register_namespace(prefix, uri)
-        tree = ET.parse(str(FEED_PATH))
-        rss = tree.getroot()
-        channel = rss.find("channel")
-    else:
-        for prefix, uri in NSMAP.items():
-            ET.register_namespace(prefix, uri)
-        rss = ET.Element("rss", attrib={"version": "2.0"})
-        channel = ET.SubElement(rss, "channel")
-        ET.SubElement(channel, "title").text = config["channel"]["title"]
-        ET.SubElement(channel, "link").text = config["channel"]["link"]
-        ET.SubElement(channel, "description").text = config["channel"]["description"]
-        ET.SubElement(channel, "language").text = config["channel"]["language"]
-        tree = ET.ElementTree(rss)
-
-    # slug — из имени папки с картинками (формат: YYYY-MM-DD-<title-slug>)
-    import re as _re
-    m = _re.search(r"images/([^/]+)/", image_urls[0])
+    # slug
+    m = re.search(r"images/([^/]+)/", image_urls[0])
     slug = m.group(1) if m else f"{datetime.now(timezone.utc).strftime('%Y-%m-%d')}-{uuid.uuid4().hex[:8]}"
-
     pub_date = datetime.now(timezone.utc)
-
-    # формируем item для RSS
-    item = ET.Element("item")
-    ET.SubElement(item, "title").text = article["title"]
     permalink = f"{pages_base}/posts/{slug}/"
-    ET.SubElement(item, "link").text = permalink
-    ET.SubElement(item, "guid", attrib={"isPermaLink": "true"}).text = permalink
-    ET.SubElement(item, "pubDate").text = format_datetime(pub_date)
-    ET.SubElement(item, "description").text = article["lead"]
+    main_image_url = f"{pages_base}/{image_urls[0]}" if not image_urls[0].startswith("http") else image_urls[0]
 
-    # категории — пишем как <category>
-    for cat in article.get("categories", []):
-        ET.SubElement(item, "category").text = cat
-
-    # главная картинка через <enclosure>
-    main_image_url = f"{pages_base}/{image_urls[0]}"
-    ET.SubElement(item, "enclosure", attrib={
-        "url": main_image_url,
-        "type": "image/jpeg",
-    })
-
-    # подставляем картинки в плейсхолдеры [[IMG_N]]
+    # подставляем картинки в плейсхолдеры
     full_html = embed_images(article["html"], image_urls, pages_base)
 
-    full_text = ET.SubElement(item, "{http://news.yandex.ru}full-text")
-    full_text.text = full_html
+    # читаем существующий feed
+    feed_data = feed_io.read_feed()
+    if not feed_data["channel"]:
+        feed_data["channel"] = {
+            "title": config["channel"]["title"],
+            "link": config["channel"]["link"],
+            "description": config["channel"]["description"],
+            "language": config["channel"]["language"],
+        }
 
-    # вставляем item в начало списка
-    first_item = channel.find("item")
-    if first_item is not None:
-        children = list(channel)
-        idx = children.index(first_item)
-        channel.insert(idx, item)
-    else:
-        channel.append(item)
+    # новый item
+    new_item = {
+        "title": article["title"],
+        "link": permalink,
+        "guid": permalink,
+        "pub_date": pub_date,
+        "description": article["lead"],
+        "enclosure_url": main_image_url,
+        "enclosure_type": "image/jpeg",
+        "content_html": full_html,
+    }
 
-    tree.write(str(FEED_PATH), encoding="utf-8", xml_declaration=True)
+    # вставляем в начало списка
+    feed_data["items"].insert(0, new_item)
+
+    # сохраняем
+    feed_io.write_feed(feed_data["channel"], feed_data["items"])
 
     # генерируем HTML-страницу статьи и обновляем главную
     try:
@@ -204,7 +156,7 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
         article_for_html = {
             "title": article["title"],
             "lead": article["lead"],
-            "html": full_html,  # с включёнными картинками
+            "html": full_html,
         }
         html_renderer.write_post(article_for_html, slug, image_urls, pub_date, pages_base, categories=article.get("categories", []))
         html_renderer.add_post(
