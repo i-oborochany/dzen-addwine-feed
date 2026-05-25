@@ -50,8 +50,11 @@ a { color: inherit; text-decoration: none; transition: color .15s ease, opacity 
 header.site { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
 .header-wrap { max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
 .brand { display: flex; align-items: center; gap: 14px; }
-.brand .addwine-logo { height: 36px; width: auto; display: block; }
-.footer-about .addwine-logo-footer { height: 32px; width: auto; display: block; }
+.brand .addwine-logo { height: 56px; width: auto; display: block; }
+.footer-about .addwine-logo-footer { height: 48px; width: auto; display: block; }
+@media (max-width: 560px) {
+  .brand .addwine-logo { height: 42px; }
+}
 .brand .sub { font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; line-height: 1; }
 .brand .sub::before { content: "/ "; color: var(--text-soft); margin-right: 4px; }
 .header-nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
