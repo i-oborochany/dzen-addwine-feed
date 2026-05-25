@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+      "title": "Какие бокалы купить для вина: минимальный набор, который закроет все ситуации",
+      "published_at": "2026-05-25T13:29:18.132830+00:00"
+    },
+    {
       "url": "https://addwine.ru/catalogue/category/servirovka/shtopory",
       "title": "Как выбрать штопор для вина и не ошибиться: советует сомелье",
       "published_at": "2026-05-23T21:26:44.115993+00:00"
@@ -12,7 +17,8 @@
     }
   ],
   "urls": [
-    "https://addwine.ru/catalogue/category/servirovka/shtopory",
-    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake"
+    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
+    "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+    "https://addwine.ru/catalogue/category/servirovka/shtopory"
   ]
 }

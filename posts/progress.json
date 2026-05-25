@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 1,
+  "cycle_position": 1,
+  "content_plan_index": 2,
   "history": [
+    {
+      "date": "2026-05-25T13:29:18.132532+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Какие бокалы купить для вина: минимальный набор, который закроет все ситуации",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
     {
       "date": "2026-05-25T08:25:12.559640+00:00",
       "cycle_position": 4,
