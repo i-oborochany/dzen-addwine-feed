@@ -126,40 +126,53 @@ header.site { background: white; border-bottom: 1px solid var(--border); positio
 /* Main content */
 main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 
-/* Blog header (h1 + search) */
-.blog-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
-.blog-head h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; color: var(--text); }
-.blog-head .blog-desc { font-size: 16px; color: var(--text-muted); margin-top: 8px; max-width: 540px; }
-.search-box { position: relative; width: 320px; max-width: 100%; }
-.search-box input {
-  width: 100%; padding: 12px 18px 12px 44px; border: 1px solid var(--border); border-radius: 999px;
-  font-size: 14px; color: var(--text); background: white; outline: none; transition: border-color .15s;
-  font-family: inherit;
-}
-.search-box input:focus { border-color: var(--primary); }
-.search-box svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-soft); pointer-events: none; }
+/* Blog page header */
+.blog-head { margin-bottom: 28px; }
+.blog-head h1 { font-size: clamp(34px, 4.5vw, 48px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: var(--primary); }
 
-/* Categories pills */
-.categories { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; padding-bottom: 4px; }
+/* Categories — horizontal text links */
+.categories {
+  display: flex; flex-wrap: wrap; gap: 28px 36px; margin: 24px 0 32px;
+  padding-bottom: 0;
+}
 .cat-pill {
-  display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px;
-  font-size: 14px; color: var(--text-muted); background: var(--bg-alt); border: 1px solid transparent;
-  cursor: pointer; transition: background .15s, color .15s, border-color .15s;
-  user-select: none; font-family: inherit;
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 500;
+  color: var(--text-soft); transition: color .15s ease;
+  user-select: none;
 }
-.cat-pill:hover { color: var(--text); background: white; border-color: var(--border); }
-.cat-pill.active { background: var(--text); color: white; border-color: var(--text); }
+.cat-pill:hover { color: var(--text); }
+.cat-pill.active { color: var(--primary); font-weight: 700; }
 
-/* Articles grid */
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 28px; }
+/* Search */
+.search-box { position: relative; max-width: 720px; margin: 0 0 36px; }
+.search-box input {
+  width: 100%; padding: 14px 18px 14px 50px;
+  border: 1px solid var(--border); border-radius: 999px;
+  font-size: 15px; color: var(--text); background: white; outline: none;
+  transition: border-color .15s, box-shadow .15s; font-family: inherit;
+}
+.search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 62, 107, 0.08); }
+.search-box svg { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-soft); pointer-events: none; }
+
+/* Articles grid — 4 cols on desktop */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 24px; }
 .card { display: flex; flex-direction: column; }
-.card a.cover { display: block; aspect-ratio: 16/10; overflow: hidden; border-radius: 10px; background: var(--bg-alt); }
-.card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.card a.cover {
+  display: block; aspect-ratio: 16/11; overflow: hidden;
+  border-radius: 10px; background: var(--bg-alt);
+}
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
 .card a.cover:hover img { transform: scale(1.03); }
-.card .meta { display: flex; align-items: center; gap: 10px; margin: 14px 0 8px; font-size: 13px; color: var(--text-soft); flex-wrap: wrap; }
+.card .meta {
+  display: flex; align-items: center; gap: 12px; margin: 14px 0 8px;
+  font-size: 13px; color: var(--text-soft); flex-wrap: wrap;
+}
 .card .meta .date { color: var(--text-soft); }
-.card .meta .cat { color: var(--accent); font-weight: 500; }
-.card h2 { font-size: 19px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
+.card .meta .cat { color: var(--text-muted); font-weight: 500; }
+.card h2 {
+  font-size: 17px; line-height: 1.3; font-weight: 700; letter-spacing: -0.005em;
+}
 .card h2 a { color: var(--text); }
 .card h2 a:hover { color: var(--primary); }
 
@@ -171,13 +184,19 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .breadcrumb a { color: var(--text-muted); }
 .breadcrumb a:hover { color: var(--primary); }
 .breadcrumb .sep { margin: 0 8px; color: var(--text-soft); }
-.post-header { margin-bottom: 32px; }
-.post-header .meta { font-size: 13px; color: var(--text-soft); margin-bottom: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.post-header .meta .cat { background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 999px; font-weight: 500; font-size: 12px; }
-.post-header .meta .author { color: var(--primary); font-weight: 600; }
-.post-header .meta .dot { color: var(--text-soft); }
-.post-header h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
-.post-header .lead { font-size: 19px; color: var(--text-muted); line-height: 1.5; }
+.post-header { margin-bottom: 28px; }
+.post-header h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; color: var(--primary); margin-bottom: 24px; }
+.post-cover { margin: 0 0 28px; }
+.post-cover img { width: 100%; border-radius: 10px; display: block; }
+.post-meta-bar {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 28px;
+  padding-bottom: 20px; margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.post-meta-bar .cat { color: var(--text-soft); font-weight: 500; }
+.post-meta-bar .date { color: var(--text-soft); margin-left: auto; font-variant-numeric: tabular-nums; }
+.post-header .lead { font-size: 18px; color: var(--text-muted); line-height: 1.5; }
 .post-body { font-size: 17px; line-height: 1.75; color: #2a2a2a; }
 .post-body p { margin-bottom: 20px; }
 .post-body h2 { font-size: 26px; line-height: 1.25; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; color: var(--text); }
@@ -204,20 +223,22 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
 .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--text-muted); }
 
 /* Mobile */
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   .header-wrap { padding: 14px 16px; gap: 16px; }
   .header-nav { gap: 14px; }
   .brand .sub { display: none; }
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; }
   main { padding: 32px 16px 56px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .blog-head { flex-direction: column; align-items: stretch; }
-  .search-box { width: 100%; }
+  .categories { flex-direction: column; gap: 14px; margin: 18px 0 24px; }
 }
 @media (max-width: 560px) {
   .header-nav .catalog-link { display: none; }
-  .grid { grid-template-columns: 1fr; }
-  .blog-head h1 { font-size: 32px; }
+  .grid { grid-template-columns: 1fr; gap: 24px; }
+  .blog-head h1 { font-size: 30px; }
   .post-body { font-size: 16px; }
   .footer-grid { grid-template-columns: 1fr; }
 }
@@ -313,8 +334,8 @@ FOOTER_HTML = """<footer class="site">
 
 
 def _ru_date(dt: datetime) -> str:
-    months = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"]
-    return f"{dt.day} {months[dt.month-1]} {dt.year}"
+    """Формат DD.MM.YYYY как на addwine.ru/articles."""
+    return f"{dt.day:02d}.{dt.month:02d}.{dt.year}"
 
 
 def _escape(text: str) -> str:
@@ -337,7 +358,8 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
     iso_date = pub_date.isoformat() if isinstance(pub_date, datetime) else str(pub_date)
     main_section = cats[0] if cats else "Журнал"
 
-    cat_html = "".join(f'<span class="cat">{_escape(c)}</span>' for c in cats[:2])
+    cat_html = " · ".join(_escape(c) for c in cats[:2])
+    breadcrumb_cat = _escape(cats[0]) if cats else "Статья"
 
     # JSON-LD Article schema для расширенных сниппетов в поиске
     import json as _json
@@ -414,20 +436,17 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 <main>
   <div class="post-wrap">
     <nav class="breadcrumb">
-      <a href="https://addwine.ru">addwine</a><span class="sep">/</span>
-      <a href="/">Журнал</a><span class="sep">/</span>
-      <span>Статья</span>
+      <a href="https://addwine.ru">главная</a><span class="sep">/</span>
+      <a href="/">блог</a><span class="sep">/</span>
+      <span>{breadcrumb_cat.lower()}</span>
     </nav>
     <article>
       <header class="post-header">
-        <div class="meta">
-          {cat_html}
-          <span class="author">AddWine</span>
-          <span class="dot">·</span>
-          <span>{_ru_date(pub_date)}</span>
-        </div>
         <h1>{title}</h1>
-        <p class="lead">{lead}</p>
+        <div class="post-meta-bar">
+          <span class="cat">{cat_html or "Журнал AddWine"}</span>
+          <span class="date">{_ru_date(pub_date)}</span>
+        </div>
       </header>
       <div class="post-body">
 {body_html}
@@ -468,12 +487,11 @@ def render_index_page(posts_meta: list) -> str:
   let activeCat = '';
   let searchQuery = '';
 
-  const months = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
-
-  function ruDate(iso) {
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function fmtDate(iso) {
     try {
       const d = new Date(iso);
-      return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+      return pad(d.getDate()) + '.' + pad(d.getMonth()+1) + '.' + d.getFullYear();
     } catch(e) { return ''; }
   }
   function escape(s) {
@@ -494,7 +512,7 @@ def render_index_page(posts_meta: list) -> str:
       const cat = (p.cats && p.cats[0]) ? '<span class="cat">' + escape(p.cats[0]) + '</span>' : '';
       return '<article class="card">' +
         '<a class="cover" href="/posts/' + p.slug + '/"><img src="' + p.cover + '" alt="' + escape(p.title) + '" loading="lazy"></a>' +
-        '<div class="meta">' + cat + '<span class="date">' + ruDate(p.date) + '</span></div>' +
+        '<div class="meta"><span class="date">' + fmtDate(p.date) + '</span>' + cat + '</div>' +
         '<h2><a href="/posts/' + p.slug + '/">' + escape(p.title) + '</a></h2>' +
       '</article>';
     }).join('');
@@ -545,18 +563,15 @@ def render_index_page(posts_meta: list) -> str:
 {header}
 <main>
   <section class="blog-head">
-    <div>
-      <h1>Журнал AddWine</h1>
-      <p class="blog-desc">Статьи, новости, экспертные обзоры о вине, виноделии и винных аксессуарах от команды AddWine.</p>
-    </div>
-    <div class="search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="text" id="search-input" placeholder="Поиск по статьям…" autocomplete="off">
-    </div>
+    <h1>Журнал</h1>
   </section>
   <nav class="categories">
     {cat_pills}
   </nav>
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input type="text" id="search-input" placeholder="Поиск по блогу" autocomplete="off">
+  </div>
   <section id="articles-grid" class="grid"></section>
 </main>
 {footer}
