@@ -33,16 +33,77 @@ TAG_REPLACEMENTS = {
 }
 
 
+def remove_cta_blocks(html: str) -> str:
+    """
+    Удаляет CTA-блоки 'AddWine рекомендует' и любые ссылки на addwine.ru
+    из контента, который пойдёт в Дзен. Дзен запрещает рекламу
+    дистанционной продажи (даже аксессуаров для алкоголя).
+    """
+    # Блок <h3>AddWine рекомендует</h3><p>...</p>
+    html = re.sub(
+        r'<h3>\s*AddWine\s*рекомендует\s*</h3>\s*<p>.*?</p>',
+        '', html, flags=re.IGNORECASE | re.DOTALL
+    )
+    # Любой <h3>...AddWine...</h3> с последующим параграфом
+    html = re.sub(
+        r'<h3>[^<]*AddWine[^<]*</h3>\s*<p>.*?</p>',
+        '', html, flags=re.IGNORECASE | re.DOTALL
+    )
+    # Любые ссылки на addwine.ru или поддомены — заменяем на текст без ссылки
+    html = re.sub(
+        r'<a\s+href="https?://[^"]*addwine\.ru[^"]*"[^>]*>(.*?)</a>',
+        r'\1', html, flags=re.IGNORECASE | re.DOTALL
+    )
+    # Также убираем фразы про переход на сайт
+    html = re.sub(
+        r'[Пп]осмотреть[^.]*на\s+AddWine\.ru[^.]*\.',
+        '', html
+    )
+    html = re.sub(
+        r'[Сс]мотреть\s+подборку[^.]*\.', '', html
+    )
+    html = re.sub(
+        r'[Сс]мотреть\s+на\s+AddWine\.ru[^.]*\.', '', html
+    )
+    return html
+
+
+def add_figcaption(html: str) -> str:
+    """
+    Добавляет <figcaption> внутрь <figure>, если её нет.
+    Берёт текст из alt атрибута img. Дзен рекомендует figure с figcaption.
+    """
+    def _fig_with_caption(m):
+        inner = m.group(1)
+        # уже есть figcaption?
+        if 'figcaption' in inner.lower():
+            return m.group(0)
+        # берём alt из img
+        alt_m = re.search(r'<img[^>]*alt="([^"]*)"', inner)
+        alt = alt_m.group(1) if alt_m else ""
+        if alt and alt not in ("обложка статьи", "иллюстрация: проблема", "иллюстрация: решение", "иллюстрация: финал"):
+            return f'<figure>{inner}<figcaption>{alt}</figcaption></figure>'
+        return f'<figure>{inner}</figure>'
+
+    html = re.sub(r'<figure>(.*?)</figure>', _fig_with_caption, html, flags=re.IGNORECASE | re.DOTALL)
+    return html
+
+
 def sanitize_for_dzen(html: str) -> str:
     """
     Готовит HTML для content:encoded:
+    - Удаляет CTA-блоки и ссылки на addwine.ru (требование Дзена)
     - Заменяет strong→b, em→i
     - Удаляет <br>, <div>, <span>, инлайн-стили
     - Оборачивает <img> в <figure> где нужно
+    - Добавляет <figcaption> внутрь figure
     - Удаляет атрибут style, class и др. лишние атрибуты
     """
     if not html:
         return ""
+
+    # 0. Убираем CTA-блоки и любые упоминания addwine.ru
+    html = remove_cta_blocks(html)
 
     # 1. Замена тегов: strong → b, em → i
     for old, new in TAG_REPLACEMENTS.items():
@@ -60,7 +121,6 @@ def sanitize_for_dzen(html: str) -> str:
     def clean_attrs(m):
         tag = m.group(1).lower()
         attrs = m.group(2)
-        # сохраняем только href, src, alt
         kept = []
         for a in re.finditer(r'(\w+)\s*=\s*"([^"]*)"', attrs):
             name = a.group(1).lower()
@@ -81,7 +141,10 @@ def sanitize_for_dzen(html: str) -> str:
         html, flags=re.IGNORECASE
     )
 
-    # 6. Чистим лишние пробелы и переводы строк
+    # 6. figcaption внутрь figure
+    html = add_figcaption(html)
+
+    # 7. Чистим лишние пробелы и переводы строк
     html = re.sub(r"\n{3,}", "\n\n", html)
     html = html.strip()
 
