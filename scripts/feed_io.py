@@ -165,18 +165,30 @@ def _esc(s: str) -> str:
 
 
 def write_feed(channel: dict, items: list) -> None:
-    """Сохраняет feed.xml в формате Дзена (content:encoded + CDATA + figure/img)."""
-
+    """
+    Сохраняет feed.xml в формате Дзена.
+    Полностью соответствует примеру из https://dzen.ru/help/ru/website/rss-modify.html:
+    - xmlns:content, xmlns:dc, xmlns:media, xmlns:atom
+    - content:encoded с CDATA
+    - figure/img внутри content
+    - media:rating
+    - одна category (format-article)
+    """
     lines = []
     lines.append('<?xml version="1.0" encoding="UTF-8"?>')
-    lines.append('<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">')
+    lines.append(
+        '<rss version="2.0" '
+        'xmlns:content="http://purl.org/rss/1.0/modules/content/" '
+        'xmlns:dc="http://purl.org/dc/elements/1.1/" '
+        'xmlns:media="http://search.yahoo.com/mrss/" '
+        'xmlns:atom="http://www.w3.org/2005/Atom">'
+    )
     lines.append('  <channel>')
     lines.append(f'    <title>{_esc(channel.get("title", ""))}</title>')
     lines.append(f'    <link>{_esc(channel.get("link", ""))}</link>')
     lines.append(f'    <description>{_esc(channel.get("description", ""))}</description>')
     lines.append(f'    <language>{_esc(channel.get("language", "ru"))}</language>')
-    feed_url = (channel.get("link", "") or "https://feed.addwine.ru").rstrip("/")
-    lines.append(f'    <atom:link href="https://feed.addwine.ru/feed.xml" rel="self" type="application/rss+xml" />')
+    lines.append('    <atom:link href="https://feed.addwine.ru/feed.xml" rel="self" type="application/rss+xml" />')
 
     for it in items:
         clean_html = sanitize_for_dzen(it.get("content_html", ""))
@@ -192,10 +204,10 @@ def write_feed(channel: dict, items: list) -> None:
         lines.append(f'      <guid isPermaLink="true">{_esc(it.get("guid", it.get("link", "")))}</guid>')
         lines.append(f'      <pubDate>{_esc(pub_str)}</pubDate>')
         lines.append(f'      <description>{_esc(it.get("description", ""))}</description>')
-        # обязательные категории для Дзена
+        # ровно одна категория — тип публикации (Дзен в примере показывает только одну)
         lines.append('      <category>format-article</category>')
-        lines.append('      <category>comment-all</category>')
-        lines.append('      <category>index</category>')
+        # маркировка возрастного контента — обязательное поле из примера Дзена
+        lines.append('      <media:rating scheme="urn:simple">nonadult</media:rating>')
         # обложка
         enc_url = it.get("enclosure_url", "")
         if enc_url:
