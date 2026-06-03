@@ -1,7 +1,14 @@
 {
-  "cycle_position": 4,
+  "cycle_position": 5,
   "content_plan_index": 3,
   "history": [
+    {
+      "date": "2026-06-03T07:10:07.277966+00:00",
+      "cycle_position": 4,
+      "topic_type": "trend",
+      "title": "Как правильно пить вино: базовые правила для тех, кто хочет разбираться",
+      "source_url": ""
+    },
     {
       "date": "2026-06-02T07:10:20.777376+00:00",
       "cycle_position": 3,
