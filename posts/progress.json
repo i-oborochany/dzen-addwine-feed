@@ -1,7 +1,14 @@
 {
-  "cycle_position": 1,
+  "cycle_position": 2,
   "content_plan_index": 4,
   "history": [
+    {
+      "date": "2026-06-05T07:09:57.909000+00:00",
+      "cycle_position": 1,
+      "topic_type": "trend",
+      "title": "Зачем богатейшие люди Франции скупают виноградники: логика винных империй",
+      "source_url": ""
+    },
     {
       "date": "2026-06-04T07:09:45.397720+00:00",
       "cycle_position": 5,
