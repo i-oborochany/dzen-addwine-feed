@@ -1,9 +1,10 @@
 # Настройки бота публикаций для канала Дзен addwine
 
 channel:
-  title: "Addwine — о вине"
-  link: "https://dzen.ru/addwine"
-  description: "Новости и материалы о вине, виноделии и винной культуре"
+  title: "Журнал AddWine"
+  # ВАЖНО для Дзена: link канала должен указывать на САЙТ-ИСТОЧНИК, не на канал Дзен
+  link: "https://feed.addwine.ru/"
+  description: "Авторский журнал о вине, виноделии, дегустации и винных аксессуарах. Экспертные статьи, обзоры регионов, рекомендации сомелье."
   language: "ru"
   pages_base_url: "https://feed.addwine.ru"
 

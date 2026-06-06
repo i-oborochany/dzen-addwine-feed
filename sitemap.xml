@@ -2,9 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://feed.addwine.ru/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-06-kak-taro-astrologiya-i-mistika-popali-na-vinnye-et/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-05-zachem-bogateyshie-lyudi-francii-skupayut-vinograd/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-04-nabor-aksessuarov-dlya-vina-chto-dolzhno-byt-vnutr/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-03-kak-pravilno-pit-vino-bazovye-pravila-dlya-teh-kto/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-02-enokruiz-kak-sovmestit-rechnoe-puteshestvie-s-degu/</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-01-kaberne-fran-v-rossii-chto-nuzhno-znat-o-sorte-kot/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-05-31-kak-opredelit-terruar-v-bokale-chto-na-samom-dele-/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-05-30-chto-podarit-lyubitelyu-vina-prakticheskiy-gid-po-/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-05-29-organicheskoe-vino-chem-ono-otlichaetsya-ot-obychn/</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-05-28-chto-takoe-millezimnoe-shampanskoe-i-pochemu-ono-s/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://feed.addwine.ru/posts/2026-05-27-pochemu-severnoe-vinodelie-v-rossii-eto-ne-hayp-a-/</loc>

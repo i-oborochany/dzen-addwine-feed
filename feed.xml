@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:georss="http://www.georss.org/georss">
   <channel>
-    <title>Addwine — о вине</title>
-    <link>https://dzen.ru/addwine</link>
-    <description>Новости и материалы о вине, виноделии и винной культуре</description>
+    <title>Журнал AddWine</title>
+    <link>https://feed.addwine.ru/</link>
+    <description>Авторский журнал о вине, виноделии, дегустации и винных аксессуарах. Экспертные статьи, обзоры регионов, рекомендации сомелье.</description>
     <language>ru</language>
     <atom:link href="https://feed.addwine.ru/feed.xml" rel="self" type="application/rss+xml" />
     <item>
