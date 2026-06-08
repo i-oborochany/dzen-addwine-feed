@@ -1,7 +1,14 @@
 {
-  "cycle_position": 4,
+  "cycle_position": 5,
   "content_plan_index": 4,
   "history": [
+    {
+      "date": "2026-06-08T07:10:24.636351+00:00",
+      "cycle_position": 4,
+      "topic_type": "trend",
+      "title": "Вино из Армении: что происходит в одном из старейших винодельческих регионов мира",
+      "source_url": ""
+    },
     {
       "date": "2026-06-07T07:10:46.479457+00:00",
       "cycle_position": 3,
