@@ -1,7 +1,14 @@
 {
-  "cycle_position": 1,
+  "cycle_position": 2,
   "content_plan_index": 5,
   "history": [
+    {
+      "date": "2026-06-10T07:10:15.261588+00:00",
+      "cycle_position": 1,
+      "topic_type": "trend",
+      "title": "Что написано на винной этикетке и как это помогает выбрать вино",
+      "source_url": ""
+    },
     {
       "date": "2026-06-09T07:10:12.507727+00:00",
       "cycle_position": 5,
