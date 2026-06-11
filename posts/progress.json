@@ -3,6 +3,13 @@
   "content_plan_index": 5,
   "history": [
     {
+      "date": "2026-06-11T17:52:05.514573+00:00",
+      "cycle_position": 0,
+      "topic_type": "digest",
+      "title": "Винные события недели: главные новости отрасли",
+      "source_url": ""
+    },
+    {
       "date": "2026-06-11T15:45:10.246890+00:00",
       "cycle_position": 3,
       "topic_type": "russian",
@@ -199,5 +206,6 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-06-11T15:45:10.246898+00:00"
+  "last_russian_post": "2026-06-11T15:45:10.246898+00:00",
+  "last_digest_post": "2026-06-11T17:52:05.514582+00:00"
 }
