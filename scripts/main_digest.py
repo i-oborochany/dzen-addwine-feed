@@ -70,10 +70,16 @@ def main() -> int:
 
     print("\n[1/5] Собираем статьи с 4 источников")
     articles = digest_sources.collect_all(days=7, date_from=date_from, date_to=date_to)
-    print(f"  всего: {len(articles)} статей")
+    print(f"  всего по строгому окну: {len(articles)} статей")
+
+    # Fallback: если по строгому окну мало — берём просто свежие за 14 дней без фильтра
+    if len(articles) < MIN_ARTICLES:
+        print(f"  ⚠️  меньше {MIN_ARTICLES} — fallback на просто свежие")
+        articles = digest_sources.collect_all(days=14)
+        print(f"  по fallback: {len(articles)} статей")
 
     if len(articles) < MIN_ARTICLES:
-        print(f"  слишком мало (<{MIN_ARTICLES}), выходим")
+        print(f"  всё ещё слишком мало (<{MIN_ARTICLES}), выходим")
         return 1
 
     # сортируем по дате (свежие первые), берём топ

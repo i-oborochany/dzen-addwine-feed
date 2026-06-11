@@ -66,6 +66,8 @@ def _fetch_article(url: str) -> dict:
         t = soup.find("title")
         if t:
             title = t.get_text(strip=True)
+    # чистим заголовок от хвостов сайта (типа "- ПРОВИНА.RU")
+    title = re.sub(r"\s*[\-—|]\s*[А-ЯA-Z][\wА-Я\.]*$", "", title).strip()
 
     # Lead — первый существенный <p>
     lead = ""
