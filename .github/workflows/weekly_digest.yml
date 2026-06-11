@@ -1,0 +1,48 @@
+name: Weekly Wine Digest
+
+on:
+  schedule:
+    # Каждое воскресенье в 12:00 МСК (09:00 UTC)
+    - cron: "0 9 * * 0"
+    # Страховка: повтор через 1 час если пропустит
+    - cron: "0 10 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run weekly digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/main_digest.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "addwine-bot"
+          git config user.email "bot@addwine.local"
+          git add feed.xml images/ posts/ index.html sitemap.xml robots.txt
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Weekly wine digest $(date -u +%Y-%m-%d)"
+            git push
+          fi
