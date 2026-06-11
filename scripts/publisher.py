@@ -16,9 +16,8 @@ ALT_BY_INDEX = {1: "обложка статьи", 2: "иллюстрация: п
 
 def embed_images(html: str, image_urls: list, pages_base: str) -> str:
     """
-    Подставляет картинки в плейсхолдеры [[IMG_N]] внутри html (N от 1 до 3).
-    Использует <figure><img/></figure> — требование Дзена.
-    Если плейсхолдеров нет — fallback: одна обложка сверху.
+    Подставляет картинки в плейсхолдеры [[IMG_N]] внутри html (N от 1 до 12).
+    Используется как для статей с 3 картинками, так и для дайджестов с 5-7.
     """
     if not image_urls:
         return html
@@ -30,10 +29,11 @@ def embed_images(html: str, image_urls: list, pages_base: str) -> str:
         alt = ALT_BY_INDEX.get(i, f"иллюстрация {i}")
         return f'<figure><img src="{url}" alt="{alt}"/></figure>'
 
-    has_any = bool(re.search(r"\[\[IMG_[1-3]\]\]", html))
+    has_any = bool(re.search(r"\[\[IMG_\d+\]\]", html))
     if has_any:
         result = html
-        for i in range(1, 4):
+        # поддерживаем до 12 картинок в одной статье (хватит для длинных дайджестов)
+        for i in range(1, 13):
             result = re.sub(rf"<p>\s*\[\[IMG_{i}\]\]\s*</p>", _figure(i), result)
             result = re.sub(rf"\[\[IMG_{i}\]\]", _figure(i), result)
         return result
