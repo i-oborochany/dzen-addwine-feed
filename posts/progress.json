@@ -1,7 +1,14 @@
 {
-  "cycle_position": 2,
+  "cycle_position": 3,
   "content_plan_index": 5,
   "history": [
+    {
+      "date": "2026-06-11T07:10:00.919117+00:00",
+      "cycle_position": 2,
+      "topic_type": "trend",
+      "title": "Российское вино в столичных ресторанах: как читать карту и не растеряться",
+      "source_url": ""
+    },
     {
       "date": "2026-06-10T07:10:15.261588+00:00",
       "cycle_position": 1,
