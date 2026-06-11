@@ -82,12 +82,17 @@ def main() -> int:
         print(f"  всё ещё слишком мало (<{MIN_ARTICLES}), выходим")
         return 1
 
+    # нормализуем pub_date к tz-aware (UTC) — у некоторых сайтов datetime без tz
+    def _norm_date(art):
+        pd = art.get("pub_date")
+        if pd is None:
+            return datetime(2000, 1, 1, tzinfo=timezone.utc)
+        if pd.tzinfo is None:
+            return pd.replace(tzinfo=timezone.utc)
+        return pd
+
     # сортируем по дате (свежие первые), берём топ
-    articles = sorted(
-        articles,
-        key=lambda a: a["pub_date"] or datetime(2000, 1, 1, tzinfo=timezone.utc),
-        reverse=True,
-    )[:MAX_ARTICLES]
+    articles = sorted(articles, key=_norm_date, reverse=True)[:MAX_ARTICLES]
     print(f"\n  Отобрано в дайджест: {len(articles)}")
     for i, a in enumerate(articles, 1):
         print(f"  {i}. [{a['source']}] {a['title'][:80]}")
