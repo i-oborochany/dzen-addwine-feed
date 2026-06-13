@@ -1,7 +1,14 @@
 {
-  "cycle_position": 1,
+  "cycle_position": 2,
   "content_plan_index": 6,
   "history": [
+    {
+      "date": "2026-06-13T09:57:17.523872+00:00",
+      "cycle_position": 1,
+      "topic_type": "trend",
+      "title": "Что жара делает с виноградом и почему это важно для покупателя вина",
+      "source_url": ""
+    },
     {
       "date": "2026-06-13T00:35:48.686536+00:00",
       "cycle_position": 5,
