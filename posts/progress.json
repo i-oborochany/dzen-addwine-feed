@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 5,
+  "cycle_position": 1,
+  "content_plan_index": 6,
   "history": [
+    {
+      "date": "2026-06-13T00:35:48.686536+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Лучшие аксессуары для вина дома: что действительно нужно, а что лишнее",
+      "source_url": "https://addwine.ru/catalogue"
+    },
     {
       "date": "2026-06-13T00:22:19.915328+00:00",
       "cycle_position": 4,
