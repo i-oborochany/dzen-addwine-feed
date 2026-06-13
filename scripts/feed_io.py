@@ -27,6 +27,8 @@ ALLOWED_TAGS = {
     "img", "figure", "figcaption",
 }
 
+# Для тега <a> разрешаем атрибут href (теперь ссылки на addwine.ru разрешены)
+
 TAG_REPLACEMENTS = {
     "strong": "b",
     "em": "i",
@@ -35,35 +37,17 @@ TAG_REPLACEMENTS = {
 
 def remove_cta_blocks(html: str) -> str:
     """
-    Удаляет CTA-блоки 'AddWine рекомендует' и любые ссылки на addwine.ru
-    из контента, который пойдёт в Дзен. Дзен запрещает рекламу
-    дистанционной продажи (даже аксессуаров для алкоголя).
+    Удаляет только устаревший блок-заголовок 'AddWine рекомендует' (старый формат).
+    Сами ссылки на addwine.ru и нативные упоминания ОСТАВЛЯЕМ — теперь они разрешены.
     """
-    # Блок <h3>AddWine рекомендует</h3><p>...</p>
+    # Старый блок <h3>AddWine рекомендует</h3><p>...</p>
     html = re.sub(
         r'<h3>\s*AddWine\s*рекомендует\s*</h3>\s*<p>.*?</p>',
         '', html, flags=re.IGNORECASE | re.DOTALL
     )
-    # Любой <h3>...AddWine...</h3> с последующим параграфом
     html = re.sub(
-        r'<h3>[^<]*AddWine[^<]*</h3>\s*<p>.*?</p>',
+        r'<h3>[^<]*AddWine\s*рекоменд[^<]*</h3>\s*<p>.*?</p>',
         '', html, flags=re.IGNORECASE | re.DOTALL
-    )
-    # Любые ссылки на addwine.ru или поддомены — заменяем на текст без ссылки
-    html = re.sub(
-        r'<a\s+href="https?://[^"]*addwine\.ru[^"]*"[^>]*>(.*?)</a>',
-        r'\1', html, flags=re.IGNORECASE | re.DOTALL
-    )
-    # Также убираем фразы про переход на сайт
-    html = re.sub(
-        r'[Пп]осмотреть[^.]*на\s+AddWine\.ru[^.]*\.',
-        '', html
-    )
-    html = re.sub(
-        r'[Сс]мотреть\s+подборку[^.]*\.', '', html
-    )
-    html = re.sub(
-        r'[Сс]мотреть\s+на\s+AddWine\.ru[^.]*\.', '', html
     )
     return html
 

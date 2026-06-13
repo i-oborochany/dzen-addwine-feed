@@ -16,6 +16,7 @@ import russian_writer
 import openai_api
 import publisher
 import progress as progress_mod
+import addwine_linker
 
 
 RUSSIAN_INTERVAL_DAYS = 3
@@ -70,6 +71,19 @@ def main() -> int:
 
     # для совместимости с publisher
     article["title"] = article["title_chosen"]
+
+    print("\n[2.5/4] Нативная вставка ссылки на addwine.ru")
+    try:
+        links = addwine_linker.fetch_links()
+        print(f"  доступно {len(links)} ссылок")
+        result = addwine_linker.inject_link(article["html"], links)
+        if result.get("link_inserted"):
+            article["html"] = result["html"]
+            print(f"  ✅ вставлена: {result.get('selected_title')}")
+        else:
+            print("  ⚠️  пропущено (нет подходящей)")
+    except Exception as e:
+        print(f"  [!] {e}")
 
     print("\n[3/4] Генерим 3 фото через gpt-image-1 (без людей, без лиц, без текста)")
     images = []

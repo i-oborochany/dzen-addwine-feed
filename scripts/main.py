@@ -17,6 +17,7 @@ import writer
 import openai_api
 import publisher
 import progress as progress_mod
+import addwine_linker
 
 
 def already_published_today(progress: dict) -> bool:
@@ -90,6 +91,20 @@ def main() -> int:
 
     # для совместимости с publisher.add_to_feed
     article["title"] = article["title_chosen"]
+
+    # ---- Нативная вставка ссылки на addwine.ru ----
+    print("\n[2.5/4] Нативная вставка ссылки на addwine.ru (категория или бренд)")
+    try:
+        links = addwine_linker.fetch_links()
+        print(f"  доступно {len(links)} ссылок из sitemap'ов")
+        result = addwine_linker.inject_link(article["html"], links)
+        if result.get("link_inserted"):
+            article["html"] = result["html"]
+            print(f"  ✅ вставлена: {result.get('selected_title')} → {result.get('selected_url')}")
+        else:
+            print("  ⚠️  не вставлена (Claude не нашёл тематически подходящей)")
+    except Exception as e:
+        print(f"  [!] не критично: {e}")
 
     print("\n[3/4] Генерим 3 фото через gpt-image-1 (medium)")
     images = []
