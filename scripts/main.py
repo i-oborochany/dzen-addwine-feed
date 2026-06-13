@@ -106,10 +106,10 @@ def main() -> int:
     except Exception as e:
         print(f"  [!] не критично: {e}")
 
-    print("\n[3/4] Генерим 3 фото через gpt-image-1 (medium)")
+    print("\n[3/4] Генерим 2 фото через gpt-image-1 (medium)")
     images = []
-    for i, prompt in enumerate(article["image_prompts"][:3], 1):
-        print(f"  фото {i}/3 ...")
+    for i, prompt in enumerate(article["image_prompts"][:2], 1):
+        print(f"  фото {i}/2 ...")
         try:
             img = openai_api.generate_image(prompt)
             images.append(img)
