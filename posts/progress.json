@@ -1,7 +1,14 @@
 {
-  "cycle_position": 2,
+  "cycle_position": 3,
   "content_plan_index": 6,
   "history": [
+    {
+      "date": "2026-06-14T07:10:43.881736+00:00",
+      "cycle_position": 2,
+      "topic_type": "trend",
+      "title": "Гид по классификации вин: от столового до гран крю — в чём реальная разница",
+      "source_url": ""
+    },
     {
       "date": "2026-06-13T09:57:17.523872+00:00",
       "cycle_position": 1,
