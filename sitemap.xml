@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://feed.addwine.ru/</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-19-kak-pochva-i-klimat-krasnodarskogo-kraya-formiruyu/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-19-festival-vinograd-v-velikom-novgorode-pochemu-ross/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-18-bermet-iz-kirgizii-gornoe-vino-s-hrenom-gorchicey-/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-17-kak-vybrat-shtopor-dlya-vina-chem-professionalnyy-/</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-16-kak-fotografiya-vina-stala-otdelnym-iskusstvom-cht/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-15-rozy-na-vinogradnikah-zachem-vinodely-sazhayut-cve/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-14-gid-po-klassifikacii-vin-ot-stolovogo-do-gran-kryu/</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://feed.addwine.ru/posts/2026-06-13-chto-zhara-delaet-s-vinogradom-i-pochemu-eto-vazhn/</loc>
