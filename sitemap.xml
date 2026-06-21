@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://feed.addwine.ru/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-21-vinnye-sobytiya-nedeli/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-21-chto-znachit-97-ballov-na-decanter-2026-gid-po-gla/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-20-bezalkogolnoe-vino-kak-ego-delayut-chem-otlichaets/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://feed.addwine.ru/posts/2026-06-19-kak-pochva-i-klimat-krasnodarskogo-kraya-formiruyu/</loc>
