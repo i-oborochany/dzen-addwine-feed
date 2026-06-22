@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+      "title": "Бокалы для вина: нужны ли разные формы или достаточно одного",
+      "published_at": "2026-06-22T07:09:47.684560+00:00"
+    },
+    {
       "url": "https://addwine.ru/catalogue/category/servirovka/shtopory",
       "title": "Как выбрать штопор для вина: чем профессиональный отличается от дешёвого",
       "published_at": "2026-06-17T07:10:08.244847+00:00"
@@ -42,12 +47,12 @@
     }
   ],
   "urls": [
-    "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
     "https://addwine.ru/catalogue/category/servirovka",
-    "https://addwine.ru/catalogue",
-    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://addwine.ru/catalogue/category/izuchenie",
     "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
-    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake"
+    "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+    "https://addwine.ru/catalogue/category/servirovka/shtopory",
+    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
+    "https://addwine.ru/catalogue"
   ]
 }
