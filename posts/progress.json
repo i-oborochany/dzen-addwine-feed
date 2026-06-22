@@ -3,6 +3,13 @@
   "content_plan_index": 8,
   "history": [
     {
+      "date": "2026-06-22T15:31:45.089669+00:00",
+      "cycle_position": 1,
+      "topic_type": "russian",
+      "title": "Чем терруары Тамани и Анапы отличаются друг от друга и что это значит для вина",
+      "source_url": ""
+    },
+    {
       "date": "2026-06-22T07:09:47.684061+00:00",
       "cycle_position": 5,
       "topic_type": "content_plan",
@@ -311,6 +318,6 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-06-19T13:43:14.771015+00:00",
+  "last_russian_post": "2026-06-22T15:31:45.089684+00:00",
   "last_digest_post": "2026-06-21T11:47:37.925938+00:00"
 }
