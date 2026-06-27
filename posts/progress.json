@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 8,
+  "cycle_position": 1,
+  "content_plan_index": 9,
   "history": [
+    {
+      "date": "2026-06-27T07:10:07.632810+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Подарок любителю вина: что выбрать, чтобы не ошибиться",
+      "source_url": "https://addwine.ru/catalogue/category/izuchenie"
+    },
     {
       "date": "2026-06-26T07:10:13.156389+00:00",
       "cycle_position": 4,
