@@ -3,6 +3,13 @@
   "content_plan_index": 9,
   "history": [
     {
+      "date": "2026-06-28T11:55:08.907794+00:00",
+      "cycle_position": 2,
+      "topic_type": "russian",
+      "title": "Как виноделы Тамани и Анапы работают с терруаром: от лозы до бокала",
+      "source_url": ""
+    },
+    {
       "date": "2026-06-28T11:08:34.404226+00:00",
       "cycle_position": 0,
       "topic_type": "digest",
@@ -367,6 +374,6 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-06-22T15:31:45.089684+00:00",
+  "last_russian_post": "2026-06-28T11:55:08.907804+00:00",
   "last_digest_post": "2026-06-28T11:08:34.404238+00:00"
 }
