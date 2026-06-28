@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://feed.addwine.ru/</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-28-vinnye-sobytiya-nedeli/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-28-kaberne-fran-v-rossii-kak-francuzskiy-sort-nashyol/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-27-podarok-lyubitelyu-vina-chto-vybrat-chtoby-ne-oshi/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-26-belyy-mys-pervyy-vinnyy-gorod-rossii-chto-vnutri-i/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-25-21-rossiyskiy-restoran-v-wine-spectator-awards-202/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-24-kak-pit-krepyonye-vina-v-tyoploe-vremya-goda-gid-p/</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-06-23-assirtiko-s-santorini-pochemu-vino-s-vulkanichesko/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://feed.addwine.ru/posts/2026-06-22-chem-terruary-tamani-i-anapy-otlichayutsya-drug-ot/</loc>
