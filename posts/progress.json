@@ -3,6 +3,13 @@
   "content_plan_index": 9,
   "history": [
     {
+      "date": "2026-07-01T12:42:07.710242+00:00",
+      "cycle_position": 5,
+      "topic_type": "russian",
+      "title": "Гид по виноградникам Тамани и Анапы: кто делает вино нового поколения",
+      "source_url": ""
+    },
+    {
       "date": "2026-07-01T07:10:19.737411+00:00",
       "cycle_position": 4,
       "topic_type": "trend",
@@ -395,6 +402,6 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-06-28T11:55:08.907804+00:00",
+  "last_russian_post": "2026-07-01T12:42:07.710255+00:00",
   "last_digest_post": "2026-06-28T11:08:34.404238+00:00"
 }
