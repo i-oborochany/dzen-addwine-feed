@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 9,
+  "cycle_position": 1,
+  "content_plan_index": 10,
   "history": [
+    {
+      "date": "2026-07-02T07:09:29.290710+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Как выбрать бокалы для вина и почему это важнее, чем кажется",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
     {
       "date": "2026-07-01T12:42:07.710242+00:00",
       "cycle_position": 5,
