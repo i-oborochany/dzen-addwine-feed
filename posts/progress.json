@@ -1,7 +1,14 @@
 {
-  "cycle_position": 1,
+  "cycle_position": 2,
   "content_plan_index": 10,
   "history": [
+    {
+      "date": "2026-07-03T07:10:21.307460+00:00",
+      "cycle_position": 1,
+      "topic_type": "trend",
+      "title": "Ресторан плюс винодельня: что такое винные коллаборации и что они дают гостю",
+      "source_url": ""
+    },
     {
       "date": "2026-07-02T07:09:29.290710+00:00",
       "cycle_position": 5,
