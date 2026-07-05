@@ -2,6 +2,11 @@ name: Bootstrap project files
 
 on:
   workflow_dispatch:
+    inputs:
+      publish_digest_now:
+        description: "Опубликовать дайджест-трейлер сейчас (за последние 7 дней)"
+        type: boolean
+        default: true
 
 jobs:
   setup:
@@ -45,12 +50,32 @@ jobs:
           echo 'bmFtZTog0JLQuNC90L4g0Lgg0LXQtNCwIOKAlCDQv9C+INC90LXRh9GR0YLQvdGL0Lwg0LTQvdGP0LwKCm9uOgogIHdvcmtmbG93X2Rpc3BhdGNoOgogICAgaW5wdXRzOgogICAgICBmb3JjZToKICAgICAgICBkZXNjcmlwdGlvbjogItCk0L7RgNGB0LjRgNC+0LLQsNGC0Ywg0L/Rg9Cx0LvQuNC60LDRhtC40Y4gKNC40LPQvdC+0YDQuNGA0L7QstCw0YLRjCA0MC3Rh9Cw0YHQvtCy0YPRjiDQt9Cw0YnQuNGC0YMpIgogICAgICAgIHR5cGU6IGJvb2xlYW4KICAgICAgICBkZWZhdWx0OiBmYWxzZQogIHNjaGVkdWxlOgogICAgIyDQvdC10YfRkdGC0L3Ri9C1INGH0LjRgdC70LAg0LzQtdGB0Y/RhtCwINCyIDEwOjAwIFVUQyAofjEzOjAwIE1TSykKICAgIC0gY3JvbjogIjAgMTAgMSwzLDUsNyw5LDExLDEzLDE1LDE3LDE5LDIxLDIzLDI1LDI3LDI5LDMxICogKiIKICAgICMg0YHRgtGA0LDRhdC+0LLQvtGH0L3Ri9C5INC30LDQv9GD0YHQuiDQvdCwIDMwINC80LjQvdGD0YIg0L/QvtC30LbQtQogICAgLSBjcm9uOiAiMzAgMTAgMSwzLDUsNyw5LDExLDEzLDE1LDE3LDE5LDIxLDIzLDI1LDI3LDI5LDMxICogKiIKCmpvYnM6CiAgcHVibGlzaDoKICAgIHJ1bnMtb246IHVidW50dS1sYXRlc3QKICAgIHRpbWVvdXQtbWludXRlczogMjAKICAgIHN0ZXBzOgogICAgICAtIG5hbWU6IENoZWNrb3V0CiAgICAgICAgdXNlczogYWN0aW9ucy9jaGVja291dEB2NAogICAgICAgIHdpdGg6CiAgICAgICAgICB0b2tlbjogJHt7IHNlY3JldHMuUEFUX1dPUktGTE9XUyB9fQogICAgICAgICAgcGVyc2lzdC1jcmVkZW50aWFsczogdHJ1ZQoKICAgICAgLSBuYW1lOiBTZXR1cCBQeXRob24KICAgICAgICB1c2VzOiBhY3Rpb25zL3NldHVwLXB5dGhvbkB2NQogICAgICAgIHdpdGg6CiAgICAgICAgICBweXRob24tdmVyc2lvbjogIjMuMTEiCgogICAgICAtIG5hbWU6IEluc3RhbGwgZGVwcwogICAgICAgIHJ1bjogcGlwIGluc3RhbGwgLXIgcmVxdWlyZW1lbnRzLnR4dAoKICAgICAgLSBuYW1lOiBQdWJsaXNoIGZvb2QgYXJ0aWNsZQogICAgICAgIGVudjoKICAgICAgICAgIEFOVEhST1BJQ19BUElfS0VZOiAke3sgc2VjcmV0cy5BTlRIUk9QSUNfQVBJX0tFWSB9fQogICAgICAgICAgT1BFTkFJX0FQSV9LRVk6ICR7eyBzZWNyZXRzLk9QRU5BSV9BUElfS0VZIH19CiAgICAgICAgICBGT1JDRV9QVUJMSVNIOiAke3sgaW5wdXRzLmZvcmNlICYmICcxJyB8fCAnJyB9fQogICAgICAgICAgUFlUSE9OVU5CVUZGRVJFRDogIjEiCiAgICAgICAgcnVuOiBweXRob24gc2NyaXB0cy9tYWluX2Zvb2QucHkKCiAgICAgIC0gbmFtZTogQ29tbWl0IGFuZCBwdXNoCiAgICAgICAgcnVuOiB8CiAgICAgICAgICBnaXQgY29uZmlnIHVzZXIubmFtZSAiZm9vZC1ib3QiCiAgICAgICAgICBnaXQgY29uZmlnIHVzZXIuZW1haWwgImZvb2QtYm90QGxvY2FsIgogICAgICAgICAgZ2l0IHJlbW90ZSBzZXQtdXJsIG9yaWdpbiAiaHR0cHM6Ly94LWFjY2Vzcy10b2tlbjoke3sgc2VjcmV0cy5QQVRfV09SS0ZMT1dTIH19QGdpdGh1Yi5jb20vJHt7IGdpdGh1Yi5yZXBvc2l0b3J5IH19LmdpdCIKICAgICAgICAgIGdpdCBhZGQgLUEKICAgICAgICAgIGlmIGdpdCBkaWZmIC0tY2FjaGVkIC0tcXVpZXQ7IHRoZW4KICAgICAgICAgICAgZWNobyAiTm90aGluZyB0byBjb21taXQiCiAgICAgICAgICBlbHNlCiAgICAgICAgICAgIGdpdCBjb21taXQgLW0gIlB1Ymxpc2ggZm9vZCBhcnRpY2xlIgogICAgICAgICAgICBnaXQgcHVzaCBvcmlnaW4gSEVBRDptYWluCiAgICAgICAgICBmaQo=' | base64 -d > .github/workflows/food.yml
           echo 'bmFtZTogUnVzc2lhbiBXaW5lIFBvc3QKCm9uOgogIHNjaGVkdWxlOgogICAgIyDQp9GR0YLQvdGL0LUg0YfQuNGB0LvQsCDQvNC10YHRj9GG0LAg0LIgMTA6MDAgVVRDICh+MTM6MDAg0JzQodCaKSDigJQg0LDRgdC40L3RhdGA0L7QvdC90L4g0YEgZm9vZC55bWwKICAgIC0gY3JvbjogIjAgMTAgMiw0LDYsOCwxMCwxMiwxNCwxNiwxOCwyMCwyMiwyNCwyNiwyOCwzMCAqICoiCiAgICAtIGNyb246ICIzMCAxMCAyLDQsNiw4LDEwLDEyLDE0LDE2LDE4LDIwLDIyLDI0LDI2LDI4LDMwICogKiIKICB3b3JrZmxvd19kaXNwYXRjaDoKICAgIGlucHV0czoKICAgICAgZm9yY2U6CiAgICAgICAgZGVzY3JpcHRpb246ICLQpNC+0YDRgdC40YDQvtCy0LDRgtGMINC/0YPQsdC70LjQutCw0YbQuNGOIgogICAgICAgIHR5cGU6IGJvb2xlYW4KICAgICAgICBkZWZhdWx0OiBmYWxzZQoKcGVybWlzc2lvbnM6CiAgY29udGVudHM6IHdyaXRlCgpqb2JzOgogIHB1Ymxpc2g6CiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICB0aW1lb3V0LW1pbnV0ZXM6IDMwCgogICAgc3RlcHM6CiAgICAgIC0gbmFtZTogQ2hlY2tvdXQKICAgICAgICB1c2VzOiBhY3Rpb25zL2NoZWNrb3V0QHY0CgogICAgICAtIG5hbWU6IFNldHVwIFB5dGhvbgogICAgICAgIHVzZXM6IGFjdGlvbnMvc2V0dXAtcHl0aG9uQHY1CiAgICAgICAgd2l0aDoKICAgICAgICAgIHB5dGhvbi12ZXJzaW9uOiAiMy4xMSIKICAgICAgICAgIGNhY2hlOiBwaXAKCiAgICAgIC0gbmFtZTogSW5zdGFsbCBkZXBzCiAgICAgICAgcnVuOiBwaXAgaW5zdGFsbCAtciByZXF1aXJlbWVudHMudHh0CgogICAgICAtIG5hbWU6IFJ1biBSdXNzaWFuIHdpbmUgYm90CiAgICAgICAgZW52OgogICAgICAgICAgQU5USFJPUElDX0FQSV9LRVk6ICR7eyBzZWNyZXRzLkFOVEhST1BJQ19BUElfS0VZIH19CiAgICAgICAgICBPUEVOQUlfQVBJX0tFWTogJHt7IHNlY3JldHMuT1BFTkFJX0FQSV9LRVkgfX0KICAgICAgICAgIEZPUkNFX1BVQkxJU0g6ICR7eyBpbnB1dHMuZm9yY2UgJiYgJzEnIHx8ICcnIH19CiAgICAgICAgICBQWVRIT05VTkJVRkZFUkVEOiAiMSIKICAgICAgICBydW46IHB5dGhvbiBzY3JpcHRzL21haW5fcnVzc2lhbi5weQoKICAgICAgLSBuYW1lOiBDb21taXQgYW5kIHB1c2gKICAgICAgICBydW46IHwKICAgICAgICAgIGdpdCBjb25maWcgdXNlci5uYW1lICJhZGR3aW5lLWJvdCIKICAgICAgICAgIGdpdCBjb25maWcgdXNlci5lbWFpbCAiYm90QGFkZHdpbmUubG9jYWwiCiAgICAgICAgICBnaXQgYWRkIGZlZWQueG1sIGltYWdlcy8gcG9zdHMvIGluZGV4Lmh0bWwgc2l0ZW1hcC54bWwgcm9ib3RzLnR4dAogICAgICAgICAgaWYgZ2l0IGRpZmYgLS1jYWNoZWQgLS1xdWlldDsgdGhlbgogICAgICAgICAgICBlY2hvICJOb3RoaW5nIHRvIGNvbW1pdCIKICAgICAgICAgIGVsc2UKICAgICAgICAgICAgZ2l0IGNvbW1pdCAtbSAiUnVzc2lhbiB3aW5lIHBvc3QgJChkYXRlIC11ICslWS0lbS0lZCkiCiAgICAgICAgICAgIGdpdCBwdXNoCiAgICAgICAgICBmaQo=' | base64 -d > .github/workflows/russian_wine.yml
 
-      - name: Commit and push
+      - name: Push code first
         run: |
           git add -A
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "1 image per article + food rubric + digest-trailer of own posts"
+            git commit -m "1 image per article + food rubric + digest-trailer"
+            git push origin HEAD:main
+          fi
+
+      - name: Run digest now
+        if: ${{ inputs.publish_digest_now }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FORCE_PUBLISH: "1"
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/main_digest.py
+
+      - name: Push digest
+        if: ${{ inputs.publish_digest_now }}
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit after digest"
+          else
+            git commit -m "Weekly digest-trailer (manual)"
             git push origin HEAD:main
           fi
