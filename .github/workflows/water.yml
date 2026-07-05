@@ -1,0 +1,50 @@
+name: Вода, коктейли, безалкогольное
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Форсировать публикацию"
+        type: boolean
+        default: false
+  schedule:
+    # каждые 4 дня, дни 3,7,11,15,19,23,27,31 в 14:00 UTC
+    - cron: "0 14 3,7,11,15,19,23,27,31 * *"
+    - cron: "30 14 3,7,11,15,19,23,27,31 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Publish
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RUBRIC: "water"
+          FORCE_PUBLISH: ${{ inputs.force && '1' || '' }}
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/main_extras.py
+      - name: Commit and push
+        run: |
+          git config user.name "water-bot"
+          git config user.email "water-bot@local"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Water/cocktails post $(date -u +%Y-%m-%d)"
+            git push
+          fi

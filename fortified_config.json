@@ -1,0 +1,16 @@
+{
+  "rubric_key": "fortified",
+  "rubric_name": "Вермуты и креплёные вина",
+  "topics_file": "fortified_topics.json",
+  "progress_key": "last_fortified_post",
+  "cat_main": "Креплёные и десертные вина",
+  "cat_secondary": ["Дегустации и советы", "Гастрономия", "История виноделия"],
+  "tone": "Экспертный, элегантный, редакторский. Крепленые вина — недооценённый премиум-сегмент. Приводи конкретные годы, названия хозяйств, стили (Fino/Oloroso/Vintage/Ruby/Tawny), температуры подачи, бокалы (copita, снифтер, флейта). Уважение к португальской, испанской, итальянской, венгерской традиции.",
+  "image_style_note": "Премиум-редакторская фотография: янтарное или рубиновое вино в правильном бокале (copita для хереса, снифтер для порто, флейта для муската), винный погреб с ансамблем дубовых бочек, свечи, тёмная бархатная скатерть, тёплый вечерний свет. БЕЗ крупных планов рук. БЕЗ людей на первом плане. Палитра: янтарь, тёплый кремовый, тёмно-сине-зелёный.",
+  "links": [
+    {"title": "Бокалы для вермута", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-vermuta_61", "keywords": ["вермут", "аперитив", "cinzano", "martini", "carpano"]},
+    {"title": "Бокалы для сладких вин", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-sladkix-vin", "keywords": ["сладк", "сотерн", "токай", "мускат", "айсвайн", "десертн", "portо", "порто", "мадера", "херес", "марсал"]},
+    {"title": "Все бокалы для вина и напитков", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina", "keywords": ["сервировка", "посуда", "бокал"]},
+    {"title": "Каталог AddWine", "url": "https://addwine.ru/catalogue", "keywords": []}
+  ]
+}

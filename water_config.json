@@ -1,0 +1,19 @@
+{
+  "rubric_key": "water",
+  "rubric_name": "Вода, коктейли и безалкогольное",
+  "topics_file": "water_cocktails_topics.json",
+  "progress_key": "last_water_post",
+  "cat_main": "Коктейли и безалкогольное",
+  "cat_secondary": ["Дегустации и советы", "Гастрономия", "Барная культура"],
+  "tone": "Тёплый, экспертный, барный. Если статья про конкретный коктейль — ОБЯЗАТЕЛЬНО дать полный рецепт с ингредиентами и техникой в отдельном блоке (можно в <ul>). Приводи имена барменов, историю коктейлей, места создания, IBA-статус. Для воды/безалкогольного — источники, минерализация, гастрономия.",
+  "image_style_note": "Премиум-редакторская фотография: коктейль в правильном бокале (тумблер / хайбол / coupe / martini / рокс), барная стойка из мрамора, латунь, бархат, барная посуда рядом, свежий цитрус или ветка мяты, кристальный лёд. БЕЗ крупных планов рук. БЕЗ чокания. Для воды — хрусталь, графин с водой, изморозь на бутылке. Палитра: прохладный кремовый + тёмно-сине-зелёный акцентами.",
+  "links": [
+    {"title": "Бокалы для коктейлей", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62", "keywords": ["коктейл", "бокал", "мартини", "coupe", "рокс", "хайбол", "тумблер"]},
+    {"title": "Все бокалы для вина и напитков", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina", "keywords": ["сервировка", "посуда"]},
+    {"title": "Барные аксессуары", "url": "https://addwine.ru/catalogue/category/servirovka/barnye-aksessuary", "keywords": ["шейкер", "джиггер", "стрейнер", "барн", "аксессуар", "барная ложка", "гарнир"]},
+    {"title": "Кувшины", "url": "https://addwine.ru/catalogue/category/podacha/kuvshiny-dlya-vina", "keywords": ["кувшин", "лимонад", "сангри", "холодный"]},
+    {"title": "Графины", "url": "https://addwine.ru/catalogue/category/podacha/grafiny-dlya-vina", "keywords": ["графин", "декантер", "декантирован", "вода"]},
+    {"title": "Охладители", "url": "https://addwine.ru/catalogue/category/servirovka/ohladiteli-dlya-vina", "keywords": ["охлажд", "холод", "температур", "лёд", "льдо"]},
+    {"title": "Каталог AddWine", "url": "https://addwine.ru/catalogue", "keywords": []}
+  ]
+}

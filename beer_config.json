@@ -1,0 +1,16 @@
+{
+  "rubric_key": "beer",
+  "rubric_name": "Пиво и сидр",
+  "topics_file": "beer_topics.json",
+  "progress_key": "last_beer_post",
+  "cat_main": "Пиво и сидр",
+  "cat_secondary": ["Гастрономия", "Технологии и инновации", "Дегустации и советы"],
+  "tone": "Экспертный, живой, без снобизма. Пивная культура — это не пабная попойка, а сложная гастрономия. Приводи стили, регионы, цифры IBU и ABV, температуры подачи, бокалы. Стиль — как у Beer Advocate и Craft Beer & Brewing. Уважительный к крафту и к массовым лагерам.",
+  "image_style_note": "Премиум-редакторская фотография: пиво в правильном бокале (тюльпан, вайцен, штанге, пинт, снифтер под темe) с идеальной пеной, мягкий тёплый свет, богатая деревянная стойка, дубовый бочонок или медный краник на фоне. БЕЗ крупных планов рук на бокале. БЕЗ чокания. Палитра: янтарные оттенки пива, латунь, тёплое дерево, кремовый.",
+  "links": [
+    {"title": "Бокалы для пива", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-piva_30", "keywords": ["пивной", "пиво", "стилю", "бокал"]},
+    {"title": "Все бокалы для вина и напитков", "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina", "keywords": ["сервировка", "посуда"]},
+    {"title": "Охладители", "url": "https://addwine.ru/catalogue/category/servirovka/ohladiteli-dlya-vina", "keywords": ["охлажд", "холод", "температур"]},
+    {"title": "Каталог AddWine", "url": "https://addwine.ru/catalogue", "keywords": []}
+  ]
+}
