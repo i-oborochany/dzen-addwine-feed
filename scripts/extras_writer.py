@@ -141,15 +141,33 @@ def write_article(rubric: str, topic_idea: str, recent_titles: list) -> dict:
 
 
 def _validate(result: dict, cfg: dict) -> None:
-    required = ["titles", "title_chosen", "lead", "html", "image_prompts", "comment_question", "categories"]
-    for f in required:
-        if f not in result:
-            raise RuntimeError(f"Поле '{f}' отсутствует в ответе Claude")
-    if len(result["image_prompts"]) < 1:
-        raise RuntimeError("image_prompts пустой")
-    result["image_prompts"] = result["image_prompts"][:1]
+    # мягкая валидация обязательных полей
+    for f in ("title_chosen", "lead", "html"):
+        if f not in result or not result[f]:
+            raise RuntimeError(f"Поле '{f}' отсутствует или пустое в ответе Claude. Keys: {list(result.keys())}")
+
+    # image_prompts может быть строкой — приведём к списку
+    ip = result.get("image_prompts")
+    if isinstance(ip, str):
+        ip = [ip]
+    elif ip is None:
+        # запасной вариант — генерим базовый промпт из темы и стиля
+        ip = [f"Премиум-редакторское фото по теме: {result['title_chosen']}. {cfg.get('image_style_note', '')[:400]}"]
+    if not isinstance(ip, list) or len(ip) < 1:
+        raise RuntimeError(f"image_prompts некорректный: {type(ip).__name__}")
+    result["image_prompts"] = ip[:1]
+
+    # titles — может отсутствовать
+    if "titles" not in result:
+        result["titles"] = [result["title_chosen"]]
+
+    # comment_question — может отсутствовать
+    if "comment_question" not in result:
+        result["comment_question"] = ""
 
     cats = result.get("categories") or []
+    if isinstance(cats, str):
+        cats = [cats]
     main = cfg["cat_main"]
     if main not in cats:
         cats = [main] + [c for c in cats if c != main]

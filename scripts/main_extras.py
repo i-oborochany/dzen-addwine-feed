@@ -62,11 +62,16 @@ def main() -> int:
     print(f"  → {topic}")
 
     print("\n[2/4] Claude пишет статью")
-    article = extras_writer.write_article(rubric, topic, used_titles)
+    try:
+        article = extras_writer.write_article(rubric, topic, used_titles)
+    except Exception as e:
+        print(f"  [!!] Claude/парсинг упал: {type(e).__name__}: {e}")
+        raise
     print(f"  заголовок: {article['title_chosen']}")
     print(f"  категории: {article['categories']}")
     print(f"  ссылка на AddWine: {article['_link_used']['title']} → {article['_link_used']['url']}")
     print(f"  длина html: {len(article['html'])} символов")
+    print(f"  длина image prompt: {len(article['image_prompts'][0])} симв.")
 
     article["title"] = article["title_chosen"]
 
@@ -74,9 +79,14 @@ def main() -> int:
     images = []
     for i, prompt in enumerate(article["image_prompts"][:1], 1):
         print(f"  фото {i}/1 ...")
-        img = openai_api.generate_image(prompt)
-        images.append(img)
-        print(f"     ok, {len(img)} байт")
+        print(f"     промпт (первые 150 симв.): {prompt[:150]}")
+        try:
+            img = openai_api.generate_image(prompt)
+            images.append(img)
+            print(f"     ok, {len(img)} байт")
+        except Exception as e:
+            print(f"     [!!] OpenAI упал: {type(e).__name__}: {e}")
+            raise
 
     print("\n[4/4] Сохраняем + добавляем в feed.xml")
     slug = publisher.slugify(article["title"])
@@ -84,7 +94,11 @@ def main() -> int:
     for u in image_urls:
         print(f"  -> {u}")
 
-    publisher.add_to_feed(article, image_urls, article["_link_used"]["url"], site_config)
+    try:
+        publisher.add_to_feed(article, image_urls, article["_link_used"]["url"], site_config)
+    except Exception as e:
+        print(f"  [!!] publisher.add_to_feed упал: {type(e).__name__}: {e}")
+        raise
 
     progress_mod.append_history(progress, article["title"], progress.get("cycle_position", 1), rubric, article["_link_used"]["url"])
     progress[cfg["progress_key"]] = datetime.now(timezone.utc).isoformat()

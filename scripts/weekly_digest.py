@@ -81,7 +81,8 @@ def load_posts_for_week(days: int = 7) -> list:
             result.append(p)
         except Exception:
             continue
-    result.sort(key=lambda x: x["_pub_dt"], reverse=True)
+    # порядок в дайджесте: от старой к новой (первая — самая ранняя статья недели)
+    result.sort(key=lambda x: x["_pub_dt"])
     return result
 
 
