@@ -16,6 +16,46 @@ import digest_sources
 import weekly_digest
 import publisher
 import progress as progress_mod
+import claude_api
+import openai_api
+
+
+COVER_PROMPT_SYSTEM = """Ты — арт-директор винного журнала. Тебе дают заголовок винной новости. Сгенерируй ОДИН промпт для gpt-image-1 — атмосферное премиум-фото под эту новость.
+
+СТИЛЬ: премиум-редакторская фотография как в Vogue Living / Robb Report. Тёплый свет, богатые материалы (мрамор, дерево, бархат, латунь), тонкие бокалы уровня Sydonios/Zalto, реальные винные аксессуары. Палитра: тёплый кремовый Pantone 7403 + тёмно-сине-зелёный Pantone 302 акцентами.
+
+СЮЖЕТЫ ПО ТИПАМ НОВОСТЕЙ:
+- Рейтинги/премии/ресторан: интерьер премиум-ресторана с бокалами на мраморной стойке, серебряная сервировка.
+- Сорт/регион/терруар: виноградник в холмах на закате, крупный план грозди.
+- Винодельня/винодел: винный погреб с дубовыми бочками, приглушённый свет.
+- Технологии/наука: лаборатория с бокалами и рефрактометром, дегустационные бланки.
+- Рынки/цены/деньги: элегантный винный аукцион, редкие бутылки на подсвеченных полках.
+- Сомелье: сомелье в фартуке у барной стойки, спокойная поза, руки в свободном положении.
+- Международные новости: дегустационный стол с бокалами разного вина, без людей крупным планом.
+
+АНАТОМИЯ ЖЁСТКО:
+- НИКАКИХ крупных планов рук с бокалами.
+- НИКАКИХ тостов и чокания крупным планом.
+- Если люди в кадре — руки спокойные, бокал стоит на столе, средний план.
+
+БЕЗ текста, букв, цифр, логотипов на изображении.
+
+Промпт минимум 100 слов, на русском. Включает: главный сюжет, ракурс, освещение, окружение, атмосферу, время суток.
+
+ФОРМАТ ОТВЕТА — строго JSON: {"prompt": "<промпт>"}"""
+
+
+def generate_cover_prompt(title: str, lead: str) -> str:
+    """Через Claude просим промпт для конкретной новости."""
+    try:
+        user = f"Заголовок винной новости: {title}\n\nЛид: {lead[:400]}\n\nСгенерируй тематичный премиум-промпт."
+        r = claude_api.generate_json(COVER_PROMPT_SYSTEM, user, max_tokens=800, temperature=0.6)
+        prompt = r.get("prompt", "")
+        if len(prompt) >= 50:
+            return prompt
+    except Exception as e:
+        print(f"    [!] Claude не смог сгенерить промпт: {e}")
+    return f"Премиум-редакторское фото винной атмосферы под тему: {title}. Тёплый свет, дегустационный стол с бокалами, богатый интерьер, без крупных планов рук, без текста."
 
 DIGEST_INTERVAL_DAYS = 6  # каждое воскресенье (с допуском)
 MAX_ARTICLES = 7
@@ -103,27 +143,29 @@ def main() -> int:
     folder = IMAGES_DIR / slug
     folder.mkdir(parents=True, exist_ok=True)
 
-    print("\n[2/5] Скачиваем картинки")
+    print("\n[2/5] Генерим уникальные картинки через gpt-image-1 по заголовкам новостей")
     image_urls = []
     for i, art in enumerate(articles, 1):
         fname = f"cover-{i}.jpg"
         save_path = folder / fname
-        ok = digest_sources.download_image_to(art["image_url"], save_path)
-        if ok and save_path.exists() and save_path.stat().st_size > 1000:
-            print(f"  {i}. ✅ {save_path.stat().st_size} байт")
+        print(f"  {i}. промпт для «{art['title'][:60]}...»")
+        prompt = generate_cover_prompt(art["title"], art.get("lead", ""))
+        print(f"     → {prompt[:100]}...")
+        try:
+            img_bytes = openai_api.generate_image(prompt)
+            save_path.write_bytes(img_bytes)
+            print(f"     ✅ {len(img_bytes)} байт")
             image_urls.append(f"images/{slug}/{fname}")
-        else:
-            print(f"  {i}. ⚠️  не удалось скачать — используем первую картинку как fallback")
+        except Exception as e:
+            print(f"     [!] не удалось сгенерить: {e}")
             if image_urls:
-                # копируем первую
+                # если уже есть хоть одна — копируем последнюю как fallback
                 import shutil
-                shutil.copy(folder / "cover-1.jpg", save_path)
+                shutil.copy(folder / image_urls[-1].split("/")[-1], save_path)
                 image_urls.append(f"images/{slug}/{fname}")
             else:
-                # вообще нет картинок — пропускаем эту статью
                 art["_skip"] = True
 
-    # убираем те новости где картинка не загрузилась И не было fallback'а
     articles = [a for a in articles if not a.get("_skip")]
     image_urls = image_urls[:len(articles)]
 

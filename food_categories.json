@@ -1,0 +1,14 @@
+{
+  "root": {
+    "title": "Товары для кухни",
+    "url": "https://addwine.ru/catalogue/category/kuxnya"
+  },
+  "categories": [
+    {"title": "Блюда для сервировки", "url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"},
+    {"title": "Кофемолки", "url": "https://addwine.ru/catalogue/category/kuxnya/kofemolki"},
+    {"title": "Формы для запекания", "url": "https://addwine.ru/catalogue/category/kuxnya/formy-dlya-zapekaniya"},
+    {"title": "Мельницы для специй", "url": "https://addwine.ru/catalogue/category/kuxnya/melyniczy"},
+    {"title": "Блендеры", "url": "https://addwine.ru/catalogue/category/kuxnya/blendery"},
+    {"title": "Ножи", "url": "https://addwine.ru/catalogue/category/kuxnya/nozhi_11"}
+  ]
+}

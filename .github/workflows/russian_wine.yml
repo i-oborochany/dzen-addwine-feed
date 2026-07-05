@@ -2,10 +2,15 @@ name: Russian Wine Post
 
 on:
   schedule:
-    # Каждые 3 дня в 13:00 МСК (10:00 UTC) — на 3 часа позже основной публикации,
-    # чтобы не пересекаться с Daily Wine Post
-    - cron: "0 10 1,4,7,10,13,16,19,22,25,28 * *"
+    # Чётные числа месяца в 10:00 UTC (~13:00 МСК) — асинхронно с food.yml
+    - cron: "0 10 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 * *"
+    - cron: "30 10 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 * *"
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Форсировать публикацию"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,6 +37,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FORCE_PUBLISH: ${{ inputs.force && '1' || '' }}
           PYTHONUNBUFFERED: "1"
         run: python scripts/main_russian.py
 
