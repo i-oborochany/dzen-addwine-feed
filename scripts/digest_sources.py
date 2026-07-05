@@ -84,19 +84,53 @@ def _fetch_article(url: str) -> dict:
         if m:
             lead = (m.get("content") or "").strip()
 
-    # Image — первое крупное изображение
-    image_url = ""
-    # OpenGraph image
+    # Image — первое крупное изображение (несколько кандидатов, чтобы не попасть на логотип сайта)
+    image_candidates = []
+
+    def _looks_like_logo(u: str) -> bool:
+        low = (u or "").lower()
+        bad = ["logo", "icon", "sprite", "placeholder", "default", "avatar",
+               "header-", "og-image-default", "og_default", "share.png", "share.jpg"]
+        return any(b in low for b in bad)
+
+    # 1. article-специфичный <img> внутри <article>/<main> с проверкой размера
+    if article:
+        for img in article.find_all("img"):
+            src = img.get("src") or img.get("data-src") or img.get("data-lazy-src") or ""
+            if not src or _looks_like_logo(src):
+                continue
+            try:
+                w = int(img.get("width") or 0)
+                h = int(img.get("height") or 0)
+            except Exception:
+                w = h = 0
+            # если атрибуты есть — фильтруем крохи; если нет — берём как есть (потом проверим по байтам)
+            if (w and w < 200) or (h and h < 200):
+                continue
+            image_candidates.append(src)
+
+    # 2. og:image
     og = soup.find("meta", property="og:image")
     if og:
-        image_url = (og.get("content") or "").strip()
-    if not image_url and article:
-        for img in article.find_all("img"):
-            src = img.get("src") or img.get("data-src") or ""
-            if not src or "logo" in src.lower() or "icon" in src.lower():
-                continue
-            image_url = src
-            break
+        u = (og.get("content") or "").strip()
+        if u and not _looks_like_logo(u):
+            image_candidates.append(u)
+
+    # 3. twitter:image
+    tw = soup.find("meta", attrs={"name": "twitter:image"}) or soup.find("meta", property="twitter:image")
+    if tw:
+        u = (tw.get("content") or "").strip()
+        if u and not _looks_like_logo(u):
+            image_candidates.append(u)
+
+    # 4. link rel="image_src"
+    ls = soup.find("link", rel="image_src")
+    if ls:
+        u = (ls.get("href") or "").strip()
+        if u and not _looks_like_logo(u):
+            image_candidates.append(u)
+
+    image_url = image_candidates[0] if image_candidates else ""
 
     # PubDate — meta или time
     pub_date = None
