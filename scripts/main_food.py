@@ -79,20 +79,17 @@ def main() -> int:
     except Exception as e:
         print(f"  [!] не критично: {e}")
 
-    print("\n[3/4] Генерим 2 фото через gpt-image-1 (medium)")
+    print("\n[3/4] Генерим 1 фото через gpt-image-1 (medium)")
     images = []
-    for i, prompt in enumerate(article["image_prompts"][:2], 1):
-        print(f"  фото {i}/2 ...")
+    for i, prompt in enumerate(article["image_prompts"][:1], 1):
+        print(f"  фото {i}/1 ...")
         try:
             img = openai_api.generate_image(prompt)
             images.append(img)
             print(f"     ok, {len(img)} байт")
         except Exception as e:
             print(f"     [!] {e}")
-            if images:
-                images.append(images[0])
-            else:
-                raise
+            raise
 
     print("\n[4/4] Сохраняем картинки + добавляем в feed.xml")
     slug = publisher.slugify(article["title"])
