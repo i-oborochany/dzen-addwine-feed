@@ -3,6 +3,13 @@
   "content_plan_index": 10,
   "history": [
     {
+      "date": "2026-07-05T15:20:18.003973+00:00",
+      "cycle_position": 4,
+      "topic_type": "spirits",
+      "title": "Разбор: сингл-молт против блендед — в чём принципиальная разница",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlia-krepkogo_63"
+    },
+    {
       "date": "2026-07-05T14:27:38.883183+00:00",
       "cycle_position": 0,
       "topic_type": "digest",
@@ -452,5 +459,6 @@
     }
   ],
   "last_russian_post": "2026-07-04T11:42:48.056368+00:00",
-  "last_digest_post": "2026-07-05T14:27:38.883192+00:00"
+  "last_digest_post": "2026-07-05T14:27:38.883192+00:00",
+  "last_spirits_post": "2026-07-05T15:20:18.003982+00:00"
 }
