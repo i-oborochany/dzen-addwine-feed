@@ -3,6 +3,13 @@
   "content_plan_index": 11,
   "history": [
     {
+      "date": "2026-07-07T16:15:57.859577+00:00",
+      "cycle_position": 1,
+      "topic_type": "water",
+      "title": "Разбор Негрони: почему этот коктейль не выходит из моды 100 лет",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-07-07T12:32:21.333948+00:00",
       "cycle_position": 1,
       "topic_type": "food",
@@ -482,5 +489,6 @@
   "last_russian_post": "2026-07-04T11:42:48.056368+00:00",
   "last_digest_post": "2026-07-05T14:27:38.883192+00:00",
   "last_spirits_post": "2026-07-05T15:20:18.003982+00:00",
-  "last_food_post": "2026-07-07T12:32:21.333959+00:00"
+  "last_food_post": "2026-07-07T12:32:21.333959+00:00",
+  "last_water_post": "2026-07-07T16:15:57.859586+00:00"
 }
