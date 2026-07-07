@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://feed.addwine.ru/</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-07-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-07-07-chto-pit-s-krasnym-myasom-polnyy-gid-po-steykam-i-/</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-07-07-kak-vybrat-shtopor-dlya-vina-elektricheskiy-protiv/</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://feed.addwine.ru/posts/2026-07-06-rossiyskoe-vinodelie-za-20-let-kak-izmenilsya-vkus/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://feed.addwine.ru/posts/2026-07-05-razbor-singl-molt-protiv-blended-v-chyom-principia/</loc>
