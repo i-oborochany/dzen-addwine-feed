@@ -209,11 +209,25 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .post-body h3 { font-size: 20px; line-height: 1.3; font-weight: 600; margin: 32px 0 14px; color: var(--text); }
 .post-body ul, .post-body ol { margin: 20px 0 20px 26px; }
 .post-body li { margin-bottom: 10px; }
-.post-body img { width: 100%; border-radius: 10px; margin: 32px 0; display: block; }
+.post-body img { width: 100%; height: auto; border-radius: 10px; margin: 32px 0; display: block; aspect-ratio: 3/2; object-fit: cover; }
 .post-body blockquote { border-left: 3px solid var(--accent); padding: 6px 0 6px 22px; margin: 28px 0; color: var(--text); font-style: italic; font-size: 18px; }
 .post-body a { color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 1px; }
 .post-body a:hover { border-color: transparent; }
 .post-body strong { font-weight: 600; }
+
+/* Похожие статьи */
+.related { margin: 60px auto 40px; max-width: 1100px; padding: 0 8px; }
+.related-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: var(--text); border-top: 1px solid var(--border); padding-top: 40px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-bottom: 24px; }
+.related-card { display: block; text-decoration: none; color: inherit; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.15s, box-shadow 0.15s; background: #fff; }
+.related-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+.related-cover { aspect-ratio: 3/2; overflow: hidden; }
+.related-cover img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; border-radius: 0; }
+.related-body { padding: 12px 14px 16px; }
+.related-cat { display: inline-block; font-size: 11px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.related-body h4 { font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--text); margin: 0; }
+.related-all { display: inline-block; font-size: 14px; color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 1px; margin-top: 8px; }
+.related-all:hover { border-color: transparent; }
 
 /* Footer */
 footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); margin-top: 80px; padding: 56px 24px 32px; }
@@ -389,6 +403,68 @@ def _add_lazy_and_alt_to_imgs(body_html: str, title: str, category: str) -> str:
     return re.sub(r'<img\b[^>]*>', _repl_img, body_html)
 
 
+def _category_slug(cat_name: str) -> str:
+    """slug категории для URL /category/<slug>/"""
+    try:
+        from category_renderer import CATEGORIES_META
+        m = CATEGORIES_META.get(cat_name)
+        if m:
+            return m["slug"]
+    except Exception:
+        pass
+    # fallback
+    return re.sub(r"[^a-z0-9]+", "-", cat_name.lower().replace("ё", "e")).strip("-")
+
+
+def _related_posts_html(current_slug: str, categories: list, limit: int = 4) -> str:
+    """Возвращает HTML блока «Похожие статьи» из той же категории."""
+    if not POSTS_INDEX.exists():
+        return ""
+    try:
+        all_posts = json.loads(POSTS_INDEX.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    main_cat = (categories or [None])[0]
+    if not main_cat:
+        return ""
+    related = []
+    for p in all_posts:
+        if p.get("slug") == current_slug:
+            continue
+        if main_cat in (p.get("categories") or []):
+            related.append(p)
+        if len(related) >= limit:
+            break
+    if not related:
+        return ""
+
+    cards = ""
+    for p in related:
+        url = f"/posts/{p['slug']}/"
+        cover = p.get("cover") or "/logo.png"
+        cards += f"""
+        <a class="related-card" href="{url}">
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="{_escape(cover)}" alt="{_escape(p['title'])} — {_escape(main_cat)}"></div>
+          <div class="related-body">
+            <span class="related-cat">{_escape(main_cat)}</span>
+            <h4>{_escape(p['title'])}</h4>
+          </div>
+        </a>
+"""
+    cat_slug = _category_slug(main_cat)
+    all_link = f'<a class="related-all" href="/category/{cat_slug}/">Смотреть все статьи рубрики «{_escape(main_cat)}» →</a>'
+
+    return f"""
+    <section class="related">
+      <h3 class="related-title">Похожие статьи</h3>
+      <div class="related-grid">
+        {cards}
+      </div>
+      {all_link}
+    </section>
+"""
+
+
 def render_post_page(article: dict, slug: str, pub_date: datetime, categories: list = None) -> str:
     title = _escape(article["title"])
     lead = _escape(article["lead"])
@@ -516,6 +592,7 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 {body_html}
       </div>
     </article>
+{_related_posts_html(slug, cats, limit=4)}
   </div>
 </main>
 {footer}
@@ -685,12 +762,17 @@ def rebuild_index() -> None:
     posts = load_posts_index()
     html = render_index_page(posts)
     INDEX_HTML.write_text(html, encoding="utf-8")
-    # параллельно обновляем sitemap.xml и robots.txt
+    # параллельно обновляем sitemap.xml, robots.txt и страницы категорий
     try:
         import sitemap_gen
         sitemap_gen.generate_all()
     except Exception as e:
         print(f"[html_renderer] sitemap не обновился: {e}")
+    try:
+        import category_renderer
+        category_renderer.rebuild_all_categories()
+    except Exception as e:
+        print(f"[html_renderer] страницы категорий не пересобрались: {e}")
 
 
 def rebuild_from_feed(pages_base: str) -> None:
