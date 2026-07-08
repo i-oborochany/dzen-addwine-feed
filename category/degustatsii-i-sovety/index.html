@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="yandex-verification" content="d5940a0d077e7558" />
+<title>Дегустации и советы — статьи Журнала AddWine</title>
+<meta name="description" content="Гиды по дегустации: как правильно пробовать вино, оценивать аромат и вкус, читать этикетку, хранить открытые бутылки.">
+<link rel="canonical" href="https://feed.addwine.ru/category/degustatsii-i-sovety/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://feed.addwine.ru/category/degustatsii-i-sovety/">
+<meta property="og:title" content="Дегустации и советы — Журнал AddWine">
+<meta property="og:description" content="Гиды по дегустации: как правильно пробовать вино, оценивать аромат и вкус, читать этикетку, хранить открытые бутылки.">
+<meta property="og:site_name" content="Журнал AddWine">
+<meta property="og:locale" content="ru_RU">
+<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Журнал AddWine">
+<link rel="icon" href="https://addwine.ru/favicon.ico">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-alt: #fafaf7;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-soft: #999999;
+  --border: #ececec;
+  --border-soft: #f5f5f5;
+  --primary: #003E6B;
+  --primary-dark: #002a4a;
+  --accent: #b48b3d;
+  --accent-soft: #f5efe2;
+  --topbar: #1a1a1a;
+  --topbar-text: #f5f5f5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+  font-size: 16px; line-height: 1.55; color: var(--text); background: var(--bg);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; transition: color .15s ease, opacity .15s ease; }
+
+/* Topbar */
+.topbar {
+  background: var(--topbar); color: var(--topbar-text);
+  padding: 9px 24px; font-size: 13px; text-align: center; letter-spacing: 0.01em;
+}
+.topbar a { color: var(--topbar-text); border-bottom: 1px solid rgba(255,255,255,.3); padding-bottom: 1px; }
+.topbar a:hover { border-color: rgba(255,255,255,.7); }
+
+/* Main header */
+header.site { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.header-wrap { max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand .addwine-logo { height: 56px; width: auto; display: block; }
+.footer-about .addwine-logo-footer { height: 48px; width: auto; display: block; }
+@media (max-width: 560px) {
+  .brand .addwine-logo { height: 42px; }
+}
+.brand .sub { font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; line-height: 1; }
+.brand .sub::before { content: "/ "; color: var(--text-soft); margin-right: 4px; }
+.header-nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
+.header-nav a { color: var(--text); }
+.header-nav a:hover { color: var(--primary); }
+.header-nav .catalog-link { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: white; padding: 10px 18px; border-radius: 999px; font-weight: 500; }
+.header-nav .catalog-link:hover { background: var(--primary); color: white; }
+.header-nav .catalog-link::after { content: "→"; font-size: 14px; }
+.header-icons { display: flex; align-items: center; gap: 16px; color: var(--text-muted); }
+.header-icons a { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; }
+.header-icons a:hover { color: var(--primary); }
+.header-icons svg { width: 20px; height: 20px; }
+
+/* Brand strip */
+.brand-strip { background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+.brand-strip-wrap { max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.brand-strip-wrap::-webkit-scrollbar { display: none; }
+.brand-strip a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font-size: 14px; color: var(--text-muted); white-space: nowrap; transition: background .15s, color .15s; }
+.brand-strip a:hover { background: white; color: var(--text); box-shadow: 0 0 0 1px var(--border); }
+.brand-strip a.brand-link { color: var(--text); font-weight: 500; }
+.brand-strip a .ico { display: inline-block; width: 18px; height: 18px; flex-shrink: 0; opacity: 0.65; }
+.brand-strip-sep { width: 1px; height: 20px; background: var(--border); margin: 0 8px; }
+
+/* Main content */
+main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
+
+/* Blog page header */
+.blog-head { margin-bottom: 28px; }
+.blog-head h1 { font-size: clamp(34px, 4.5vw, 48px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: var(--primary); }
+
+/* Categories — horizontal text links */
+.categories {
+  display: flex; flex-wrap: wrap; gap: 28px 36px; margin: 24px 0 32px;
+  padding-bottom: 0;
+}
+.cat-pill {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 500;
+  color: var(--text-soft); transition: color .15s ease;
+  user-select: none;
+}
+.cat-pill:hover { color: var(--text); }
+.cat-pill.active { color: var(--primary); font-weight: 700; }
+
+/* Search */
+.search-box { position: relative; max-width: 720px; margin: 0 0 36px; }
+.search-box input {
+  width: 100%; padding: 14px 18px 14px 50px;
+  border: 1px solid var(--border); border-radius: 999px;
+  font-size: 15px; color: var(--text); background: white; outline: none;
+  transition: border-color .15s, box-shadow .15s; font-family: inherit;
+}
+.search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 62, 107, 0.08); }
+.search-box svg { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-soft); pointer-events: none; }
+
+/* Articles grid — 4 cols on desktop */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 24px; }
+.card { display: flex; flex-direction: column; }
+.card a.cover {
+  display: block; aspect-ratio: 16/11; overflow: hidden;
+  border-radius: 10px; background: var(--bg-alt);
+}
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+.card a.cover:hover img { transform: scale(1.03); }
+.card .meta {
+  display: flex; align-items: center; gap: 12px; margin: 14px 0 8px;
+  font-size: 13px; color: var(--text-soft); flex-wrap: wrap;
+}
+.card .meta .date { color: var(--text-soft); }
+.card .meta .cat { color: var(--text-muted); font-weight: 500; }
+.card h2 {
+  font-size: 17px; line-height: 1.3; font-weight: 700; letter-spacing: -0.005em;
+}
+.card h2 a { color: var(--text); }
+.card h2 a:hover { color: var(--primary); }
+
+.empty { grid-column: 1/-1; text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 16px; }
+
+/* Article page */
+.post-wrap { max-width: 760px; margin: 0 auto; }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+.breadcrumb a { color: var(--text-muted); }
+.breadcrumb a:hover { color: var(--primary); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-soft); }
+.post-header { margin-bottom: 28px; }
+.post-header h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; color: var(--primary); margin-bottom: 24px; }
+.post-cover { margin: 0 0 28px; }
+.post-cover img { width: 100%; border-radius: 10px; display: block; }
+.post-meta-bar {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 28px;
+  padding-bottom: 20px; margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.post-meta-bar .cat { color: var(--text-soft); font-weight: 500; }
+.post-meta-bar .date { color: var(--text-soft); margin-left: auto; font-variant-numeric: tabular-nums; }
+.post-header .lead { font-size: 18px; color: var(--text-muted); line-height: 1.5; }
+.post-body { font-size: 17px; line-height: 1.75; color: #2a2a2a; }
+.post-body p { margin-bottom: 20px; }
+.post-body h2 { font-size: 26px; line-height: 1.25; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; color: var(--text); }
+.post-body h3 { font-size: 20px; line-height: 1.3; font-weight: 600; margin: 32px 0 14px; color: var(--text); }
+.post-body ul, .post-body ol { margin: 20px 0 20px 26px; }
+.post-body li { margin-bottom: 10px; }
+.post-body img { width: 100%; height: auto; border-radius: 10px; margin: 32px 0; display: block; aspect-ratio: 3/2; object-fit: cover; }
+.post-body blockquote { border-left: 3px solid var(--accent); padding: 6px 0 6px 22px; margin: 28px 0; color: var(--text); font-style: italic; font-size: 18px; }
+.post-body a { color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 1px; }
+.post-body a:hover { border-color: transparent; }
+.post-body strong { font-weight: 600; }
+
+/* Похожие статьи */
+.related { margin: 60px auto 40px; max-width: 1100px; padding: 0 8px; }
+.related-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: var(--text); border-top: 1px solid var(--border); padding-top: 40px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-bottom: 24px; }
+.related-card { display: block; text-decoration: none; color: inherit; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.15s, box-shadow 0.15s; background: #fff; }
+.related-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+.related-cover { aspect-ratio: 3/2; overflow: hidden; }
+.related-cover img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; border-radius: 0; }
+.related-body { padding: 12px 14px 16px; }
+.related-cat { display: inline-block; font-size: 11px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.related-body h4 { font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--text); margin: 0; }
+.related-all { display: inline-block; font-size: 14px; color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 1px; margin-top: 8px; }
+.related-all:hover { border-color: transparent; }
+
+/* Footer */
+footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); margin-top: 80px; padding: 56px 24px 32px; }
+.footer-wrap { max-width: 1280px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-size: 13px; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; font-size: 14px; }
+.footer-col a { color: var(--text); }
+.footer-col a:hover { color: var(--primary); }
+.footer-about { font-size: 14px; color: var(--text-muted); line-height: 1.55; max-width: 320px; }
+.footer-about .logo { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; display: block; letter-spacing: -0.02em; }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--text-muted); }
+
+/* Mobile */
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .header-wrap { padding: 14px 16px; gap: 16px; }
+  .header-nav { gap: 14px; }
+  .brand .sub { display: none; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; }
+  main { padding: 32px 16px 56px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .categories { flex-direction: column; gap: 14px; margin: 18px 0 24px; }
+}
+@media (max-width: 560px) {
+  .header-nav .catalog-link { display: none; }
+  .grid { grid-template-columns: 1fr; gap: 24px; }
+  .blog-head h1 { font-size: 30px; }
+  .post-body { font-size: 16px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+    .cat-hero { max-width: 800px; margin: 30px auto 40px; padding: 0 20px; }
+    .cat-hero h1 { font-size: 2.4rem; margin: 20px 0 12px; }
+    .cat-hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; }
+    .cat-grid { max-width: 1200px; margin: 0 auto 60px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .cat-card { display: block; text-decoration: none; color: inherit; background: var(--card); border-radius: 12px; overflow: hidden; transition: transform 0.15s; border: 1px solid var(--border); }
+    .cat-card:hover { transform: translateY(-2px); }
+    .cat-card-cover img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .cat-card-body { padding: 16px 18px 20px; }
+    .cat-card-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+    .cat-card-body h3 { font-size: 1.1rem; margin: 8px 0 8px; line-height: 1.3; }
+    .cat-card-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.5; margin: 0; }
+    .empty { text-align: center; color: var(--muted); padding: 40px; grid-column: 1/-1; }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Дегустации и советы",
+  "description": "Гиды по дегустации: как правильно пробовать вино, оценивать аромат и вкус, читать этикетку, хранить открытые бутылки.",
+  "url": "https://feed.addwine.ru/category/degustatsii-i-sovety/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Журнал AddWine",
+    "url": "https://feed.addwine.ru/"
+  },
+  "numberOfItems": 45
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://addwine.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Журнал",
+      "item": "https://feed.addwine.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Дегустации и советы",
+      "item": "https://feed.addwine.ru/category/degustatsii-i-sovety/"
+    }
+  ]
+}
+</script>
+<!-- Yandex.Metrika -->
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109402027','ym');
+ym(109402027,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109402027" style="position:absolute;left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1WDNQ5W20"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-K1WDNQ5W20');
+</script>
+<!-- /Google Analytics -->
+</head>
+<body>
+<header class="site">
+  <div class="header-wrap">
+    <a class="brand" href="https://addwine.ru">
+      <img class="addwine-logo" src="/logo.svg" alt="addwine" onerror="this.src='/logo.png'">
+    </a>
+    <nav class="header-nav">
+      <a href="https://addwine.ru/catalogue" class="catalog-link">Каталог</a>
+      <a href="/">Журнал</a>
+      <a href="https://dzen.ru/addwine" target="_blank" rel="noopener">Дзен</a>
+      <a href="https://addwine.ru/contacts">Контакты</a>
+    </nav>
+    <div class="header-icons">
+      <a href="https://addwine.ru/user/notifications" aria-label="Уведомления">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      </a>
+      <a href="https://addwine.ru/favorites" aria-label="Избранное">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </a>
+      <a href="https://addwine.ru/user" aria-label="Профиль">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+<div class="brand-strip">
+  <div class="brand-strip-wrap">
+    <a href="https://add-event.ru/" target="_blank" rel="noopener" class="brand-link">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Аренда с AddEvent
+    </a>
+    <a href="https://sellers.addwine.ru/" target="_blank" rel="noopener" class="brand-link">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
+      Дистрибьюция с AddSeller
+    </a>
+    <a href="https://addwibe.ru/" target="_blank" rel="noopener" class="brand-link">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2v6c0 2 2 4 4 4s4-2 4-4V2H8z"/><path d="M12 12v8M9 22h6"/></svg>
+      Дегустации с AddWibe
+    </a>
+    <span class="brand-strip-sep"></span>
+    <a href="https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina">Бокалы</a>
+    <a href="https://addwine.ru/catalogue/category/servirovka/shtopory">Штопоры</a>
+    <a href="https://addwine.ru/catalogue/category/podacha/dekantery">Декантеры</a>
+    <a href="https://addwine.ru/catalogue/category/izuchenie">Подарки</a>
+  </div>
+</div>
+<main>
+  <div class="cat-hero">
+    <nav class="breadcrumb">
+      <a href="https://addwine.ru">главная</a><span class="sep">/</span>
+      <a href="/">блог</a><span class="sep">/</span>
+      <span>дегустации и советы</span>
+    </nav>
+    <h1>Дегустации и советы</h1>
+    <p>Практические гиды по дегустации: как оценивать вино по 5 шагам, читать этикетку, определять срок жизни бутылки, вести домашние дегустации.</p>
+  </div>
+  <div class="cat-grid">
+    
+        <a class="cat-card" href="/posts/2026-07-08-pervyy-vinnyy-reyting-michelin-kak-on-ustroen-i-za/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-08-pervyy-vinnyy-reyting-michelin-kak-on-ustroen-i-za/cover-1.jpg" alt="Первый винный рейтинг Michelin: как он устроен и зачем он нужен — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>08.07.2026</span></div>
+            <h3>Первый винный рейтинг Michelin: как он устроен и зачем он нужен</h3>
+            <p>Гид Michelin — один из самых авторитетных ресторанных рейтингов в мире — впервые в своей истории выпустил отдельный винный рейтинг. Это событие, о котором говорит весь профессиональный мир, но мало кт</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-07-07-kak-vybrat-shtopor-dlya-vina-elektricheskiy-protiv/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-07-kak-vybrat-shtopor-dlya-vina-elektricheskiy-protiv/cover-1.jpg" alt="Как выбрать штопор для вина: электрический против механического — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>07.07.2026</span></div>
+            <h3>Как выбрать штопор для вина: электрический против механического</h3>
+            <p>Когда встаёт вопрос, какой штопор для вина купить, многие теряются между классикой и электрикой — и в итоге берут первый попавшийся. Разберём честно: что даёт электрический штопор, в чём его реальные </p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-07-06-rossiyskoe-vinodelie-za-20-let-kak-izmenilsya-vkus/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-06-rossiyskoe-vinodelie-za-20-let-kak-izmenilsya-vkus/cover-1.jpg" alt="Российское виноделие за 20 лет: как изменился вкус, качество и отношение к отечественному вину — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>06.07.2026</span></div>
+            <h3>Российское виноделие за 20 лет: как изменился вкус, качество и отношение к отечественному вину</h3>
+            <p>Ещё в начале 2000-х годов фраза «российское вино» вызывала у большинства покупателей недоверие — и нередко по делу. Сегодня 21 российский ресторан входит в рейтинг Wine Spectator, а сомелье мирового у</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-07-05-razbor-singl-molt-protiv-blended-v-chyom-principia/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-05-razbor-singl-molt-protiv-blended-v-chyom-principia/cover-1.jpg" alt="Разбор: сингл-молт против блендед — в чём принципиальная разница — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>05.07.2026</span></div>
+            <h3>Разбор: сингл-молт против блендед — в чём принципиальная разница</h3>
+            <p>Слова «сингл-молт» на этикетке давно стали маркером качества в глазах покупателя — но мало кто может объяснить, что именно за ними стоит и почему купажированный виски не хуже, а просто другой.</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-07-04-razbor-kakie-sorta-vinograda-raskryvayut-potencial/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-04-razbor-kakie-sorta-vinograda-raskryvayut-potencial/cover-1.jpg" alt="Разбор: какие сорта винограда раскрывают потенциал Тамани и Анапы лучше всего — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>04.07.2026</span></div>
+            <h3>Разбор: какие сорта винограда раскрывают потенциал Тамани и Анапы лучше всего</h3>
+            <p>Краснодарский край давно перестал быть просто географической меткой на винной карте России — сегодня виноделы Тамани и Анапы говорят на языке конкретных сортов, конкретных участков и конкретных решени</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-07-03-restoran-plyus-vinodelnya-chto-takoe-vinnye-kollab/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-03-restoran-plyus-vinodelnya-chto-takoe-vinnye-kollab/cover-1.jpg" alt="Ресторан плюс винодельня: что такое винные коллаборации и что они дают гостю — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>03.07.2026</span></div>
+            <h3>Ресторан плюс винодельня: что такое винные коллаборации и что они дают гостю</h3>
+            <p>В последние годы рестораны и виноделы перестали быть просто поставщиком и покупателем — они стали партнёрами, которые вместе создают опыт. Разбираемся, как устроены такие союзы и почему это меняет то,</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-07-02-kak-vybrat-bokaly-dlya-vina-i-pochemu-eto-vazhnee-/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-02-kak-vybrat-bokaly-dlya-vina-i-pochemu-eto-vazhnee-/cover-1.jpg" alt="Как выбрать бокалы для вина и почему это важнее, чем кажется — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>02.07.2026</span></div>
+            <h3>Как выбрать бокалы для вина и почему это важнее, чем кажется</h3>
+            <p>Многие уверены, что вкус вина определяет только сорт винограда и мастерство винодела. Но есть один фактор, который большинство игнорирует — и именно он меняет всё впечатление от бокала.</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-29-kto-takoy-sovremennyy-somele-professiya-filosofiya/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-29-kto-takoy-sovremennyy-somele-professiya-filosofiya/cover-1.jpg" alt="Кто такой современный сомелье: профессия, философия и место в культуре вина — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>29.06.2026</span></div>
+            <h3>Кто такой современный сомелье: профессия, философия и место в культуре вина</h3>
+            <p>Ещё десять лет назад слово «сомелье» в России ассоциировалось с официантом в смокинге, который открывает бутылку. Сегодня это совсем другая история — и то, как меняется эта профессия, многое говорит о</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-28-kaberne-fran-v-rossii-kak-francuzskiy-sort-nashyol/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-28-kaberne-fran-v-rossii-kak-francuzskiy-sort-nashyol/cover-1.jpg" alt="Каберне фран в России: как французский сорт нашёл новый характер на берегах Кубани — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>28.06.2026</span></div>
+            <h3>Каберне фран в России: как французский сорт нашёл новый характер на берегах Кубани</h3>
+            <p>Каберне фран долго жил в тени своего «потомка» — каберне совиньона. Но сегодня именно он оказался в центре внимания российских виноделов, критиков и ресторанных сомелье.</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-27-podarok-lyubitelyu-vina-chto-vybrat-chtoby-ne-oshi/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-27-podarok-lyubitelyu-vina-chto-vybrat-chtoby-ne-oshi/cover-1.jpg" alt="Подарок любителю вина: что выбрать, чтобы не ошибиться — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>27.06.2026</span></div>
+            <h3>Подарок любителю вина: что выбрать, чтобы не ошибиться</h3>
+            <p>Выбрать подарок руководителю — задача, где цена ошибки высока вдвойне: и репутационно, и финансово. Если человек увлечён вином, это одновременно подсказка и ловушка — подарок любителю вина требует пон</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-25-21-rossiyskiy-restoran-v-wine-spectator-awards-202/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-25-21-rossiyskiy-restoran-v-wine-spectator-awards-202/cover-1.jpg" alt="21 российский ресторан в Wine Spectator Awards 2026: что это значит для винной культуры страны — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>25.06.2026</span></div>
+            <h3>21 российский ресторан в Wine Spectator Awards 2026: что это значит для винной культуры страны</h3>
+            <p>Каждый год Wine Spectator публикует список лучших ресторанов мира по качеству винной карты — и в 2026 году Россия представлена в нём двадцатью одним заведением. Это не случайность и не дипломатический</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-24-kak-pit-krepyonye-vina-v-tyoploe-vremya-goda-gid-p/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-24-kak-pit-krepyonye-vina-v-tyoploe-vremya-goda-gid-p/cover-1.jpg" alt="Как пить крепёные вина в тёплое время года: гид по стилям и температуре подачи — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Креплёные и десертные вина · Дегустации и советы</span> · <span>24.06.2026</span></div>
+            <h3>Как пить крепёные вина в тёплое время года: гид по стилям и температуре подачи</h3>
+            <p>Крепёные вина принято считать зимними — тяжёлыми, согревающими, уместными только у камина. Это устаревшее заблуждение, и профессионалы давно его опровергли: правильно выбранный и охлаждённый портвейн </p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-22-bokaly-dlya-vina-nuzhny-li-raznye-formy-ili-dostat/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-22-bokaly-dlya-vina-nuzhny-li-raznye-formy-ili-dostat/cover-1.jpg" alt="Бокалы для вина: нужны ли разные формы или достаточно одного — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>22.06.2026</span></div>
+            <h3>Бокалы для вина: нужны ли разные формы или достаточно одного</h3>
+            <p>Этот вопрос возникает у каждого, кто начинает серьёзнее относиться к вину: стоит ли покупать отдельные бокалы под каждый сорт или можно обойтись одним универсальным? Ответ зависит от того, как вы пьёт</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-21-chto-znachit-97-ballov-na-decanter-2026-gid-po-gla/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-21-chto-znachit-97-ballov-na-decanter-2026-gid-po-gla/cover-1.jpg" alt="Что значит 97 баллов на Decanter 2026: гид по главному винному конкурсу года — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>21.06.2026</span></div>
+            <h3>Что значит 97 баллов на Decanter 2026: гид по главному винному конкурсу года</h3>
+            <p>Каждый год тысячи бутылок со всего мира попадают на стол к судьям Decanter World Wine Awards — и лишь единицы выходят с платиной. В 2026 году конкурс снова поставил вопрос ребром: что на самом деле ст</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-20-bezalkogolnoe-vino-kak-ego-delayut-chem-otlichaets/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-20-bezalkogolnoe-vino-kak-ego-delayut-chem-otlichaets/cover-1.jpg" alt="Безалкогольное вино: как его делают, чем отличается от сока и зачем это нужно — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>20.06.2026</span></div>
+            <h3>Безалкогольное вино: как его делают, чем отличается от сока и зачем это нужно</h3>
+            <p>Безалкогольное вино перестало быть компромиссом для тех, кто «не пьёт». Сегодня его выпускают серьёзные виноделы, подают в ресторанах с мишленовскими звёздами и рассматривают как отдельный напиток со </p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-18-bermet-iz-kirgizii-gornoe-vino-s-hrenom-gorchicey-/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-18-bermet-iz-kirgizii-gornoe-vino-s-hrenom-gorchicey-/cover-1.jpg" alt="Бермет из Киргизии: горное вино с хреном, горчицей и историей длиной в века — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>18.06.2026</span></div>
+            <h3>Бермет из Киргизии: горное вино с хреном, горчицей и историей длиной в века</h3>
+            <p>Есть вина, которые невозможно объяснить одной фразой — они требуют контекста, истории и готовности к удивлению. Бермет — именно такое вино: оно сделано из дикого винограда, настояно на специях, упомян</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-17-kak-vybrat-shtopor-dlya-vina-chem-professionalnyy-/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-17-kak-vybrat-shtopor-dlya-vina-chem-professionalnyy-/cover-1.jpg" alt="Как выбрать штопор для вина: чем профессиональный отличается от дешёвого — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>17.06.2026</span></div>
+            <h3>Как выбрать штопор для вина: чем профессиональный отличается от дешёвого</h3>
+            <p>Многие считают штопор мелочью — купил любой за 200 рублей и достаточно. Но именно в этот момент крошится пробка, вино мутнеет от крошек, а праздничный вечер начинается с раздражения.</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-16-kak-fotografiya-vina-stala-otdelnym-iskusstvom-cht/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-16-kak-fotografiya-vina-stala-otdelnym-iskusstvom-cht/cover-1.jpg" alt="Как фотография вина стала отдельным искусством: что оценивают на главных конкурсах мира — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>16.06.2026</span></div>
+            <h3>Как фотография вина стала отдельным искусством: что оценивают на главных конкурсах мира</h3>
+            <p>Ещё десять лет назад снимок бокала с вином был просто иллюстрацией к ресторанному меню. Сегодня это отдельный жанр, у которого есть свои мастера, международные конкурсы и язык, понятный только тем, кт</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-14-gid-po-klassifikacii-vin-ot-stolovogo-do-gran-kryu/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-14-gid-po-klassifikacii-vin-ot-stolovogo-do-gran-kryu/cover-1.jpg" alt="Гид по классификации вин: от столового до гран крю — в чём реальная разница — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Вино, культура и личности</span> · <span>14.06.2026</span></div>
+            <h3>Гид по классификации вин: от столового до гран крю — в чём реальная разница</h3>
+            <p>Вы берёте бутылку, смотрите на этикетку — и видите аббревиатуры, уровни, звёздочки или слова, смысл которых неочевиден. Классификация вина кажется бюрократией, но на самом деле это компас: она говорит</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-13-chto-zhara-delaet-s-vinogradom-i-pochemu-eto-vazhn/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-13-chto-zhara-delaet-s-vinogradom-i-pochemu-eto-vazhn/cover-1.jpg" alt="Что жара делает с виноградом и почему это важно для покупателя вина — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Российское виноделие</span> · <span>13.06.2026</span></div>
+            <h3>Что жара делает с виноградом и почему это важно для покупателя вина</h3>
+            <p>Лето 2026 года в ключевых винодельческих регионах мира оказалось аномально жарким — и это не просто погодная сводка, а прямое объяснение того, почему вино в вашем бокале через год-два будет другим. По</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-13-luchshie-aksessuary-dlya-vina-doma-chto-deystvitel/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-13-luchshie-aksessuary-dlya-vina-doma-chto-deystvitel/cover-1.jpg" alt="Лучшие аксессуары для вина дома: что действительно нужно, а что лишнее — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>13.06.2026</span></div>
+            <h3>Лучшие аксессуары для вина дома: что действительно нужно, а что лишнее</h3>
+            <p>Многие покупают штопор и считают, что этого достаточно. Но если вы хотите получать от вина максимум — вкус, аромат, правильную температуру — стоит разобраться, какие аксессуары действительно работают,</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-13-chto-takoe-vinnaya-karta-rossii-i-zachem-ona-nuzhn/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-13-chto-takoe-vinnaya-karta-rossii-i-zachem-ona-nuzhn/cover-1.jpg" alt="Что такое «Винная карта России» и зачем она нужна сомелье и покупателям — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>13.06.2026</span></div>
+            <h3>Что такое «Винная карта России» и зачем она нужна сомелье и покупателям</h3>
+            <p>Российское вино переживает подъём, но между теми, кто его делает, и теми, кто его подаёт или покупает, до сих пор остаётся разрыв. «Винная карта России» — один из инструментов, который пытается этот р</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-11-rossiyskoe-vino-v-stolichnyh-restoranah-kak-chitat/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-11-rossiyskoe-vino-v-stolichnyh-restoranah-kak-chitat/cover-1.jpg" alt="Российское вино в столичных ресторанах: как читать карту и не растеряться — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>11.06.2026</span></div>
+            <h3>Российское вино в столичных ресторанах: как читать карту и не растеряться</h3>
+            <p>Заказать российское вино в ресторане стало сложнее, чем кажется: карты выросли, сортов стало больше, а сомелье всё чаще рекомендуют отечественные позиции наравне с европейскими. Разбираемся, как ориен</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-10-chto-napisano-na-vinnoy-etiketke-i-kak-eto-pomogae/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-10-chto-napisano-na-vinnoy-etiketke-i-kak-eto-pomogae/cover-1.jpg" alt="Что написано на винной этикетке и как это помогает выбрать вино — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Вино, культура и личности</span> · <span>10.06.2026</span></div>
+            <h3>Что написано на винной этикетке и как это помогает выбрать вино</h3>
+            <p>Вы стоите у винной полки, держите бутылку в руках и читаете этикетку — но понять, что именно вы держите, так и не получается. Это знакомое ощущение: слова есть, а смысл ускользает. Разберём этикетку п</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-09-servirovka-vina-doma-kak-podat-krasivo-i-pravilno/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-09-servirovka-vina-doma-kak-podat-krasivo-i-pravilno/cover-1.jpg" alt="Сервировка вина дома: как подать красиво и правильно — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>09.06.2026</span></div>
+            <h3>Сервировка вина дома: как подать красиво и правильно</h3>
+            <p>Вино, открытое в нужный момент и поданное правильно, производит совершенно другое впечатление — даже если это обычный вечер дома. Сервировка вина дома — это не ритуал для ресторана, а несколько просты</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-08-vino-iz-armenii-chto-proishodit-v-odnom-iz-stareys/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-08-vino-iz-armenii-chto-proishodit-v-odnom-iz-stareys/cover-1.jpg" alt="Вино из Армении: что происходит в одном из старейших винодельческих регионов мира — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>08.06.2026</span></div>
+            <h3>Вино из Армении: что происходит в одном из старейших винодельческих регионов мира</h3>
+            <p>Армению принято считать родиной виноделия — и это не преувеличение: здесь обнаружена одна из древнейших в мире винодельческих установок возрастом около 6000 лет. Но пока весь мир говорил о Бургундии и</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-07-ot-glinyanogo-kuvshina-do-hrustalnogo-bokala-kak-v/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-07-ot-glinyanogo-kuvshina-do-hrustalnogo-bokala-kak-v/cover-1.jpg" alt="От глиняного кувшина до хрустального бокала: как вино формировало цивилизацию — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>07.06.2026</span></div>
+            <h3>От глиняного кувшина до хрустального бокала: как вино формировало цивилизацию</h3>
+            <p>Вино пьют уже восемь тысяч лет — и за это время оно успело стать религиозным символом, валютой, политическим инструментом и мерилом вкуса. Понять, что именно у вас в бокале, невозможно без понимания т</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-06-kak-taro-astrologiya-i-mistika-popali-na-vinnye-et/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-06-kak-taro-astrologiya-i-mistika-popali-na-vinnye-et/cover-1.jpg" alt="Как Таро, астрология и мистика попали на винные этикетки и что за этим стоит — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино, культура и личности · Дегустации и советы</span> · <span>06.06.2026</span></div>
+            <h3>Как Таро, астрология и мистика попали на винные этикетки и что за этим стоит</h3>
+            <p>Вы берёте бутылку с полки — и на этикетке Луна, Звезда или фигура Жрицы. Это не случайность и не маркетинговая прихоть: за последние несколько лет мистические образы на вине превратились в осознанный </p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-04-nabor-aksessuarov-dlya-vina-chto-dolzhno-byt-vnutr/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-04-nabor-aksessuarov-dlya-vina-chto-dolzhno-byt-vnutr/cover-1.jpg" alt="Набор аксессуаров для вина: что должно быть внутри и на что смотреть — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>04.06.2026</span></div>
+            <h3>Набор аксессуаров для вина: что должно быть внутри и на что смотреть</h3>
+            <p>Выбрать набор аксессуаров для вина — задача, которая с виду кажется простой, но легко заводит в тупик: слишком много вариантов, слишком разные цены и совершенно непонятно, чем дорогой набор отличается</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-03-kak-pravilno-pit-vino-bazovye-pravila-dlya-teh-kto/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-03-kak-pravilno-pit-vino-bazovye-pravila-dlya-teh-kto/cover-1.jpg" alt="Как правильно пить вино: базовые правила для тех, кто хочет разбираться — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы</span> · <span>03.06.2026</span></div>
+            <h3>Как правильно пить вино: базовые правила для тех, кто хочет разбираться</h3>
+            <p>Большинство людей пьют вино годами — и всё равно чувствуют себя неловко, когда нужно что-то о нём сказать. Не потому что они невнимательны, а потому что никто не объяснил им, на что смотреть, нюхать и</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-02-enokruiz-kak-sovmestit-rechnoe-puteshestvie-s-degu/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-02-enokruiz-kak-sovmestit-rechnoe-puteshestvie-s-degu/cover-1.jpg" alt="Энокруиз: как совместить речное путешествие с дегустацией вин — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино и путешествия · Дегустации и советы</span> · <span>02.06.2026</span></div>
+            <h3>Энокруиз: как совместить речное путешествие с дегустацией вин</h3>
+            <p>Представьте: вы плывёте по реке, за бортом меняются пейзажи, а в бокале — вино с виноградника, который вы посетили три часа назад. Энокруизы — это не просто модное слово, а полноценный формат винного </p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-06-01-kaberne-fran-v-rossii-chto-nuzhno-znat-o-sorte-kot/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-01-kaberne-fran-v-rossii-chto-nuzhno-znat-o-sorte-kot/cover-1.jpg" alt="Каберне фран в России: что нужно знать о сорте, который переживает звёздный час — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>01.06.2026</span></div>
+            <h3>Каберне фран в России: что нужно знать о сорте, который переживает звёздный час</h3>
+            <p>Несколько лет назад каберне фран в России был в лучшем случае купажным компонентом — его добавляли для структуры и аромата, но редко выводили на первый план. Сегодня всё изменилось: этот сорт всё чаще</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-30-chto-podarit-lyubitelyu-vina-prakticheskiy-gid-po-/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-30-chto-podarit-lyubitelyu-vina-prakticheskiy-gid-po-/cover-1.jpg" alt="Что подарить любителю вина: практический гид по выбору — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>30.05.2026</span></div>
+            <h3>Что подарить любителю вина: практический гид по выбору</h3>
+            <p>Выбрать подарок любителю вина — задача, которая кажется простой только на первый взгляд: бокал есть у всех, штопор тоже, а дарить «просто бутылку» снова не хочется. Этот гид поможет сориентироваться и</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-29-organicheskoe-vino-chem-ono-otlichaetsya-ot-obychn/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-29-organicheskoe-vino-chem-ono-otlichaetsya-ot-obychn/cover-1.jpg" alt="Органическое вино: чем оно отличается от обычного и стоит ли переплачивать — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Вино, культура и личности</span> · <span>29.05.2026</span></div>
+            <h3>Органическое вино: чем оно отличается от обычного и стоит ли переплачивать</h3>
+            <p>На этикетках всё чаще появляются слова «органическое», «биодинамическое», «натуральное» — и почти всегда рядом с более высоким ценником. Но что за этим стоит на самом деле: строгий стандарт или просто</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-28-chto-takoe-millezimnoe-shampanskoe-i-pochemu-ono-s/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-28-chto-takoe-millezimnoe-shampanskoe-i-pochemu-ono-s/cover-1.jpg" alt="Что такое миллезимное шампанское и почему оно стоит дороже обычного — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Вино, культура и личности</span> · <span>28.05.2026</span></div>
+            <h3>Что такое миллезимное шампанское и почему оно стоит дороже обычного</h3>
+            <p>Вы берёте в руки бутылку шампанского, видите год на этикетке — и не знаете, что это значит и стоит ли платить втрое дороже. Разбираемся, что такое миллезим, как он формирует характер игристого и почем</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-26-nikto-ne-obyasnyaet-chem-vintazhnoe-igristoe-otlic/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-26-nikto-ne-obyasnyaet-chem-vintazhnoe-igristoe-otlic/cover-1.jpg" alt="Чем винтажное игристое вино отличается от безвинтажного: гид для покупателей — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Вино, культура и личности</span> · <span>26.05.2026</span></div>
+            <h3>Чем винтажное игристое вино отличается от безвинтажного: гид для покупателей</h3>
+            <p>Вы когда-нибудь замечали, что на одних бутылках игристого стоит год, а на других — нет? Большинство покупателей проходят мимо этой детали, не подозревая, что она меняет всё: вкус, цену, повод и даже с</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-25-kakie-bokaly-kupit-dlya-vina-minimalnyy-nabor-koto/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-25-kakie-bokaly-kupit-dlya-vina-minimalnyy-nabor-koto/cover-1.jpg" alt="Какие бокалы купить для вина: минимальный набор, который закроет все ситуации — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>25.05.2026</span></div>
+            <h3>Какие бокалы купить для вина: минимальный набор, который закроет все ситуации</h3>
+            <p>Большинство людей либо покупают первые попавшиеся бокалы «лишь бы было», либо теряются перед огромным выбором и откладывают покупку на потом. В этой статье — чёткий ответ: какие бокалы нужны дома, чем</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-25-pravda-ob-organicheskom-vine-chto-skryvayut-etiket/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-25-pravda-ob-organicheskom-vine-chto-skryvayut-etiket/cover-1.jpg" alt="Что означает маркировка «органическое» на этикетке вина — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Вино, культура и личности</span> · <span>25.05.2026</span></div>
+            <h3>Что означает маркировка «органическое» на этикетке вина</h3>
+            <p>Слово «органическое» на этикетке вина давно стало маркетинговым инструментом — и одновременно источником настоящей путаницы. Разберёмся, что за ним стоит на самом деле, почему цена выше и когда это де</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-24-5-priznakov-togo-chto-vino-v-bokale-isporcheno-oby/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-24-5-priznakov-togo-chto-vino-v-bokale-isporcheno-oby/cover-1.jpg" alt="5 признаков того, что вино в бокале испорчено: объясняет сомелье — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы</span> · <span>24.05.2026</span></div>
+            <h3>5 признаков того, что вино в бокале испорчено: объясняет сомелье</h3>
+            <p>Вы открыли бутылку — и что-то не так. Запах странный, вкус не тот, цвет мутный. Выливать или пить? Большинство людей в этот момент теряются и либо выпивают сомнительное вино, либо выбрасывают вполне н</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-24-pochemu-professionaly-nikogda-ne-pyut-molodoe-kras/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-24-pochemu-professionaly-nikogda-ne-pyut-molodoe-kras/cover-1.jpg" alt="Почему профессионалы никогда не пьют молодое красное сразу из бутылки — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Аксессуары для вина</span> · <span>24.05.2026</span></div>
+            <h3>Почему профессионалы никогда не пьют молодое красное сразу из бутылки</h3>
+            <p>Вы открываете хорошую бутылку, наливаете — и что-то не так: вино кажется жёстким, закрытым, почти неприятным. Это не брак и не обман продавца. Это физика и химия, которые решаются одним правильным дей</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/cover-1.jpg" alt="Зачем ехать на винодельню, если вино есть в магазине — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Вино и путешествия · Дегустации и советы</span> · <span>23.05.2026</span></div>
+            <h3>Зачем ехать на винодельню, если вино есть в магазине</h3>
+            <p>Большинство людей покупают вино в магазине — и совершенно не понимают, почему один бокал на веранде винодельни стоит больше, чем бутылка в супермаркете. Ответ на этот вопрос меняет и отношение к вину,</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-23-kak-vybrat-shtopor-dlya-vina-i-ne-oshibitsya-sovet/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-23-kak-vybrat-shtopor-dlya-vina-i-ne-oshibitsya-sovet/cover-1.jpg" alt="Как выбрать штопор для вина и не ошибиться: советует сомелье — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Аксессуары для вина · Дегустации и советы</span> · <span>23.05.2026</span></div>
+            <h3>Как выбрать штопор для вина и не ошибиться: советует сомелье</h3>
+            <p>Казалось бы, штопор — это просто штопор. Но именно этот предмет чаще всего становится причиной раскрошившейся пробки, испорченного вина и неловкой паузы за столом. Разбираемся, как выбрать штопор для </p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-23-zabytye-sorta-vinograda-chto-skryvayut-vinodely-i-/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-23-zabytye-sorta-vinograda-chto-skryvayut-vinodely-i-/cover-1.jpg" alt="Забытые сорта винограда: чем они интересны и где их искать — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Дегустации и советы · Российское виноделие</span> · <span>23.05.2026</span></div>
+            <h3>Забытые сорта винограда: чем они интересны и где их искать</h3>
+            <p>Вы открываете бутылку с незнакомым названием на этикетке — и не знаете, чего ждать. Именно в этот момент начинается настоящее знакомство с вином.</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-23-5-veschey-kotorye-professionalnye-somele-znayut-ob/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-23-5-veschey-kotorye-professionalnye-somele-znayut-ob/cover-1.jpg" alt="5 вещей, которые профессиональные сомелье знают об игристом вине, а вы — нет — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Крепкий алкоголь · Дегустации и советы</span> · <span>23.05.2026</span></div>
+            <h3>5 вещей, которые профессиональные сомелье знают об игристом вине, а вы — нет</h3>
+            <p>Игристое вино кажется простым выбором — пока не встаёшь перед полкой с двадцатью этикетками и понимаешь, что не знаешь, чем они отличаются. Разбираем честно и по существу.</p>
+          </div>
+        </a>
+
+        <a class="cat-card" href="/posts/2026-05-23-nikto-ne-obyasnyaet-pochemu-vino-iz-podmoskovya-st/">
+          <div class="cat-card-cover">
+            <img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-pochemu-vino-iz-podmoskovya-st/cover-1.jpg" alt="Почему подмосковные вина стоит попробовать: обзор региона — Дегустации и советы">
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-meta"><span>Российское виноделие · Дегустации и советы</span> · <span>23.05.2026</span></div>
+            <h3>Почему подмосковные вина стоит попробовать: обзор региона</h3>
+            <p>Вы слышали про подмосковные вина — и, скорее всего, усмехнулись. Это нормально: большинство людей считают, что настоящее вино растёт только на юге. Но за последние пять лет в России тихо происходит ко</p>
+          </div>
+        </a>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-col footer-about">
+        <a href="https://addwine.ru" style="display:inline-block;margin-bottom:12px"><img class="addwine-logo-footer" src="/logo.svg" alt="addwine" onerror="this.src='/logo.png'"></a>
+        <p>Журнал о вине, виноделии и винной культуре от команды AddWine — крупнейшего в России магазина аксессуаров для вина.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Каталог</h4>
+        <ul>
+          <li><a href="https://addwine.ru/catalogue/category/hranenie">Хранение вина</a></li>
+          <li><a href="https://addwine.ru/catalogue/category/servirovka">Сервировка</a></li>
+          <li><a href="https://addwine.ru/catalogue/category/podacha">Дегустация</a></li>
+          <li><a href="https://addwine.ru/catalogue/category/izuchenie">Винные подарки</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Журнал</h4>
+        <ul>
+          <li><a href="/">Все статьи</a></li>
+          <li><a href="/feed.xml">RSS-лента</a></li>
+          <li><a href="https://dzen.ru/addwine" target="_blank">Канал на Дзене</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <ul>
+          <li><a href="https://addwine.ru/about">О компании</a></li>
+          <li><a href="https://addwine.ru/contacts">Контакты</a></li>
+          <li><a href="https://addwine.ru/delivery-info">Доставка и оплата</a></li>
+          <li><a href="https://t.me/justaddwine" target="_blank">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>® AddWine 2017-2026. Материалы для лиц старше 18 лет.</span>
+      <span><a href="https://addwine.ru/privacy-policy">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

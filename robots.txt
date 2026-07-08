@@ -6,7 +6,6 @@ Disallow: /posts/posts_index.json
 Disallow: /posts/progress.json
 Disallow: /posts/published.json
 
-# Поисковые системы — добро пожаловать
 User-agent: Yandex
 Allow: /
 
