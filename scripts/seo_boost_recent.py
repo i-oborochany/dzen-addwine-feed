@@ -62,8 +62,8 @@ def seo_boost_one(post: dict) -> bool:
     print(f"\n▶ «{title[:70]}»")
 
     keywords = wordstat_api.get_keywords(title, limit=15)
-    if len(keywords) < 3:
-        print(f"  [!] мало ключей ({len(keywords)}), пропускаем")
+    if len(keywords) < 1:
+        print(f"  [!] ключей вообще нет, пропускаем")
         return False
 
     print(f"  Топ ключей:")

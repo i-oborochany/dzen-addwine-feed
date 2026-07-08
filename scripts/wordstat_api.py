@@ -35,15 +35,70 @@ def _folder_id() -> str:
     return os.environ.get("YANDEX_FOLDER_ID", "").strip()
 
 
+STOP_WORDS = {
+    "как", "что", "почему", "зачем", "чем", "какой", "какая", "какие", "который",
+    "которые", "гид", "по", "и", "или", "в", "на", "с", "у", "от", "до",
+    "разбор", "правила", "правило", "пять", "десять", "три", "не", "за",
+    "делает", "делают", "меняет", "меняют", "лет", "лучш", "новый", "первый",
+    "принципиальная", "разница",
+}
+
+
+def _sanitize(seed: str) -> str:
+    """Оставляет только буквы, цифры и пробелы."""
+    seed = re.sub(r"[^a-zа-яё0-9 ]+", " ", seed.lower())
+    seed = re.sub(r"\s+", " ", seed).strip()
+    return seed
+
+
+def _proper_nouns(topic: str) -> list:
+    """Ищем слова с заглавной буквы НЕ в начале строки — имена собственные."""
+    words = re.findall(r"[A-ZА-ЯЁ][a-zа-яё]+", topic)
+    # первое слово в заголовке всегда с заглавной — не имя собственное
+    return words[1:] if words else []
+
+
+def _seed_variants(topic: str) -> list:
+    """Возвращает 3-4 варианта seed'а для попыток Wordstat."""
+    variants = []
+
+    # 1. Основной: убираем часть после : / —, чистим, убираем stop words
+    main = re.split(r"[:—\-–\(]", topic, 1)[0]
+    main_words = [w for w in re.findall(r"[a-zа-яё]+", main.lower()) if w not in STOP_WORDS and len(w) > 2]
+    if main_words:
+        variants.append(" ".join(main_words[:3]))
+
+    # 2. Имена собственные (Тамань, Анапа, Michelin) — самые ценные для SEO
+    proper = _proper_nouns(topic)
+    if proper:
+        variants.append(_sanitize(" ".join(proper[:3])))
+
+    # 3. Полный заголовок без stop-words и спецсимволов
+    full = _sanitize(topic)
+    full_words = [w for w in full.split() if w not in STOP_WORDS and len(w) > 2]
+    if full_words:
+        variants.append(" ".join(full_words[:4]))
+
+    # 4. Одно самое длинное значимое слово из заголовка
+    if full_words:
+        longest = max(full_words, key=len)
+        variants.append(longest)
+
+    # уникальные, непустые
+    seen = set()
+    result = []
+    for v in variants:
+        v = _sanitize(v)
+        if v and v not in seen:
+            seen.add(v)
+            result.append(v)
+    return result
+
+
 def _extract_seed(topic: str) -> str:
-    """Из полного заголовка вытаскиваем короткий seed для Wordstat (2-4 слова)."""
-    t = re.split(r"[:—\-–\(]", topic, 1)[0]
-    t = t.strip().lower()
-    stop = {"как", "что", "почему", "зачем", "чем", "какой", "какая", "какие",
-            "гид", "по", "и", "или", "в", "на", "с", "у", "от", "до",
-            "5", "10", "разбор", "правила", "правило"}
-    words = [w for w in re.findall(r"[a-zа-яё]+", t) if w not in stop and len(w) > 2]
-    return " ".join(words[:4]) if words else topic[:40].lower()
+    """Для обратной совместимости — возвращает первый вариант."""
+    variants = _seed_variants(topic)
+    return variants[0] if variants else _sanitize(topic)[:40]
 
 
 def get_keywords(topic: str, limit: int = 20) -> List[Dict]:
@@ -56,31 +111,35 @@ def get_keywords(topic: str, limit: int = 20) -> List[Dict]:
         print("  [wordstat] API-ключ не задан, пропускаем")
         return []
 
-    seed = _extract_seed(topic)
-    print(f"  [wordstat] seed: '{seed}'")
+    seeds = _seed_variants(topic)
+    print(f"  [wordstat] варианты seed'ов: {seeds}")
 
-    body = {
-        "phrase": seed,
-        "numPhrases": str(limit),
-        "regions": [REGION_RUSSIA],
-        "devices": ["DEVICE_ALL"],
-    }
     folder_id = _folder_id()
-    if folder_id:
-        body["folderId"] = folder_id
-
-    try:
-        r = requests.post(API_URL, json=body, headers=headers, timeout=TIMEOUT)
-        if r.status_code == 200:
-            data = r.json()
-            phrases = _parse_response(data, limit, seed=seed)
-            print(f"  [wordstat] получено {len(phrases)} ключей (после фильтра)")
-            return phrases
-        else:
-            print(f"  [wordstat] HTTP {r.status_code}: {r.text[:300]}")
-    except Exception as e:
-        print(f"  [wordstat] {type(e).__name__}: {e}")
-    return []
+    best = []
+    for seed in seeds:
+        body = {
+            "phrase": seed,
+            "numPhrases": str(limit),
+            "regions": [REGION_RUSSIA],
+            "devices": ["DEVICE_ALL"],
+        }
+        if folder_id:
+            body["folderId"] = folder_id
+        try:
+            r = requests.post(API_URL, json=body, headers=headers, timeout=TIMEOUT)
+            if r.status_code == 200:
+                data = r.json()
+                phrases = _parse_response(data, limit, seed=seed)
+                print(f"  [wordstat] seed '{seed}' → {len(phrases)} ключей")
+                if len(phrases) > len(best):
+                    best = phrases
+                if len(phrases) >= 3:
+                    return phrases  # хватит
+            else:
+                print(f"  [wordstat] seed '{seed}' → HTTP {r.status_code}: {r.text[:200]}")
+        except Exception as e:
+            print(f"  [wordstat] seed '{seed}' → {type(e).__name__}: {e}")
+    return best
 
 
 ADULT_STOPWORDS = {
