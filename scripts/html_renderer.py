@@ -613,10 +613,11 @@ def render_index_page(posts_meta: list) -> str:
         "cats": p.get("categories", []),
     } for p in posts_meta], ensure_ascii=False)
 
-    # пилюли категорий
-    cat_pills = '<button class="cat-pill active" data-cat="">Все статьи</button>'
+    # пилюли категорий — теперь ссылки на статические страницы /category/<slug>/
+    cat_pills = '<a class="cat-pill active" href="/">Все статьи</a>'
     for cat in CATEGORIES:
-        cat_pills += f'<button class="cat-pill" data-cat="{_escape(cat)}">{_escape(cat)}</button>'
+        slug = _category_slug(cat)
+        cat_pills += f'<a class="cat-pill" href="/category/{slug}/">{_escape(cat)}</a>'
 
     js_code = """
 (function() {
@@ -658,12 +659,7 @@ def render_index_page(posts_meta: list) -> str:
       '</article>';
     }).join('');
   }
-  pills.forEach(b => b.addEventListener('click', function() {
-    pills.forEach(x => x.classList.remove('active'));
-    this.classList.add('active');
-    activeCat = this.dataset.cat || '';
-    render();
-  }));
+  // пилюли теперь — обычные ссылки на /category/<slug>/, JS-фильтр по клику не нужен
   searchInput.addEventListener('input', function() {
     searchQuery = this.value;
     render();
