@@ -124,9 +124,11 @@ def pick_kitchen_category(topic: str) -> dict:
     return cats[0]  # блюда по умолчанию
 
 
-def write_food_article(topic_idea: str, recent_titles: list) -> dict:
+def write_food_article(topic_idea: str, recent_titles: list, keywords_hint: str = "") -> dict:
     history = "\n".join(f"- {t}" for t in recent_titles[:30]) if recent_titles else "(пусто)"
     kitchen_cat = pick_kitchen_category(topic_idea)
+
+    seo_block = f"\n\n{keywords_hint}\n" if keywords_hint else ""
 
     user = f"""ИДЕЯ ДЛЯ СТАТЬИ: {topic_idea}
 
@@ -135,7 +137,7 @@ def write_food_article(topic_idea: str, recent_titles: list) -> dict:
 
 Нативно упомяни в одном месте статьи наш раздел аксессуаров: {kitchen_cat['title']} — {kitchen_cat['url']}
 Формат: обычная HTML-ссылка внутри абзаца, органично встроенная в текст. Одна фраза, не CTA-блок.
-
+{seo_block}
 Напиши статью строго по правилам системного промпта. Ответ — JSON."""
 
     result = claude_api.generate_json(SYSTEM, user, max_tokens=8000, temperature=0.7)

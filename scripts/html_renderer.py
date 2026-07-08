@@ -348,14 +348,59 @@ def _escape(text: str) -> str:
     return (text or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
+def _seo_meta_description(lead: str, max_len: int = 155) -> str:
+    """Обрезает lead до max_len символов для meta description."""
+    if not lead:
+        return ""
+    if len(lead) <= max_len:
+        return lead
+    cut = lead[:max_len].rsplit(" ", 1)[0]
+    return cut.rstrip(",.;: ") + "…"
+
+
+def _add_lazy_and_alt_to_imgs(body_html: str, title: str, category: str) -> str:
+    """
+    Постпроцессор HTML статьи:
+    - добавляет loading="lazy", decoding="async" ко всем <img>
+    - улучшает alt: если стоит шаблонный «обложка статьи»/«иллюстрация N» — меняет на «{title} — {category}»
+    - добавляет width/height у cover'ов чтобы не было CLS
+    """
+    lazy_alt = _escape(f"{title} — {category}") if category else _escape(title)
+
+    def _repl_img(m):
+        tag = m.group(0)
+        # уже есть loading
+        if "loading=" not in tag:
+            tag = tag.replace("<img ", '<img loading="lazy" decoding="async" ', 1)
+        # alt: если шаблонный — заменяем
+        alt_match = re.search(r'alt="([^"]*)"', tag)
+        if alt_match:
+            cur = alt_match.group(1).lower()
+            if (not cur.strip() or "обложка" in cur or "иллюстрац" in cur
+                    or cur in ("cover", "image", "photo")):
+                tag = re.sub(r'alt="[^"]*"', f'alt="{lazy_alt}"', tag)
+        else:
+            tag = tag.replace("<img ", f'<img alt="{lazy_alt}" ', 1)
+        # width/height для cover'ов
+        if "width=" not in tag and "cover-" in tag:
+            tag = tag.replace("<img ", '<img width="1536" height="1024" ', 1)
+        return tag
+
+    return re.sub(r'<img\b[^>]*>', _repl_img, body_html)
+
+
 def render_post_page(article: dict, slug: str, pub_date: datetime, categories: list = None) -> str:
     title = _escape(article["title"])
     lead = _escape(article["lead"])
+    meta_desc = _escape(_seo_meta_description(article["lead"], 155))
     body_html = article["html"]
     cats = categories or []
 
     # старые <p><img alt="обложка"></p> уже не используются; на всякий случай
     body_html = re.sub(r'^\s*<p>\s*<img[^>]+alt="обложка"[^>]*/?>\s*</p>\s*', '', body_html, count=1)
+
+    # постпроцессор картинок: lazy, alt, width/height
+    body_html = _add_lazy_and_alt_to_imgs(body_html, article["title"], cats[0] if cats else "")
 
     # картинка для og:image — первое <img> в теле
     m = re.search(r'<img\s+[^>]*src="([^"]+)"', body_html)
@@ -367,9 +412,9 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
     cat_html = " · ".join(_escape(c) for c in cats[:2])
     breadcrumb_cat = _escape(cats[0]) if cats else "Статья"
 
-    # JSON-LD Article schema для расширенных сниппетов в поиске
+    # JSON-LD: Article + BreadcrumbList для расширенных сниппетов
     import json as _json
-    jsonld = {
+    jsonld_article = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": article["title"],
@@ -396,7 +441,17 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
             "@id": canonical_url
         }
     }
-    jsonld_str = _json.dumps(jsonld, ensure_ascii=False, indent=2)
+    jsonld_breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://addwine.ru/"},
+            {"@type": "ListItem", "position": 2, "name": "Журнал", "item": "https://feed.addwine.ru/"},
+            {"@type": "ListItem", "position": 3, "name": main_section, "item": canonical_url},
+        ]
+    }
+    jsonld_str = _json.dumps(jsonld_article, ensure_ascii=False, indent=2)
+    jsonld_breadcrumb_str = _json.dumps(jsonld_breadcrumb, ensure_ascii=False, indent=2)
 
     article_tags = "".join(f'<meta property="article:tag" content="{_escape(c)}">\n' for c in cats[:2])
 
@@ -410,7 +465,7 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {YANDEX_VERIFY_META}
 <title>{title} — Журнал AddWine</title>
-<meta name="description" content="{lead}">
+<meta name="description" content="{meta_desc}">
 <link rel="canonical" href="{canonical_url}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canonical_url}">
@@ -434,6 +489,9 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 <style>{BASE_CSS}</style>
 <script type="application/ld+json">
 {jsonld_str}
+</script>
+<script type="application/ld+json">
+{jsonld_breadcrumb_str}
 </script>
 {ANALYTICS_HEAD}
 </head>

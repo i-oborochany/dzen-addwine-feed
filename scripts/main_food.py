@@ -16,6 +16,7 @@ import openai_api
 import publisher
 import progress as progress_mod
 import addwine_linker
+import wordstat_api
 
 INTERVAL_HOURS = 40  # минимум 40 часов между двумя food-публикациями
 
@@ -58,8 +59,12 @@ def main() -> int:
     topic = food_writer.pick_topic(food_titles)
     print(f"  → {topic}")
 
+    print("\n[1.5/4] Yandex Wordstat — подбор SEO-ключей")
+    keywords = wordstat_api.get_keywords(topic, limit=15)
+    keywords_hint = wordstat_api.format_for_prompt(keywords)
+
     print("\n[2/4] Claude пишет гастрономическую статью")
-    article = food_writer.write_food_article(topic, food_titles)
+    article = food_writer.write_food_article(topic, food_titles, keywords_hint=keywords_hint)
     print(f"  заголовок: {article['title_chosen']}")
     print(f"  категории: {article['categories']}")
     print(f"  ссылка на кухню: {article['_kitchen_category']['title']} → {article['_kitchen_category']['url']}")

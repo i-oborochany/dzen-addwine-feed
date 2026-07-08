@@ -17,6 +17,7 @@ import openai_api
 import publisher
 import progress as progress_mod
 import addwine_linker
+import wordstat_api
 
 
 RUSSIAN_INTERVAL_DAYS = 3
@@ -63,8 +64,12 @@ def main() -> int:
     topic = russian_writer.pick_topic(russian_titles)
     print(f"  → {topic}")
 
+    print("\n[1.5/4] Yandex Wordstat — подбор SEO-ключей")
+    keywords = wordstat_api.get_keywords(topic, limit=15)
+    keywords_hint = wordstat_api.format_for_prompt(keywords)
+
     print("\n[2/4] Claude пишет статью в патриотическом тоне")
-    article = russian_writer.write_russian_article(topic, russian_titles)
+    article = russian_writer.write_russian_article(topic, russian_titles, keywords_hint=keywords_hint)
     print(f"  заголовок: {article['title_chosen']}")
     print(f"  категории: {article['categories']}")
     print(f"  длина html: {len(article['html'])} символов")

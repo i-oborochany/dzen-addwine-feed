@@ -111,15 +111,17 @@ def pick_topic(used_titles: list) -> str:
     return topics[0]
 
 
-def write_russian_article(topic_idea: str, recent_titles: list) -> dict:
+def write_russian_article(topic_idea: str, recent_titles: list, keywords_hint: str = "") -> dict:
     """Генерирует статью про российское виноделие на основе идеи."""
     history = "\n".join(f"- {t}" for t in recent_titles[:30]) if recent_titles else "(пусто)"
+
+    seo_block = f"\n\n{keywords_hint}\n" if keywords_hint else ""
 
     user = f"""ИДЕЯ ДЛЯ СТАТЬИ: {topic_idea}
 
 Уже публиковали за последние месяцы (не повторяйся):
 {history}
-
+{seo_block}
 Напиши оригинальную статью на эту идею в патриотически-экспертном тоне. Соблюдай все требования к структуре, картинкам, заголовкам, категориям.
 
 Ответ строго в JSON по схеме из системного промпта."""

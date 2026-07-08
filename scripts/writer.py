@@ -230,7 +230,9 @@ def write_trend_article(seed_titles: list, recent_history: list, brand_colors: d
     return result
 
 
-def write_content_plan_article(plan_row: dict) -> dict:
+def write_content_plan_article(plan_row: dict, keywords_hint: str = "") -> dict:
+    seo_block = f"\n{keywords_hint}\n" if keywords_hint else ""
+
     user = f"""РЕЖИМ: СТАТЬЯ ПО КОНТЕНТ-ПЛАНУ (статья 5 цикла)
 
 Строка плана:
@@ -238,7 +240,7 @@ def write_content_plan_article(plan_row: dict) -> dict:
 - Категория тематики: {plan_row['theme']}
 - SEO-запрос (вписать естественно в заголовок, лид и подзаголовки): {plan_row['seo_query']}
 - Что продвигаем: {plan_row['promote_category']}
-
+{seo_block}
 Требования:
 1. Напиши статью по этой теме. SEO-запрос — естественно в заголовке (одном из 3), первом абзаце и хотя бы одном подзаголовке.
 2. НЕ добавляй блок «AddWine рекомендует» и НЕ ставь ссылок в теле статьи. Ссылка будет вставлена отдельным проходом нативно.

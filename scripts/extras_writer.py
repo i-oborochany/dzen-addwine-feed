@@ -116,12 +116,14 @@ def build_system_prompt(rubric_config: dict) -> str:
 """
 
 
-def write_article(rubric: str, topic_idea: str, recent_titles: list) -> dict:
+def write_article(rubric: str, topic_idea: str, recent_titles: list, keywords_hint: str = "") -> dict:
     """Основная функция генерации."""
     cfg = load_config(rubric)
     system = build_system_prompt(cfg)
     link = pick_link(cfg, topic_idea)
     history = "\n".join(f"- {t}" for t in recent_titles[:30]) if recent_titles else "(пусто)"
+
+    seo_block = f"\n\n{keywords_hint}\n" if keywords_hint else ""
 
     user = f"""ИДЕЯ ДЛЯ СТАТЬИ: {topic_idea}
 
@@ -130,7 +132,7 @@ def write_article(rubric: str, topic_idea: str, recent_titles: list) -> dict:
 
 Нативно упомяни в одном месте статьи наш раздел: {link['title']} — {link['url']}
 Формат: обычная HTML-ссылка <a href="..."> внутри абзаца, органично встроенная в текст. Одна фраза, не CTA-блок.
-
+{seo_block}
 Напиши статью по правилам системного промпта. Ответ — строго JSON."""
 
     result = claude_api.generate_json(system, user, max_tokens=8000, temperature=0.7)
