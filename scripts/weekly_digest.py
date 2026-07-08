@@ -47,14 +47,14 @@ DIGEST_SYSTEM = """Ты — главный редактор винного жу�
 - «Что почитать: винный дайджест недели»
 
 КАТЕГОРИИ
-Основная: «Дайджест». Вторая: «Винные новости».
+Основная: «Дайджесты». Вторая: «Винные новости».
 
 ФОРМАТ ОТВЕТА — строго JSON без markdown:
 {
   "title": "<заголовок дайджеста>",
   "lead": "<один абзац — короткий обзор недели>",
   "html": "<полный HTML дайджеста>",
-  "categories": ["Дайджест", "Винные новости"]
+  "categories": ["Дайджесты", "Винные новости"]
 }
 """
 
@@ -122,7 +122,7 @@ def _validate(result: dict) -> None:
         if f not in result:
             raise RuntimeError(f"Поле {f} отсутствует в ответе Claude")
     cats = result.get("categories") or []
-    if "Дайджест" not in cats:
-        cats = ["Дайджест"] + [c for c in cats if c != "Дайджест"]
+    if "Дайджесты" not in cats:
+        cats = ["Дайджесты"] + [c for c in cats if c != "Дайджесты"]
     result["categories"] = cats[:2]
     result["html"] = re.sub(r"  +", " ", result["html"])
