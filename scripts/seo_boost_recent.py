@@ -80,8 +80,8 @@ def seo_boost_one(post: dict) -> bool:
 
     # Полный SEO-discovery через planner (Claude → фразы → Wordstat → whitelist)
     keywords = seo_planner.discover_keywords(title, lead=lead, limit=15)
-    if len(keywords) < 3:
-        print(f"  [!] мало тематически-релевантных ключей ({len(keywords)}), пропускаем")
+    if len(keywords) < 1:
+        print(f"  [!] тема без SEO-трафика (0 ключей), пропускаем — оставляем оригинал")
         return False
 
     print(f"  Топ ключей:")
