@@ -18,7 +18,7 @@ import openai_api
 import publisher
 import progress as progress_mod
 import addwine_linker
-import wordstat_api
+import seo_planner
 
 
 def already_published_today(progress: dict) -> bool:
@@ -66,11 +66,12 @@ def main() -> int:
         print(f"\n[1/4] Контент-план строка #{plan_row['number']}: {plan_row['title']}")
         print(f"  Категория: {plan_row['promote_category']} → {plan_row['promote_link']}")
 
-        print("\n[1.5/4] Yandex Wordstat — подбор SEO-ключей")
-        keywords = wordstat_api.get_keywords(plan_row.get("seo_query") or plan_row.get("title", ""), limit=15)
-        keywords_hint = wordstat_api.format_for_prompt(keywords)
+        print("\n[1.5/4] SEO-планирование: Claude → фразы → Wordstat → топ ключей")
+        seed_topic = plan_row.get("seo_query") or plan_row.get("title", "")
+        keywords = seo_planner.discover_keywords(seed_topic, lead="", limit=15)
+        keywords_hint = seo_planner.format_seo_brief(keywords)
 
-        print("\n[2/4] Claude пишет статью с CTA")
+        print("\n[2/4] Claude пишет статью ПОД эти ключи")
         article = writer.write_content_plan_article(plan_row, keywords_hint=keywords_hint)
         topic_type = "content_plan"
         source_url = plan_row["promote_link"]

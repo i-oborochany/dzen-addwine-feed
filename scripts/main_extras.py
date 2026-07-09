@@ -15,7 +15,7 @@ import extras_writer
 import openai_api
 import publisher
 import progress as progress_mod
-import wordstat_api
+import seo_planner
 
 INTERVAL_HOURS = 88  # минимум ~3.7 дня между статьями одной рубрики
 
@@ -62,11 +62,11 @@ def main() -> int:
     topic = extras_writer.pick_topic(cfg, used_titles)
     print(f"  → {topic}")
 
-    print("\n[1.5/4] Yandex Wordstat — подбор SEO-ключей")
-    keywords = wordstat_api.get_keywords(topic, limit=15)
-    keywords_hint = wordstat_api.format_for_prompt(keywords)
+    print("\n[1.5/4] SEO-планирование: Claude → фразы → Wordstat → топ ключей")
+    keywords = seo_planner.discover_keywords(topic, lead="", limit=15)
+    keywords_hint = seo_planner.format_seo_brief(keywords)
 
-    print("\n[2/4] Claude пишет статью")
+    print("\n[2/4] Claude пишет статью ПОД эти ключи")
     try:
         article = extras_writer.write_article(rubric, topic, used_titles, keywords_hint=keywords_hint)
     except Exception as e:
