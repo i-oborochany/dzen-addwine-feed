@@ -3,6 +3,13 @@
   "content_plan_index": 11,
   "history": [
     {
+      "date": "2026-07-11T11:12:27.076947+00:00",
+      "cycle_position": 5,
+      "topic_type": "food",
+      "title": "Что пить с бараниной: гид по сочетанию с Каберне Совиньон",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-07-11T07:10:22.551856+00:00",
       "cycle_position": 4,
       "topic_type": "trend",
@@ -538,7 +545,7 @@
   "last_russian_post": "2026-07-08T11:48:14.114292+00:00",
   "last_digest_post": "2026-07-05T14:27:38.883192+00:00",
   "last_spirits_post": "2026-07-09T16:29:11.318991+00:00",
-  "last_food_post": "2026-07-07T12:32:21.333959+00:00",
+  "last_food_post": "2026-07-11T11:12:27.076965+00:00",
   "last_water_post": "2026-07-07T16:15:57.859586+00:00",
   "last_beer_post": "2026-07-10T16:19:09.969379+00:00"
 }
