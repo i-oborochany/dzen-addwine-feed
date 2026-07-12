@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 11,
+  "cycle_position": 1,
+  "content_plan_index": 12,
   "history": [
+    {
+      "date": "2026-07-12T07:09:34.587367+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Открытое вино: сколько оно живёт и какие аксессуары помогут сохранить его вкус",
+      "source_url": "https://addwine.ru/catalogue"
+    },
     {
       "date": "2026-07-11T14:44:49.506352+00:00",
       "cycle_position": 5,
