@@ -3,6 +3,13 @@
   "content_plan_index": 12,
   "history": [
     {
+      "date": "2026-07-12T11:11:33.761026+00:00",
+      "cycle_position": 1,
+      "topic_type": "russian",
+      "title": "5 хозяйств Краснодарского края, которые меняют представление о российском вине",
+      "source_url": ""
+    },
+    {
       "date": "2026-07-12T10:28:58.902404+00:00",
       "cycle_position": 0,
       "topic_type": "digest",
@@ -563,7 +570,7 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-07-08T11:48:14.114292+00:00",
+  "last_russian_post": "2026-07-12T11:11:33.761044+00:00",
   "last_digest_post": "2026-07-12T10:28:58.902417+00:00",
   "last_spirits_post": "2026-07-09T16:29:11.318991+00:00",
   "last_food_post": "2026-07-11T11:12:27.076965+00:00",
