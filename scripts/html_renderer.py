@@ -215,6 +215,22 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .post-body a:hover { border-color: transparent; }
 .post-body strong { font-weight: 600; }
 
+/* FAQ секция */
+.faq { margin: 32px 0; padding: 24px 28px; background: #fafaf7; border-radius: 12px; border: 1px solid var(--border); }
+.faq h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; color: var(--text); }
+.faq h3:first-child { margin-top: 0; }
+.faq p { margin: 0 0 16px; color: #3a3a3a; line-height: 1.6; }
+
+/* Рецепт коктейля */
+.recipe { margin: 32px 0; padding: 24px 28px; background: #f5f5f0; border-radius: 12px; border-left: 4px solid var(--accent); }
+.recipe p b { font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.recipe ul, .recipe ol { margin: 12px 0 20px 22px; }
+.recipe li { margin-bottom: 8px; font-size: 16px; }
+
+/* Автолинки в статье */
+.post-body a.autolink { color: var(--primary); border-bottom: 1px dotted var(--primary); text-decoration: none; }
+.post-body a.autolink:hover { border-color: transparent; }
+
 /* Похожие статьи */
 .related { margin: 60px auto 40px; max-width: 1100px; padding: 0 8px; }
 .related-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: var(--text); border-top: 1px solid var(--border); padding-top: 40px; }
@@ -372,12 +388,141 @@ def _seo_meta_description(lead: str, max_len: int = 155) -> str:
     return cut.rstrip(",.;: ") + "…"
 
 
+# Ключевые entities → страницы категорий для автолинковки
+ENTITY_TO_CATEGORY_SLUG = {
+    # Крепкий алкоголь
+    "виски": "krepkiy-alkogol", "бурбон": "krepkiy-alkogol", "скотч": "krepkiy-alkogol",
+    "сингл-молт": "krepkiy-alkogol", "сингл молт": "krepkiy-alkogol", "блендед": "krepkiy-alkogol",
+    "коньяк": "krepkiy-alkogol", "арманьяк": "krepkiy-alkogol", "кальвадос": "krepkiy-alkogol",
+    "текила": "krepkiy-alkogol", "мескаль": "krepkiy-alkogol",
+    "джин": "krepkiy-alkogol",
+    "граппа": "krepkiy-alkogol", "аквавит": "krepkiy-alkogol", "абсент": "krepkiy-alkogol",
+    # Пиво
+    "стаут": "pivo-i-sidr", "портер": "pivo-i-sidr", "ipa": "pivo-i-sidr",
+    "лагер": "pivo-i-sidr", "пилснер": "pivo-i-sidr", "ламбик": "pivo-i-sidr",
+    "витбир": "pivo-i-sidr", "сидр": "pivo-i-sidr",
+    # Коктейли
+    "негрони": "kokteyli-i-bezalkogolnoe", "мохито": "kokteyli-i-bezalkogolnoe",
+    "мартини": "kokteyli-i-bezalkogolnoe", "маргарита": "kokteyli-i-bezalkogolnoe",
+    "олд фэшн": "kokteyli-i-bezalkogolnoe", "манхэттен": "kokteyli-i-bezalkogolnoe",
+    "дайкири": "kokteyli-i-bezalkogolnoe",
+    # Креплёные
+    "херес": "kreplenye-i-desertnye-vina", "портвейн": "kreplenye-i-desertnye-vina",
+    "мадера": "kreplenye-i-desertnye-vina", "токай": "kreplenye-i-desertnye-vina",
+    "сотерн": "kreplenye-i-desertnye-vina", "вермут": "kreplenye-i-desertnye-vina",
+    # Российское виноделие
+    "тамань": "rossiyskoe-vinodelie", "анапа": "rossiyskoe-vinodelie",
+    "крым": "rossiyskoe-vinodelie", "кубань": "rossiyskoe-vinodelie",
+    "краснодар": "rossiyskoe-vinodelie", "дагестан": "rossiyskoe-vinodelie",
+    "абрау": "rossiyskoe-vinodelie", "лефкадия": "rossiyskoe-vinodelie",
+    # Аксессуары
+    "штопор": "aksessuary-dlya-vina", "декантер": "aksessuary-dlya-vina",
+    "охладитель": "aksessuary-dlya-vina",
+}
+
+
+def _autolink_entities(body_html: str, current_slug: str) -> str:
+    """
+    Автоматически заменяет первое вхождение каждого entity на ссылку на страницу категории.
+    Не трогает entity если оно уже внутри тега <a> или <h1>-<h6>.
+    """
+    linked = set()
+    # Работаем только вне тегов
+    parts = re.split(r'(<[^>]+>|<a\s[^>]*>.*?</a>|<h[1-6][^>]*>.*?</h[1-6]>)', body_html, flags=re.S)
+    result = []
+    for part in parts:
+        if part.startswith("<") or not part.strip():
+            result.append(part)
+            continue
+        for entity, cat_slug in sorted(ENTITY_TO_CATEGORY_SLUG.items(), key=lambda x: -len(x[0])):
+            if entity in linked:
+                continue
+            if current_slug and cat_slug in current_slug:
+                # не линкуем на собственную категорию
+                linked.add(entity)
+                continue
+            # ищем entity с учётом падежных окончаний (первые 4+ символов)
+            stem = entity[:max(4, len(entity) - 2)] if not (" " in entity or "-" in entity) else re.escape(entity)
+            if " " in entity or "-" in entity:
+                pat = rf"(?i)\b({re.escape(entity)})\b"
+            else:
+                pat = rf"(?i)\b({re.escape(stem)}\w*)\b"
+            match = re.search(pat, part)
+            if match:
+                original = match.group(1)
+                replacement = f'<a href="/category/{cat_slug}/" class="autolink">{original}</a>'
+                part = part[:match.start()] + replacement + part[match.end():]
+                linked.add(entity)
+        result.append(part)
+    return "".join(result)
+
+
+def _extract_faq_pairs(body_html: str) -> list:
+    """
+    Ищет FAQ секцию в html: <div class="faq">...</div> с парами <h3>Q</h3><p>A</p>.
+    Возвращает список dict {question, answer}.
+    """
+    m = re.search(r'<div\s+class="faq"[^>]*>(.*?)</div>', body_html, flags=re.S | re.I)
+    if not m:
+        return []
+    inner = m.group(1)
+    # находим пары h3+следующие p до следующего h3
+    pairs = []
+    chunks = re.split(r'<h3[^>]*>', inner)
+    for chunk in chunks[1:]:
+        end = chunk.find("</h3>")
+        if end == -1:
+            continue
+        question = re.sub(r"<[^>]+>", "", chunk[:end]).strip()
+        rest = chunk[end + 5:]
+        # достаём все p до следующего h3 или конца
+        answer_parts = re.findall(r"<p[^>]*>(.*?)</p>", rest, flags=re.S)
+        answer = " ".join(re.sub(r"<[^>]+>", "", p).strip() for p in answer_parts)
+        if question and answer:
+            pairs.append({"question": question, "answer": answer})
+    return pairs
+
+
+def _extract_howto_recipe(body_html: str) -> dict:
+    """
+    Ищет секцию рецепта коктейля: <div class="recipe">...</div> с ingredients (ul) и steps (ol).
+    Возвращает dict {name, ingredients: [...], steps: [...]} или {}.
+    """
+    m = re.search(r'<div\s+class="recipe"[^>]*>(.*?)</div>', body_html, flags=re.S | re.I)
+    if not m:
+        return {}
+    inner = m.group(1)
+
+    # ингредиенты — первый ul
+    ul_m = re.search(r"<ul[^>]*>(.*?)</ul>", inner, flags=re.S)
+    ingredients = []
+    if ul_m:
+        for li in re.findall(r"<li[^>]*>(.*?)</li>", ul_m.group(1), flags=re.S):
+            text = re.sub(r"<[^>]+>", "", li).strip()
+            if text:
+                ingredients.append(text)
+
+    # шаги — ol
+    ol_m = re.search(r"<ol[^>]*>(.*?)</ol>", inner, flags=re.S)
+    steps = []
+    if ol_m:
+        for li in re.findall(r"<li[^>]*>(.*?)</li>", ol_m.group(1), flags=re.S):
+            text = re.sub(r"<[^>]+>", "", li).strip()
+            if text:
+                steps.append(text)
+
+    if ingredients and steps:
+        return {"ingredients": ingredients, "steps": steps}
+    return {}
+
+
 def _add_lazy_and_alt_to_imgs(body_html: str, title: str, category: str) -> str:
     """
     Постпроцессор HTML статьи:
     - добавляет loading="lazy", decoding="async" ко всем <img>
-    - улучшает alt: если стоит шаблонный «обложка статьи»/«иллюстрация N» — меняет на «{title} — {category}»
-    - добавляет width/height у cover'ов чтобы не было CLS
+    - улучшает alt: шаблонные — заменяет на «{title} — {category}»
+    - width/height у cover'ов чтобы не было CLS
+    - оборачивает <img src="....jpg"> в <picture> с WebP-source (если ещё не обёрнуто)
     """
     lazy_alt = _escape(f"{title} — {category}") if category else _escape(title)
 
@@ -386,7 +531,7 @@ def _add_lazy_and_alt_to_imgs(body_html: str, title: str, category: str) -> str:
         # уже есть loading
         if "loading=" not in tag:
             tag = tag.replace("<img ", '<img loading="lazy" decoding="async" ', 1)
-        # alt: если шаблонный — заменяем
+        # alt
         alt_match = re.search(r'alt="([^"]*)"', tag)
         if alt_match:
             cur = alt_match.group(1).lower()
@@ -400,7 +545,22 @@ def _add_lazy_and_alt_to_imgs(body_html: str, title: str, category: str) -> str:
             tag = tag.replace("<img ", '<img width="1536" height="1024" ', 1)
         return tag
 
-    return re.sub(r'<img\b[^>]*>', _repl_img, body_html)
+    body_html = re.sub(r'<img\b[^>]*>', _repl_img, body_html)
+
+    # Оборачиваем cover-*.jpg в <picture> с WebP source
+    def _wrap_picture(m):
+        img_tag = m.group(0)
+        src_m = re.search(r'src="([^"]+cover-\d+)\.jpg"', img_tag)
+        if not src_m:
+            return img_tag
+        webp_src = f'{src_m.group(1)}.webp'
+        return f'<picture><source type="image/webp" srcset="{webp_src}">{img_tag}</picture>'
+
+    # только если ещё не внутри <picture>
+    if "<picture>" not in body_html:
+        body_html = re.sub(r'<img\b[^>]*src="[^"]+cover-\d+\.jpg"[^>]*>', _wrap_picture, body_html)
+
+    return body_html
 
 
 def _category_slug(cat_name: str) -> str:
@@ -478,6 +638,9 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
     # постпроцессор картинок: lazy, alt, width/height
     body_html = _add_lazy_and_alt_to_imgs(body_html, article["title"], cats[0] if cats else "")
 
+    # автолинковка entities → страницы категорий (первое вхождение)
+    body_html = _autolink_entities(body_html, slug)
+
     # картинка для og:image — первое <img> в теле
     m = re.search(r'<img\s+[^>]*src="([^"]+)"', body_html)
     og_image = m.group(1) if m else "https://feed.addwine.ru/logo.png"
@@ -488,30 +651,58 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
     cat_html = " · ".join(_escape(c) for c in cats[:2])
     breadcrumb_cat = _escape(cats[0]) if cats else "Статья"
 
+    # word count для качественных сигналов
+    plain_body = re.sub(r'<[^>]+>', ' ', body_html)
+    plain_body = re.sub(r'\s+', ' ', plain_body).strip()
+    word_count = len(plain_body.split())
+
     # JSON-LD: Article + BreadcrumbList для расширенных сниппетов
     import json as _json
     jsonld_article = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": article["title"],
-        "image": [og_image],
+        "alternativeHeadline": article["lead"][:110],
+        "image": {
+            "@type": "ImageObject",
+            "url": og_image,
+            "width": 1536,
+            "height": 1024,
+        },
         "datePublished": iso_date,
         "dateModified": iso_date,
+        "wordCount": word_count,
+        "articleSection": main_section,
+        "keywords": ", ".join(cats),
+        "inLanguage": "ru-RU",
+        "isFamilyFriendly": False,
+        "isAccessibleForFree": True,
         "author": {
             "@type": "Organization",
-            "name": "AddWine",
-            "url": "https://addwine.ru"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "AddWine",
+            "name": "Редакция журнала AddWine",
+            "url": "https://feed.addwine.ru/",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://feed.addwine.ru/logo.png"
             }
         },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AddWine",
+            "url": "https://addwine.ru",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://feed.addwine.ru/logo.png",
+                "width": 300,
+                "height": 60,
+            },
+            "sameAs": [
+                "https://dzen.ru/addwine",
+                "https://t.me/justaddwine",
+                "https://addwine.ru",
+            ]
+        },
         "description": article["lead"],
-        "articleSection": main_section,
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": canonical_url
@@ -526,8 +717,47 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
             {"@type": "ListItem", "position": 3, "name": main_section, "item": canonical_url},
         ]
     }
+    # Дополнительные JSON-LD блоки
+    extra_jsonld_scripts = []
+
+    # FAQPage
+    faq_pairs = _extract_faq_pairs(body_html)
+    if faq_pairs:
+        faq_jsonld = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": p["question"],
+                    "acceptedAnswer": {"@type": "Answer", "text": p["answer"]},
+                } for p in faq_pairs
+            ],
+        }
+        extra_jsonld_scripts.append(_json.dumps(faq_jsonld, ensure_ascii=False, indent=2))
+
+    # HowTo (для коктейлей и рецептов)
+    recipe = _extract_howto_recipe(body_html)
+    if recipe:
+        howto_jsonld = {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": article["title"],
+            "description": article["lead"],
+            "image": og_image,
+            "totalTime": "PT5M",
+            "estimatedCost": {"@type": "MonetaryAmount", "currency": "RUB", "value": "500"},
+            "supply": [{"@type": "HowToSupply", "name": ing} for ing in recipe["ingredients"]],
+            "step": [
+                {"@type": "HowToStep", "position": i + 1, "text": s, "name": f"Шаг {i+1}"}
+                for i, s in enumerate(recipe["steps"])
+            ],
+        }
+        extra_jsonld_scripts.append(_json.dumps(howto_jsonld, ensure_ascii=False, indent=2))
+
     jsonld_str = _json.dumps(jsonld_article, ensure_ascii=False, indent=2)
     jsonld_breadcrumb_str = _json.dumps(jsonld_breadcrumb, ensure_ascii=False, indent=2)
+    extra_jsonld_str = "\n".join(f'<script type="application/ld+json">\n{s}\n</script>' for s in extra_jsonld_scripts)
 
     article_tags = "".join(f'<meta property="article:tag" content="{_escape(c)}">\n' for c in cats[:2])
 
@@ -539,6 +769,10 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#003E6B">
 {YANDEX_VERIFY_META}
 <title>{title} — Журнал AddWine</title>
 <meta name="description" content="{meta_desc}">
@@ -569,6 +803,7 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
 <script type="application/ld+json">
 {jsonld_breadcrumb_str}
 </script>
+{extra_jsonld_str}
 {ANALYTICS_HEAD}
 </head>
 <body>

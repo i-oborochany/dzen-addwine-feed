@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#003E6B">
 <meta name="yandex-verification" content="d5940a0d077e7558" />
 <title>Зачем ехать на винодельню, если вино есть в магазине — Журнал AddWine</title>
 <meta name="description" content="Большинство людей покупают вино в магазине — и совершенно не понимают, почему один бокал на веранде винодельни стоит больше, чем бутылка в супермаркете…">
@@ -179,6 +183,22 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .post-body a:hover { border-color: transparent; }
 .post-body strong { font-weight: 600; }
 
+/* FAQ секция */
+.faq { margin: 32px 0; padding: 24px 28px; background: #fafaf7; border-radius: 12px; border: 1px solid var(--border); }
+.faq h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; color: var(--text); }
+.faq h3:first-child { margin-top: 0; }
+.faq p { margin: 0 0 16px; color: #3a3a3a; line-height: 1.6; }
+
+/* Рецепт коктейля */
+.recipe { margin: 32px 0; padding: 24px 28px; background: #f5f5f0; border-radius: 12px; border-left: 4px solid var(--accent); }
+.recipe p b { font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.recipe ul, .recipe ol { margin: 12px 0 20px 22px; }
+.recipe li { margin-bottom: 8px; font-size: 16px; }
+
+/* Автолинки в статье */
+.post-body a.autolink { color: var(--primary); border-bottom: 1px dotted var(--primary); text-decoration: none; }
+.post-body a.autolink:hover { border-color: transparent; }
+
 /* Похожие статьи */
 .related { margin: 60px auto 40px; max-width: 1100px; padding: 0 8px; }
 .related-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: var(--text); border-top: 1px solid var(--border); padding-top: 40px; }
@@ -232,26 +252,47 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Зачем ехать на винодельню, если вино есть в магазине",
-  "image": [
-    "https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/cover-1.jpg"
-  ],
+  "alternativeHeadline": "Большинство людей покупают вино в магазине — и совершенно не понимают, почему один бокал на веранде винодельни",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/cover-1.jpg",
+    "width": 1536,
+    "height": 1024
+  },
   "datePublished": "2026-05-23T22:22:26+00:00",
   "dateModified": "2026-05-23T22:22:26+00:00",
+  "wordCount": 964,
+  "articleSection": "Вино и путешествия",
+  "keywords": "Вино и путешествия, Дегустации и советы",
+  "inLanguage": "ru-RU",
+  "isFamilyFriendly": false,
+  "isAccessibleForFree": true,
   "author": {
     "@type": "Organization",
-    "name": "AddWine",
-    "url": "https://addwine.ru"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "AddWine",
+    "name": "Редакция журнала AddWine",
+    "url": "https://feed.addwine.ru/",
     "logo": {
       "@type": "ImageObject",
       "url": "https://feed.addwine.ru/logo.png"
     }
   },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AddWine",
+    "url": "https://addwine.ru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://feed.addwine.ru/logo.png",
+      "width": 300,
+      "height": 60
+    },
+    "sameAs": [
+      "https://dzen.ru/addwine",
+      "https://t.me/justaddwine",
+      "https://addwine.ru"
+    ]
+  },
   "description": "Большинство людей покупают вино в магазине — и совершенно не понимают, почему один бокал на веранде винодельни стоит больше, чем бутылка в супермаркете. Ответ на этот вопрос меняет и отношение к вину, и способность выбирать его правильно.",
-  "articleSection": "Вино и путешествия",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://feed.addwine.ru/posts/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/"
@@ -284,6 +325,7 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
   ]
 }
 </script>
+
 <!-- Yandex.Metrika -->
 <script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -370,7 +412,7 @@ gtag('config', 'G-K1WDNQ5W20');
 
 <p>Большинство людей покупают вино в магазине — и совершенно не понимают, почему один бокал на веранде винодельни стоит больше, чем бутылка в супермаркете. Ответ на этот вопрос меняет и отношение к вину, и способность выбирать его правильно.</p>
 
-<figure><img width="1536" height="1024" loading="lazy" decoding="async" src="https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/cover-1.jpg" alt="Зачем ехать на винодельню, если вино есть в магазине — Вино и путешествия"/><figcaption>обложка</figcaption></figure>
+<figure><picture><source type="image/webp" srcset="https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/cover-1.webp"><img width="1536" height="1024" loading="lazy" decoding="async" src="https://feed.addwine.ru/images/2026-05-23-nikto-ne-obyasnyaet-zachem-ehat-na-vinodelnyu-esli/cover-1.jpg" alt="Зачем ехать на винодельню, если вино есть в магазине — Вино и путешествия"/></picture><figcaption>обложка</figcaption></figure>
 
 <h2>Почему магазинная полка не расскажет вам главного</h2>
 
@@ -388,7 +430,7 @@ gtag('config', 'G-K1WDNQ5W20');
 
 <h2>Российские винодельни: почему сейчас — лучший момент для поездки</h2>
 
-<p>Последние пять лет российское виноделие переживает структурную трансформацию. Это не громкие слова — это факт, который фиксируют международные дегустационные конкурсы. Крымские, краснодарские, ростовские хозяйства всё активнее работают с автохтонными сортами — то есть с виноградом, исторически принадлежащим конкретному региону. Сорта Красностоп Золотовский, Цимлянский чёрный, Кефесия, Сухолиманский возвращаются в производство после десятилетий забвения.</p>
+<p>Последние пять лет российское виноделие переживает структурную трансформацию. Это не громкие слова — это факт, который фиксируют международные дегустационные конкурсы. <a href="/category/rossiyskoe-vinodelie/" class="autolink">Крымские</a>, <a href="/category/rossiyskoe-vinodelie/" class="autolink">краснодарские</a>, ростовские хозяйства всё активнее работают с автохтонными сортами — то есть с виноградом, исторически принадлежащим конкретному региону. Сорта Красностоп Золотовский, Цимлянский чёрный, Кефесия, Сухолиманский возвращаются в производство после десятилетий забвения.</p>
 
 <p>Именно сейчас, когда эти хозяйства открываются для туристов — строят дегустационные залы, запускают экскурсионные программы, проводят пикники прямо между рядами лоз, — поездка туда имеет особую ценность. Вы видите виноделие в момент его становления. Это редкость: Бордо или Тоскана уже давно сложившиеся «музеи», а здесь всё живое и меняющееся.</p>
 
@@ -431,11 +473,19 @@ gtag('config', 'G-K1WDNQ5W20');
       <h3 class="related-title">Похожие статьи</h3>
       <div class="related-grid">
         
-        <a class="related-card" href="/posts/2026-07-08-pyat-faktorov-kotorye-delayut-taman-i-anapu-unikal/">
-          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-08-pyat-faktorov-kotorye-delayut-taman-i-anapu-unikal/cover-1.jpg" alt="Вина Тамани и Анапы: что делает эти винные зоны России по-настоящему уникальными — Вино и путешествия"></div>
+        <a class="related-card" href="/posts/2026-07-10-vinnyy-turizm-kak-development-pochemu-vinogradniki/">
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-10-vinnyy-turizm-kak-development-pochemu-vinogradniki/cover-1.jpg" alt="Винодельни с проживанием: как виноградники в России стали отелями — Вино и путешествия"></div>
           <div class="related-body">
             <span class="related-cat">Вино и путешествия</span>
-            <h4>Вина Тамани и Анапы: что делает эти винные зоны России по-настоящему уникальными</h4>
+            <h4>Винодельни с проживанием: как виноградники в России стали отелями</h4>
+          </div>
+        </a>
+
+        <a class="related-card" href="/posts/2026-07-08-pyat-faktorov-kotorye-delayut-taman-i-anapu-unikal/">
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-08-pyat-faktorov-kotorye-delayut-taman-i-anapu-unikal/cover-1.jpg" alt="Вина Тамани: терруар, сорта и лучшие хозяйства региона — Вино и путешествия"></div>
+          <div class="related-body">
+            <span class="related-cat">Вино и путешествия</span>
+            <h4>Вина Тамани: терруар, сорта и лучшие хозяйства региона</h4>
           </div>
         </a>
 
@@ -448,18 +498,10 @@ gtag('config', 'G-K1WDNQ5W20');
         </a>
 
         <a class="related-card" href="/posts/2026-07-01-gid-po-vinogradnikam-tamani-i-anapy-kto-delaet-vin/">
-          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-01-gid-po-vinogradnikam-tamani-i-anapy-kto-delaet-vin/cover-1.jpg" alt="Гид по виноградникам Тамани и Анапы: кто делает вино нового поколения — Вино и путешествия"></div>
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-01-gid-po-vinogradnikam-tamani-i-anapy-kto-delaet-vin/cover-1.jpg" alt="Виноградники Тамани и Анапы: лучшие хозяйства и вина Краснодарского края — Вино и путешествия"></div>
           <div class="related-body">
             <span class="related-cat">Вино и путешествия</span>
-            <h4>Гид по виноградникам Тамани и Анапы: кто делает вино нового поколения</h4>
-          </div>
-        </a>
-
-        <a class="related-card" href="/posts/2026-06-28-kak-vinodely-tamani-i-anapy-rabotayut-s-terruarom-/">
-          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-28-kak-vinodely-tamani-i-anapy-rabotayut-s-terruarom-/cover-1.jpg" alt="Как виноделы Тамани и Анапы работают с терруаром: от лозы до бокала — Вино и путешествия"></div>
-          <div class="related-body">
-            <span class="related-cat">Вино и путешествия</span>
-            <h4>Как виноделы Тамани и Анапы работают с терруаром: от лозы до бокала</h4>
+            <h4>Виноградники Тамани и Анапы: лучшие хозяйства и вина Краснодарского края</h4>
           </div>
         </a>
 

@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#003E6B">
 <meta name="yandex-verification" content="d5940a0d077e7558" />
 <title>Необычные сочетания: вино и пицца, которые стоит попробовать — Журнал AddWine</title>
 <meta name="description" content="Пицца давно вышла за рамки простого уличного фастфуда и стала изысканным блюдом высокой кухни. Вино тоже перестало быть только итальянским спутником пасты…">
@@ -179,6 +183,22 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .post-body a:hover { border-color: transparent; }
 .post-body strong { font-weight: 600; }
 
+/* FAQ секция */
+.faq { margin: 32px 0; padding: 24px 28px; background: #fafaf7; border-radius: 12px; border: 1px solid var(--border); }
+.faq h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; color: var(--text); }
+.faq h3:first-child { margin-top: 0; }
+.faq p { margin: 0 0 16px; color: #3a3a3a; line-height: 1.6; }
+
+/* Рецепт коктейля */
+.recipe { margin: 32px 0; padding: 24px 28px; background: #f5f5f0; border-radius: 12px; border-left: 4px solid var(--accent); }
+.recipe p b { font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.recipe ul, .recipe ol { margin: 12px 0 20px 22px; }
+.recipe li { margin-bottom: 8px; font-size: 16px; }
+
+/* Автолинки в статье */
+.post-body a.autolink { color: var(--primary); border-bottom: 1px dotted var(--primary); text-decoration: none; }
+.post-body a.autolink:hover { border-color: transparent; }
+
 /* Похожие статьи */
 .related { margin: 60px auto 40px; max-width: 1100px; padding: 0 8px; }
 .related-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: var(--text); border-top: 1px solid var(--border); padding-top: 40px; }
@@ -232,26 +252,47 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Необычные сочетания: вино и пицца, которые стоит попробовать",
-  "image": [
-    "https://feed.addwine.ru/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.jpg"
-  ],
+  "alternativeHeadline": "Пицца давно вышла за рамки простого уличного фастфуда и стала изысканным блюдом высокой кухни. Вино тоже перес",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://feed.addwine.ru/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.jpg",
+    "width": 1536,
+    "height": 1024
+  },
   "datePublished": "2026-05-23T19:08:10+00:00",
   "dateModified": "2026-05-23T19:08:10+00:00",
+  "wordCount": 236,
+  "articleSection": "Вино и еда",
+  "keywords": "Вино и еда, Гастрономия",
+  "inLanguage": "ru-RU",
+  "isFamilyFriendly": false,
+  "isAccessibleForFree": true,
   "author": {
     "@type": "Organization",
-    "name": "AddWine",
-    "url": "https://addwine.ru"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "AddWine",
+    "name": "Редакция журнала AddWine",
+    "url": "https://feed.addwine.ru/",
     "logo": {
       "@type": "ImageObject",
       "url": "https://feed.addwine.ru/logo.png"
     }
   },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AddWine",
+    "url": "https://addwine.ru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://feed.addwine.ru/logo.png",
+      "width": 300,
+      "height": 60
+    },
+    "sameAs": [
+      "https://dzen.ru/addwine",
+      "https://t.me/justaddwine",
+      "https://addwine.ru"
+    ]
+  },
   "description": "Пицца давно вышла за рамки простого уличного фастфуда и стала изысканным блюдом высокой кухни. Вино тоже перестало быть только итальянским спутником пасты и теперь легко сочетается с этим вкусным итальянским угощением. Вот несколько удивительных пар, которые вас точно удивят.",
-  "articleSection": "Вино и еда",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://feed.addwine.ru/posts/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/"
@@ -284,6 +325,7 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
   ]
 }
 </script>
+
 <!-- Yandex.Metrika -->
 <script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -370,12 +412,12 @@ gtag('config', 'G-K1WDNQ5W20');
 
 <p>Пицца и вино – казалось бы, странное сочетание, но современные шефы доказывают обратное. По словам экспертов из Bar Bucce и других ресторанов, эти два продукта могут прекрасно гармонировать друг с другом.</p>
 
-<figure><img width="1536" height="1024" loading="lazy" decoding="async" src="https://feed.addwine.ru/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.jpg" alt="Необычные сочетания: вино и пицца, которые стоит попробовать — Вино и еда"/><figcaption>обложка</figcaption></figure>
+<figure><picture><source type="image/webp" srcset="https://feed.addwine.ru/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.webp"><img width="1536" height="1024" loading="lazy" decoding="async" src="https://feed.addwine.ru/images/2026-05-23-neobychnye-sochetaniya-vino-i-picca-kotorye-stoit-/cover-1.jpg" alt="Необычные сочетания: вино и пицца, которые стоит попробовать — Вино и еда"/></picture><figcaption>обложка</figcaption></figure>
 
 <h2>Секрет удачного сочетания</h2>
 <p>Брендт Кролл, владелец Pop Fizz Bar и Maxwell Park wine bar, утверждает, что секрет успеха кроется в выборе правильного вина. Он рекомендует обратить внимание на Lambrusco, которое отлично подчеркивает жирность и солёность пиццы благодаря своей фруктовой свежести и игристости.</p>
 
-<h3>Ламбруско: классика сладкого и соленого</h3>
+<h3><a href="/category/pivo-i-sidr/" class="autolink">Ламбруско</a>: классика сладкого и соленого</h3>
 <p>Кролл отмечает, что многие до сих пор считают это вино слишком сладким, однако сухие версии идеально подходят к жирной и соленой пище. Его игристость освежает рот, а лёгкие танины цепляются за жирные ингредиенты вроде пеперони.</p>
 
 <h3>Возрастающее разнообразие вкусов</h3>
@@ -398,19 +440,35 @@ gtag('config', 'G-K1WDNQ5W20');
       <h3 class="related-title">Похожие статьи</h3>
       <div class="related-grid">
         
-        <a class="related-card" href="/posts/2026-07-07-chto-pit-s-krasnym-myasom-polnyy-gid-po-steykam-i-/">
-          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-07-chto-pit-s-krasnym-myasom-polnyy-gid-po-steykam-i-/cover-1.jpg" alt="Вино к стейку: как выбрать под прожарку и тип говядины — Вино и еда"></div>
+        <a class="related-card" href="/posts/2026-07-13-kaberne-sovinon-i-baranina-pochemu-eta-para-rabota/">
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-13-kaberne-sovinon-i-baranina-pochemu-eta-para-rabota/cover-1.jpg" alt="Сорт Каберне Совиньон и баранина: почему эта пара работает — Вино и еда"></div>
           <div class="related-body">
             <span class="related-cat">Вино и еда</span>
-            <h4>Вино к стейку: как выбрать под прожарку и тип говядины</h4>
+            <h4>Сорт Каберне Совиньон и баранина: почему эта пара работает</h4>
+          </div>
+        </a>
+
+        <a class="related-card" href="/posts/2026-07-11-chto-pit-s-baraninoy-gid-po-sochetaniyu-s-kaberne-/">
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-11-chto-pit-s-baraninoy-gid-po-sochetaniyu-s-kaberne-/cover-1.jpg" alt="Баранина и красное вино: какое выбрать и как подать — Вино и еда"></div>
+          <div class="related-body">
+            <span class="related-cat">Вино и еда</span>
+            <h4>Баранина и красное вино: какое выбрать и как подать</h4>
+          </div>
+        </a>
+
+        <a class="related-card" href="/posts/2026-07-07-chto-pit-s-krasnym-myasom-polnyy-gid-po-steykam-i-/">
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-07-07-chto-pit-s-krasnym-myasom-polnyy-gid-po-steykam-i-/cover-1.jpg" alt="Стейк к вину: как выбрать красное под прожарку и отруб — Вино и еда"></div>
+          <div class="related-body">
+            <span class="related-cat">Вино и еда</span>
+            <h4>Стейк к вину: как выбрать красное под прожарку и отруб</h4>
           </div>
         </a>
 
         <a class="related-card" href="/posts/2026-06-30-vino-i-eda-kak-marshrut-chto-takoe-gastronomichesk/">
-          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-30-vino-i-eda-kak-marshrut-chto-takoe-gastronomichesk/cover-1.jpg" alt="Вино и еда как маршрут: что такое гастрономический туризм и зачем он растёт в России — Вино и еда"></div>
+          <div class="related-cover"><img loading="lazy" decoding="async" width="1536" height="1024" src="https://feed.addwine.ru/images/2026-06-30-vino-i-eda-kak-marshrut-chto-takoe-gastronomichesk/cover-1.jpg" alt="Гастрономический туризм: вино, еда и маршруты по России — Вино и еда"></div>
           <div class="related-body">
             <span class="related-cat">Вино и еда</span>
-            <h4>Вино и еда как маршрут: что такое гастрономический туризм и зачем он растёт в России</h4>
+            <h4>Гастрономический туризм: вино, еда и маршруты по России</h4>
           </div>
         </a>
 

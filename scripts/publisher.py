@@ -88,6 +88,15 @@ def save_images(images: list, slug: str) -> list:
     for i, img_bytes in enumerate(images, 1):
         fname = f"cover-{i}.jpg"
         (folder / fname).write_bytes(img_bytes)
+        # WebP версия — сильно легче, ускоряет Core Web Vitals
+        try:
+            from PIL import Image
+            import io
+            im = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+            webp_path = folder / f"cover-{i}.webp"
+            im.save(webp_path, "WEBP", quality=82, method=6)
+        except Exception as e:
+            print(f"[publisher] WebP не создался (не критично): {e}")
         urls.append(f"images/{folder_name}/{fname}")
     return urls
 
