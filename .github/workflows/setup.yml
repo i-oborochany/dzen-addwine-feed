@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       rewrite_all:
-        description: "Переписать ВСЕ 60+ существующих статей под новую SEO-схему (займёт 30+ мин, ~$3-4)"
+        description: "Переписать ВСЕ существующие статьи под новую SEO-схему (30+ мин, ~$3-4)"
         type: boolean
         default: true
 
@@ -24,8 +24,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps (with Pillow)
-        run: pip install -r requirements.txt
+      - name: Install deps + Pillow explicitly
+        run: |
+          pip install -r requirements.txt
+          pip install Pillow
 
       - name: Configure git
         run: |
@@ -65,7 +67,7 @@ jobs:
           PYTHONUNBUFFERED: "1"
         run: python scripts/rewrite_all_articles.py
 
-      - name: Rebuild all pages regardless (schemas + autolink + FAQ + WebP <picture>)
+      - name: Rebuild all pages regardless
         env:
           PYTHONUNBUFFERED: "1"
         run: |
@@ -75,7 +77,7 @@ jobs:
           import html_renderer
           try:
               html_renderer.rebuild_from_feed('https://feed.addwine.ru')
-              print('✅ Все страницы статей пересобраны')
+              print('✅ Страницы статей')
           except Exception as e:
               print(f'⚠️  rebuild_from_feed: {e}')
           try:
@@ -91,6 +93,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Big SEO release: FAQPage + HowTo schemas + autolink + WebP + full rewrite + trust boost"
+            git commit -m "Big SEO release: FAQPage + HowTo + WebP + rewrite all + trust boost"
             git push origin HEAD:main
           fi
