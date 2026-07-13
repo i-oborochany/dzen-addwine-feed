@@ -55,8 +55,8 @@ def main() -> int:
     print(f"ВИНО И ЕДА — публикация {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print(f"Уже опубликовано food-статей: {len(food_titles)}")
 
-    print("\n[1/4] Выбираем тему")
-    topic = food_writer.pick_topic(food_titles)
+    print("\n[1/4] Выбираем тему (с семантическим дедупом на 90 дней)")
+    topic = food_writer.pick_topic(food_titles, history=progress.get("history", []))
     print(f"  → {topic}")
 
     print("\n[1.5/4] SEO-планирование: Claude → фразы → Wordstat → топ ключей")

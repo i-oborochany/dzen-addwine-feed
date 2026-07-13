@@ -58,8 +58,8 @@ def main() -> int:
     used_titles = [h.get("title", "") for h in progress.get("history", []) if h.get("topic_type") == rubric]
     print(f"Уже опубликовано в рубрике: {len(used_titles)}")
 
-    print("\n[1/4] Выбираем тему")
-    topic = extras_writer.pick_topic(cfg, used_titles)
+    print("\n[1/4] Выбираем тему (с семантическим дедупом на 90 дней)")
+    topic = extras_writer.pick_topic(cfg, used_titles, history=progress.get("history", []))
     print(f"  → {topic}")
 
     print("\n[1.5/4] SEO-планирование: Claude → фразы → Wordstat → топ ключей")

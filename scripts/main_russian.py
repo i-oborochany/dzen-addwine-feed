@@ -60,8 +60,8 @@ def main() -> int:
     print(f"РУССКОЕ ВИНОДЕЛИЕ — публикация {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print(f"Уже опубликовано русских статей: {len(russian_titles)}")
 
-    print("\n[1/4] Выбираем тему")
-    topic = russian_writer.pick_topic(russian_titles)
+    print("\n[1/4] Выбираем тему (с семантическим дедупом на 90 дней)")
+    topic = russian_writer.pick_topic(russian_titles, history=progress.get("history", []))
     print(f"  → {topic}")
 
     print("\n[1.5/4] SEO-планирование: Claude → фразы → Wordstat → топ ключей")

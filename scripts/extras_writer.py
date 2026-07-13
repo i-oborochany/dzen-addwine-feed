@@ -29,13 +29,30 @@ def load_topics(rubric_config: dict) -> list:
     return json.loads(p.read_text(encoding="utf-8"))["topics"]
 
 
-def pick_topic(rubric_config: dict, used_titles: list) -> str:
+def pick_topic(rubric_config: dict, used_titles: list, history: list = None) -> str:
+    """
+    Выбирает тему из банка. Если передана history (dict с date+title),
+    применяется семантический дедуп на 90 дней (см. dedup.py).
+    """
     topics = load_topics(rubric_config)
     used_lower = [t.lower() for t in used_titles]
-    for topic in topics:
-        if not any(topic.lower()[:30] in u for u in used_lower):
-            return topic
-    return topics[0]
+
+    # 1. Отбраковка по первым 30 символам темы (быстрый прямой дедуп)
+    fresh = [t for t in topics if not any(t.lower()[:30] in u for u in used_lower)]
+    if not fresh:
+        fresh = topics
+
+    # 2. Семантический дедуп через dedup.py на 90 дней
+    if history:
+        import dedup
+        no_dupes = dedup.filter_topics(fresh, history, days=90)
+        if no_dupes:
+            fresh = no_dupes
+            print(f"  [dedup] после фильтра 90 дней осталось {len(fresh)} тем")
+        else:
+            print(f"  [dedup] ⚠️  все темы имеют семантический дубль за 90 дней — берём наименее свежий")
+
+    return fresh[0]
 
 
 def pick_link(rubric_config: dict, topic: str) -> dict:

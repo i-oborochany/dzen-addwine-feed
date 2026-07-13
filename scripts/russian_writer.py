@@ -100,15 +100,24 @@ def load_topics() -> list:
     return json.loads(TOPICS_PATH.read_text(encoding="utf-8"))["topics"]
 
 
-def pick_topic(used_titles: list) -> str:
-    """Выбирает следующую неиспользованную тему."""
+def pick_topic(used_titles: list, history: list = None) -> str:
+    """Выбирает следующую неиспользованную тему + семантический дедуп на 90 дней."""
     topics = load_topics()
     used_lower = [t.lower() for t in used_titles]
-    for topic in topics:
-        if not any(topic.lower()[:30] in u for u in used_lower):
-            return topic
-    # все темы использованы — возвращаем первую (Claude напишет новую статью с другим углом)
-    return topics[0]
+    fresh = [t for t in topics if not any(t.lower()[:30] in u for u in used_lower)]
+    if not fresh:
+        fresh = topics
+
+    if history:
+        import dedup
+        no_dupes = dedup.filter_topics(fresh, history, days=90)
+        if no_dupes:
+            fresh = no_dupes
+            print(f"  [dedup] после фильтра 90 дней осталось {len(fresh)} тем")
+        else:
+            print(f"  [dedup] ⚠️  все темы имеют семантический дубль за 90 дней")
+
+    return fresh[0]
 
 
 def write_russian_article(topic_idea: str, recent_titles: list, keywords_hint: str = "") -> dict:

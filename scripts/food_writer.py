@@ -91,13 +91,23 @@ def load_categories() -> list:
     return json.loads(CATEGORIES_PATH.read_text(encoding="utf-8"))["categories"]
 
 
-def pick_topic(used_titles: list) -> str:
+def pick_topic(used_titles: list, history: list = None) -> str:
     topics = load_topics()
     used_lower = [t.lower() for t in used_titles]
-    for topic in topics:
-        if not any(topic.lower()[:30] in u for u in used_lower):
-            return topic
-    return topics[0]
+    fresh = [t for t in topics if not any(t.lower()[:30] in u for u in used_lower)]
+    if not fresh:
+        fresh = topics
+
+    if history:
+        import dedup
+        no_dupes = dedup.filter_topics(fresh, history, days=90)
+        if no_dupes:
+            fresh = no_dupes
+            print(f"  [dedup] после фильтра 90 дней осталось {len(fresh)} тем")
+        else:
+            print(f"  [dedup] ⚠️  все темы имеют семантический дубль за 90 дней")
+
+    return fresh[0]
 
 
 def pick_kitchen_category(topic: str) -> dict:
