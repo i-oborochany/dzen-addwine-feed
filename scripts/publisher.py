@@ -101,7 +101,8 @@ def save_images(images: list, slug: str) -> list:
     return urls
 
 
-def slugify(text: str) -> str:
+def slugify(text: str, max_len: int = 75) -> str:
+    """Транслит + обрез по границе слова (не посреди слова)."""
     text = text.lower()
     table = {
         "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo","ж":"zh","з":"z",
@@ -111,7 +112,11 @@ def slugify(text: str) -> str:
     }
     text = "".join(table.get(c, c) for c in text)
     text = re.sub(r"[^a-z0-9]+", "-", text).strip("-")
-    return text[:50] or "post"
+    if len(text) <= max_len:
+        return text or "post"
+    # обрезаем по границе слова
+    cut = text[:max_len].rsplit("-", 1)[0]
+    return cut or text[:max_len] or "post"
 
 
 def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) -> None:
