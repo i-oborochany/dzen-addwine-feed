@@ -3,6 +3,13 @@
   "content_plan_index": 12,
   "history": [
     {
+      "date": "2026-07-14T15:20:30.902037+00:00",
+      "cycle_position": 3,
+      "topic_type": "beer",
+      "title": "IPA, APA, DIPA: как американский хмель изменил пивоварение навсегда",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-piva_30"
+    },
+    {
       "date": "2026-07-14T07:10:33.337812+00:00",
       "cycle_position": 2,
       "topic_type": "trend",
@@ -610,6 +617,6 @@
   "last_spirits_post": "2026-07-13T16:58:27.922137+00:00",
   "last_food_post": "2026-07-13T12:45:32.143755+00:00",
   "last_water_post": "2026-07-11T14:44:49.506361+00:00",
-  "last_beer_post": "2026-07-10T16:19:09.969379+00:00",
+  "last_beer_post": "2026-07-14T15:20:30.902053+00:00",
   "last_fortified_post": "2026-07-12T15:33:55.503290+00:00"
 }
