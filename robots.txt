@@ -1,18 +1,23 @@
 User-agent: *
 Allow: /
 
-# Не индексируем технические файлы
+# Не индексируем технические файлы и данные
 Disallow: /posts/posts_index.json
 Disallow: /posts/progress.json
 Disallow: /posts/published.json
+Disallow: /uploads/
+Disallow: /.github/
 
+# Специфика Яндекса: игнорируем UTM-метки при индексации, чтобы не было дублей
 User-agent: Yandex
 Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&utm_referrer&yclid&_openstat
+Host: feed.addwine.ru
 
+# Специфика Google: игнорирование UTM управляется в Search Console (не через robots.txt)
 User-agent: Googlebot
 Allow: /
 
-User-agent: YandexBot
-Allow: /
-
 Sitemap: https://feed.addwine.ru/sitemap.xml
+Sitemap: https://feed.addwine.ru/sitemap-posts.xml
+Sitemap: https://feed.addwine.ru/sitemap-categories.xml
