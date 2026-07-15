@@ -3,6 +3,13 @@
   "content_plan_index": 12,
   "history": [
     {
+      "date": "2026-07-15T15:16:36.912728+00:00",
+      "cycle_position": 4,
+      "topic_type": "water",
+      "title": "Гид по Олд Фэшн: история, рецепт и секреты идеального бокала",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-07-15T11:42:36.247212+00:00",
       "cycle_position": 4,
       "topic_type": "food",
@@ -630,7 +637,7 @@
   "last_digest_post": "2026-07-12T10:28:58.902417+00:00",
   "last_spirits_post": "2026-07-13T16:58:27.922137+00:00",
   "last_food_post": "2026-07-15T11:42:36.247225+00:00",
-  "last_water_post": "2026-07-11T14:44:49.506361+00:00",
+  "last_water_post": "2026-07-15T15:16:36.912741+00:00",
   "last_beer_post": "2026-07-14T15:20:30.902053+00:00",
   "last_fortified_post": "2026-07-12T15:33:55.503290+00:00"
 }
