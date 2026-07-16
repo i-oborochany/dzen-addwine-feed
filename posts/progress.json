@@ -3,6 +3,13 @@
   "content_plan_index": 12,
   "history": [
     {
+      "date": "2026-07-16T15:42:51.701820+00:00",
+      "cycle_position": 5,
+      "topic_type": "fortified",
+      "title": "Разбор: как Carpano, Martini, Cinzano и Noilly Prat изменили мир вермута",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-vermuta_61"
+    },
+    {
       "date": "2026-07-16T11:41:54.168098+00:00",
       "cycle_position": 5,
       "topic_type": "russian",
@@ -653,5 +660,5 @@
   "last_food_post": "2026-07-15T11:42:36.247225+00:00",
   "last_water_post": "2026-07-15T15:16:36.912741+00:00",
   "last_beer_post": "2026-07-14T15:20:30.902053+00:00",
-  "last_fortified_post": "2026-07-12T15:33:55.503290+00:00"
+  "last_fortified_post": "2026-07-16T15:42:51.701830+00:00"
 }
