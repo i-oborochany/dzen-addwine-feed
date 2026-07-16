@@ -3,6 +3,13 @@
   "content_plan_index": 12,
   "history": [
     {
+      "date": "2026-07-16T11:41:54.168098+00:00",
+      "cycle_position": 5,
+      "topic_type": "russian",
+      "title": "Как Крым строит современное виноделие на фундаменте вековых традиций",
+      "source_url": ""
+    },
+    {
       "date": "2026-07-16T07:10:25.477812+00:00",
       "cycle_position": 4,
       "topic_type": "trend",
@@ -640,7 +647,7 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-07-12T11:11:33.761044+00:00",
+  "last_russian_post": "2026-07-16T11:41:54.168113+00:00",
   "last_digest_post": "2026-07-12T10:28:58.902417+00:00",
   "last_spirits_post": "2026-07-13T16:58:27.922137+00:00",
   "last_food_post": "2026-07-15T11:42:36.247225+00:00",
