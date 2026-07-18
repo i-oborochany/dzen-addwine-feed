@@ -3,6 +3,13 @@
   "content_plan_index": 13,
   "history": [
     {
+      "date": "2026-07-18T15:31:44.344177+00:00",
+      "cycle_position": 2,
+      "topic_type": "beer",
+      "title": "Гид по ламбику: как бельгийцы варят пиво без культурных дрожжей",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-piva_30"
+    },
+    {
       "date": "2026-07-18T07:10:48.153019+00:00",
       "cycle_position": 1,
       "topic_type": "trend",
@@ -687,6 +694,6 @@
   "last_spirits_post": "2026-07-17T15:58:00.885703+00:00",
   "last_food_post": "2026-07-17T11:27:47.761958+00:00",
   "last_water_post": "2026-07-15T15:16:36.912741+00:00",
-  "last_beer_post": "2026-07-14T15:20:30.902053+00:00",
+  "last_beer_post": "2026-07-18T15:31:44.344190+00:00",
   "last_fortified_post": "2026-07-16T15:42:51.701830+00:00"
 }
