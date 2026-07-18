@@ -1,7 +1,14 @@
 {
-  "cycle_position": 1,
+  "cycle_position": 2,
   "content_plan_index": 13,
   "history": [
+    {
+      "date": "2026-07-18T07:10:48.153019+00:00",
+      "cycle_position": 1,
+      "topic_type": "trend",
+      "title": "Как вино, сидр и пиво становятся частью здорового образа жизни: разбор тренда",
+      "source_url": ""
+    },
     {
       "date": "2026-07-17T15:58:00.885693+00:00",
       "cycle_position": 1,
