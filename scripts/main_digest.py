@@ -89,6 +89,19 @@ def main() -> int:
             continue
         dst = folder / f"cover-{len(valid_posts) + 1}.jpg"
         shutil.copy(src, dst)
+        # копируем/создаём .webp тоже — обязательно для <picture> в рендере
+        src_webp = src.with_suffix(".webp")
+        dst_webp = dst.with_suffix(".webp")
+        if src_webp.exists():
+            shutil.copy(src_webp, dst_webp)
+        else:
+            # генерим WebP из JPG на лету
+            try:
+                from PIL import Image
+                im = Image.open(src).convert("RGB")
+                im.save(dst_webp, "WEBP", quality=82, method=6)
+            except Exception as e:
+                print(f"    ⚠️  WebP не создан ({e}) — картинка может не показаться в браузере")
         image_urls.append(f"images/{slug}/{dst.name}")
         valid_posts.append(p)
         print(f"  {len(valid_posts)}. ✅ {p['slug']} → {dst.name} ({dst.stat().st_size} байт)")
