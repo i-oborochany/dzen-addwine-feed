@@ -32,10 +32,13 @@ def embed_images(html: str, image_urls: list, pages_base: str) -> str:
     has_any = bool(re.search(r"\[\[IMG_\d+\]\]", html))
     if has_any:
         result = html
-        # поддерживаем до 12 картинок в одной статье (хватит для длинных дайджестов)
-        for i in range(1, 13):
+        # поддерживаем до 50 картинок — хватит для дайджестов с большим количеством статей
+        for i in range(1, 51):
             result = re.sub(rf"<p>\s*\[\[IMG_{i}\]\]\s*</p>", _figure(i), result)
             result = re.sub(rf"\[\[IMG_{i}\]\]", _figure(i), result)
+        # оставшиеся [[IMG_N]] (если Claude поставил > 50) заменим на последнюю картинку
+        result = re.sub(r"<p>\s*\[\[IMG_\d+\]\]\s*</p>", _figure(len(image_urls)), result)
+        result = re.sub(r"\[\[IMG_\d+\]\]", _figure(len(image_urls)), result)
         return result
 
     # fallback — одна обложка сверху
