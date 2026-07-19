@@ -3,6 +3,13 @@
   "content_plan_index": 13,
   "history": [
     {
+      "date": "2026-07-19T14:46:34.148498+00:00",
+      "cycle_position": 3,
+      "topic_type": "water",
+      "title": "Гид по Манхэттену: история, рецепт и секреты идеального коктейля",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-07-19T11:37:29.109093+00:00",
       "cycle_position": 3,
       "topic_type": "food",
@@ -714,7 +721,7 @@
   "last_digest_post": "2026-07-19T10:29:06.257373+00:00",
   "last_spirits_post": "2026-07-17T15:58:00.885703+00:00",
   "last_food_post": "2026-07-19T11:37:29.109110+00:00",
-  "last_water_post": "2026-07-15T15:16:36.912741+00:00",
+  "last_water_post": "2026-07-19T14:46:34.148508+00:00",
   "last_beer_post": "2026-07-18T15:31:44.344190+00:00",
   "last_fortified_post": "2026-07-16T15:42:51.701830+00:00"
 }
