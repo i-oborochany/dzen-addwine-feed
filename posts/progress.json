@@ -1,7 +1,14 @@
 {
-  "cycle_position": 4,
+  "cycle_position": 5,
   "content_plan_index": 13,
   "history": [
+    {
+      "date": "2026-07-21T07:10:34.351346+00:00",
+      "cycle_position": 4,
+      "topic_type": "trend",
+      "title": "Как устроена ресторанная винная карта: что означают цены и как читать её правильно",
+      "source_url": ""
+    },
     {
       "date": "2026-07-20T12:18:53.493079+00:00",
       "cycle_position": 4,
