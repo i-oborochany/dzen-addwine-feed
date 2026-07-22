@@ -3,6 +3,13 @@
   "content_plan_index": 14,
   "history": [
     {
+      "date": "2026-07-22T15:28:59.014381+00:00",
+      "cycle_position": 1,
+      "topic_type": "beer",
+      "title": "Гид по пилснеру: от Пльзени до глобального феномена",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-piva_30"
+    },
+    {
       "date": "2026-07-22T07:09:59.295004+00:00",
       "cycle_position": 5,
       "topic_type": "content_plan",
@@ -764,6 +771,6 @@
   "last_spirits_post": "2026-07-21T16:04:09.270181+00:00",
   "last_food_post": "2026-07-21T12:08:38.840453+00:00",
   "last_water_post": "2026-07-19T14:46:34.148508+00:00",
-  "last_beer_post": "2026-07-18T15:31:44.344190+00:00",
+  "last_beer_post": "2026-07-22T15:28:59.014396+00:00",
   "last_fortified_post": "2026-07-16T15:42:51.701830+00:00"
 }
