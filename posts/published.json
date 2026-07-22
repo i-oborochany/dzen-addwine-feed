@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+      "title": "Почему рестораны выбирают дорогие бокалы для вина: разбор по пунктам",
+      "published_at": "2026-07-22T07:09:59.295917+00:00"
+    },
+    {
       "url": "https://addwine.ru/catalogue/category/servirovka",
       "title": "Как удивить гостей: полный гид по сервировке вина дома",
       "published_at": "2026-07-17T07:10:15.443484+00:00"
@@ -72,12 +77,12 @@
     }
   ],
   "urls": [
-    "https://addwine.ru/catalogue/category/izuchenie",
-    "https://addwine.ru/catalogue",
-    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
-    "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+    "https://addwine.ru/catalogue/category/servirovka/shtopory",
+    "https://addwine.ru/catalogue/category/servirovka",
+    "https://addwine.ru/catalogue/category/izuchenie",
     "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
-    "https://addwine.ru/catalogue/category/servirovka"
+    "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+    "https://addwine.ru/catalogue"
   ]
 }
