@@ -3,6 +3,13 @@
   "content_plan_index": 14,
   "history": [
     {
+      "date": "2026-07-23T15:48:18.278992+00:00",
+      "cycle_position": 2,
+      "topic_type": "water",
+      "title": "Мартини Драй: 6 правил идеального коктейля",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-07-23T11:57:05.264171+00:00",
       "cycle_position": 2,
       "topic_type": "food",
@@ -784,7 +791,7 @@
   "last_digest_post": "2026-07-19T10:29:06.257373+00:00",
   "last_spirits_post": "2026-07-21T16:04:09.270181+00:00",
   "last_food_post": "2026-07-23T11:57:05.264198+00:00",
-  "last_water_post": "2026-07-19T14:46:34.148508+00:00",
+  "last_water_post": "2026-07-23T15:48:18.279005+00:00",
   "last_beer_post": "2026-07-22T15:28:59.014396+00:00",
   "last_fortified_post": "2026-07-16T15:42:51.701830+00:00"
 }
