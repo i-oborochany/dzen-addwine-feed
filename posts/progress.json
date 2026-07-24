@@ -1,7 +1,14 @@
 {
-  "cycle_position": 2,
+  "cycle_position": 3,
   "content_plan_index": 14,
   "history": [
+    {
+      "date": "2026-07-24T07:11:04.709586+00:00",
+      "cycle_position": 2,
+      "topic_type": "trend",
+      "title": "Шоколад и вино: как правильно сочетать и почему это сложнее, чем кажется",
+      "source_url": ""
+    },
     {
       "date": "2026-07-23T15:48:18.278992+00:00",
       "cycle_position": 2,
