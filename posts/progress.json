@@ -1,7 +1,14 @@
 {
-  "cycle_position": 3,
+  "cycle_position": 4,
   "content_plan_index": 14,
   "history": [
+    {
+      "date": "2026-07-25T07:10:08.021687+00:00",
+      "cycle_position": 3,
+      "topic_type": "trend",
+      "title": "Эногастрономический фестиваль: как устроены крупнейшие винные события России",
+      "source_url": ""
+    },
     {
       "date": "2026-07-24T15:54:23.200431+00:00",
       "cycle_position": 3,
