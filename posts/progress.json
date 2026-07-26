@@ -3,6 +3,13 @@
   "content_plan_index": 14,
   "history": [
     {
+      "date": "2026-07-26T10:45:49.771931+00:00",
+      "cycle_position": 0,
+      "topic_type": "digest",
+      "title": "Самое интересное за неделю в журнале AddWine",
+      "source_url": ""
+    },
+    {
       "date": "2026-07-26T07:11:07.934171+00:00",
       "cycle_position": 4,
       "topic_type": "trend",
@@ -830,7 +837,7 @@
     }
   ],
   "last_russian_post": "2026-07-24T12:01:53.961471+00:00",
-  "last_digest_post": "2026-07-19T10:29:06.257373+00:00",
+  "last_digest_post": "2026-07-26T10:45:49.771946+00:00",
   "last_spirits_post": "2026-07-21T16:04:09.270181+00:00",
   "last_food_post": "2026-07-25T11:18:12.439061+00:00",
   "last_water_post": "2026-07-23T15:48:18.279005+00:00",
