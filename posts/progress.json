@@ -3,6 +3,13 @@
   "content_plan_index": 15,
   "history": [
     {
+      "date": "2026-07-27T16:07:11.701060+00:00",
+      "cycle_position": 1,
+      "topic_type": "water",
+      "title": "Гид по Маргарите: от мексиканских баров 1940-х до барной классики всех времён",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-07-27T12:59:42.865830+00:00",
       "cycle_position": 1,
       "topic_type": "food",
@@ -861,7 +868,7 @@
   "last_digest_post": "2026-07-26T10:45:49.771946+00:00",
   "last_spirits_post": "2026-07-21T16:04:09.270181+00:00",
   "last_food_post": "2026-07-27T12:59:42.865849+00:00",
-  "last_water_post": "2026-07-23T15:48:18.279005+00:00",
+  "last_water_post": "2026-07-27T16:07:11.701074+00:00",
   "last_beer_post": "2026-07-26T15:00:25.359515+00:00",
   "last_fortified_post": "2026-07-24T15:54:23.200445+00:00"
 }
