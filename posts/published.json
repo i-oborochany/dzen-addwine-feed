@@ -2,6 +2,11 @@
   "posts": [
     {
       "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
+      "title": "Бокалы для вина: чем отличаются модели для красного и как не ошибиться с выбором",
+      "published_at": "2026-07-27T07:10:20.878195+00:00"
+    },
+    {
+      "url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
       "title": "Почему рестораны выбирают дорогие бокалы для вина: разбор по пунктам",
       "published_at": "2026-07-22T07:09:59.295917+00:00"
     },
@@ -77,12 +82,12 @@
     }
   ],
   "urls": [
-    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
-    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://addwine.ru/catalogue/category/servirovka",
+    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
+    "https://addwine.ru/catalogue",
+    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://addwine.ru/catalogue/category/izuchenie",
-    "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
     "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
-    "https://addwine.ru/catalogue"
+    "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
   ]
 }
