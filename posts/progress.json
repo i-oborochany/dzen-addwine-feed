@@ -3,6 +3,13 @@
   "content_plan_index": 15,
   "history": [
     {
+      "date": "2026-07-31T15:53:28.482418+00:00",
+      "cycle_position": 5,
+      "topic_type": "water",
+      "title": "Гид по Мохито: история, рецепт и секреты идеального коктейля",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-07-31T12:06:57.452475+00:00",
       "cycle_position": 5,
       "topic_type": "food",
@@ -924,7 +931,7 @@
   "last_digest_post": "2026-07-26T10:45:49.771946+00:00",
   "last_spirits_post": "2026-07-29T16:04:03.835458+00:00",
   "last_food_post": "2026-07-31T12:06:57.452492+00:00",
-  "last_water_post": "2026-07-27T16:07:11.701074+00:00",
+  "last_water_post": "2026-07-31T15:53:28.482434+00:00",
   "last_beer_post": "2026-07-26T15:00:25.359515+00:00",
   "last_fortified_post": "2026-07-24T15:54:23.200445+00:00"
 }
