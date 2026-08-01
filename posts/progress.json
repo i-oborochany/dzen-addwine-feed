@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 15,
+  "cycle_position": 1,
+  "content_plan_index": 16,
   "history": [
+    {
+      "date": "2026-08-01T07:10:01.152624+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Бокалы для белого вина: чем они отличаются и как не ошибиться с выбором",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina"
+    },
     {
       "date": "2026-07-31T15:53:28.482418+00:00",
       "cycle_position": 5,
