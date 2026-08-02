@@ -3,6 +3,13 @@
   "content_plan_index": 16,
   "history": [
     {
+      "date": "2026-08-02T11:18:28.926258+00:00",
+      "cycle_position": 2,
+      "topic_type": "russian",
+      "title": "Гид по виноделию предгорий Северного Кавказа: от Ставрополья до Чечни",
+      "source_url": ""
+    },
+    {
       "date": "2026-08-02T10:41:34.235927+00:00",
       "cycle_position": 0,
       "topic_type": "digest",
@@ -948,7 +955,7 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-07-28T12:00:32.824723+00:00",
+  "last_russian_post": "2026-08-02T11:18:28.926276+00:00",
   "last_digest_post": "2026-08-02T10:41:34.235943+00:00",
   "last_spirits_post": "2026-07-29T16:04:03.835458+00:00",
   "last_food_post": "2026-07-31T12:06:57.452492+00:00",
