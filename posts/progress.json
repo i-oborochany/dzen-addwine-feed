@@ -3,6 +3,13 @@
   "content_plan_index": 16,
   "history": [
     {
+      "date": "2026-08-02T14:57:40.222841+00:00",
+      "cycle_position": 2,
+      "topic_type": "beer",
+      "title": "Гид по пивным показателям: SRM, FG, OG и всё, что не ABV с IBU",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-piva_30"
+    },
+    {
       "date": "2026-08-02T11:18:28.926258+00:00",
       "cycle_position": 2,
       "topic_type": "russian",
@@ -960,6 +967,6 @@
   "last_spirits_post": "2026-07-29T16:04:03.835458+00:00",
   "last_food_post": "2026-07-31T12:06:57.452492+00:00",
   "last_water_post": "2026-07-31T15:53:28.482434+00:00",
-  "last_beer_post": "2026-07-26T15:00:25.359515+00:00",
+  "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
   "last_fortified_post": "2026-07-24T15:54:23.200445+00:00"
 }
