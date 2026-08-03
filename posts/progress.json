@@ -3,6 +3,13 @@
   "content_plan_index": 16,
   "history": [
     {
+      "date": "2026-08-03T12:59:42.235287+00:00",
+      "cycle_position": 3,
+      "topic_type": "food",
+      "title": "Кролик и белые вина Юга Франции: почему эта пара работает",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-08-03T07:11:20.899081+00:00",
       "cycle_position": 2,
       "topic_type": "trend",
@@ -972,7 +979,7 @@
   "last_russian_post": "2026-08-02T11:18:28.926276+00:00",
   "last_digest_post": "2026-08-02T10:41:34.235943+00:00",
   "last_spirits_post": "2026-07-29T16:04:03.835458+00:00",
-  "last_food_post": "2026-07-31T12:06:57.452492+00:00",
+  "last_food_post": "2026-08-03T12:59:42.235304+00:00",
   "last_water_post": "2026-07-31T15:53:28.482434+00:00",
   "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
   "last_fortified_post": "2026-07-24T15:54:23.200445+00:00"
