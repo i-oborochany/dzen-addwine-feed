@@ -3,6 +3,13 @@
   "content_plan_index": 16,
   "history": [
     {
+      "date": "2026-08-05T12:04:42.673124+00:00",
+      "cycle_position": 5,
+      "topic_type": "food",
+      "title": "Кролик и вина Юга Франции: правила сочетания, которые стоит знать",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-08-05T07:10:49.745835+00:00",
       "cycle_position": 4,
       "topic_type": "trend",
@@ -1000,7 +1007,7 @@
   "last_russian_post": "2026-08-02T11:18:28.926276+00:00",
   "last_digest_post": "2026-08-02T10:41:34.235943+00:00",
   "last_spirits_post": "2026-07-29T16:04:03.835458+00:00",
-  "last_food_post": "2026-08-03T12:59:42.235304+00:00",
+  "last_food_post": "2026-08-05T12:04:42.673142+00:00",
   "last_water_post": "2026-07-31T15:53:28.482434+00:00",
   "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
   "last_fortified_post": "2026-08-04T16:16:21.379397+00:00"
