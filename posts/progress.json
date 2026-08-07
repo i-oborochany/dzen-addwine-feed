@@ -3,6 +3,13 @@
   "content_plan_index": 17,
   "history": [
     {
+      "date": "2026-08-07T14:45:12.593982+00:00",
+      "cycle_position": 2,
+      "topic_type": "water",
+      "title": "Гид по Дайкири: три ингредиента, которые изменили барную культуру",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-08-07T11:00:10.982174+00:00",
       "cycle_position": 2,
       "topic_type": "food",
@@ -1043,7 +1050,7 @@
   "last_digest_post": "2026-08-02T10:41:34.235943+00:00",
   "last_spirits_post": "2026-08-05T16:04:30.350891+00:00",
   "last_food_post": "2026-08-07T11:00:10.982190+00:00",
-  "last_water_post": "2026-07-31T15:53:28.482434+00:00",
+  "last_water_post": "2026-08-07T14:45:12.593997+00:00",
   "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
   "last_fortified_post": "2026-08-04T16:16:21.379397+00:00"
 }
