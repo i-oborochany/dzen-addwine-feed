@@ -3,6 +3,13 @@
   "content_plan_index": 17,
   "history": [
     {
+      "date": "2026-08-07T11:00:10.982174+00:00",
+      "cycle_position": 2,
+      "topic_type": "food",
+      "title": "Белые вина Прованса и Лангедока к кролику: практический гид",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-08-07T07:10:48.975903+00:00",
       "cycle_position": 1,
       "topic_type": "trend",
@@ -1035,7 +1042,7 @@
   "last_russian_post": "2026-08-06T12:05:04.657070+00:00",
   "last_digest_post": "2026-08-02T10:41:34.235943+00:00",
   "last_spirits_post": "2026-08-05T16:04:30.350891+00:00",
-  "last_food_post": "2026-08-05T12:04:42.673142+00:00",
+  "last_food_post": "2026-08-07T11:00:10.982190+00:00",
   "last_water_post": "2026-07-31T15:53:28.482434+00:00",
   "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
   "last_fortified_post": "2026-08-04T16:16:21.379397+00:00"
