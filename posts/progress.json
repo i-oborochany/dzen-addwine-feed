@@ -3,6 +3,13 @@
   "content_plan_index": 17,
   "history": [
     {
+      "date": "2026-08-08T14:37:40.655788+00:00",
+      "cycle_position": 3,
+      "topic_type": "fortified",
+      "title": "Разбор: White Port — от сухого аперитива до десертного финала",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-vermuta_61"
+    },
+    {
       "date": "2026-08-08T07:11:01.796034+00:00",
       "cycle_position": 2,
       "topic_type": "trend",
@@ -1059,5 +1066,5 @@
   "last_food_post": "2026-08-07T11:00:10.982190+00:00",
   "last_water_post": "2026-08-07T14:45:12.593997+00:00",
   "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
-  "last_fortified_post": "2026-08-04T16:16:21.379397+00:00"
+  "last_fortified_post": "2026-08-08T14:37:40.655805+00:00"
 }
