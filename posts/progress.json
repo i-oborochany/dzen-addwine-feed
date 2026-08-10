@@ -3,6 +3,13 @@
   "content_plan_index": 17,
   "history": [
     {
+      "date": "2026-08-10T15:32:53.185609+00:00",
+      "cycle_position": 5,
+      "topic_type": "beer",
+      "title": "Как ABV и IBU формируют вкус пива: гид по двум главным цифрам на этикетке",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-piva_30"
+    },
+    {
       "date": "2026-08-10T11:10:41.370029+00:00",
       "cycle_position": 5,
       "topic_type": "russian",
@@ -1107,6 +1114,6 @@
   "last_spirits_post": "2026-08-09T14:36:08.283325+00:00",
   "last_food_post": "2026-08-09T10:42:29.437004+00:00",
   "last_water_post": "2026-08-07T14:45:12.593997+00:00",
-  "last_beer_post": "2026-08-02T14:57:40.222859+00:00",
+  "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
   "last_fortified_post": "2026-08-08T14:37:40.655805+00:00"
 }
