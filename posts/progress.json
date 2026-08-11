@@ -3,6 +3,13 @@
   "content_plan_index": 18,
   "history": [
     {
+      "date": "2026-08-11T10:57:26.467899+00:00",
+      "cycle_position": 1,
+      "topic_type": "food",
+      "title": "Кролик в соусе и белое вино Юга Франции: как выбрать идеальную пару",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-08-11T07:10:10.918045+00:00",
       "cycle_position": 5,
       "topic_type": "content_plan",
@@ -1119,7 +1126,7 @@
   "last_russian_post": "2026-08-10T11:10:41.370050+00:00",
   "last_digest_post": "2026-08-09T09:39:37.837246+00:00",
   "last_spirits_post": "2026-08-09T14:36:08.283325+00:00",
-  "last_food_post": "2026-08-09T10:42:29.437004+00:00",
+  "last_food_post": "2026-08-11T10:57:26.467916+00:00",
   "last_water_post": "2026-08-07T14:45:12.593997+00:00",
   "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
   "last_fortified_post": "2026-08-08T14:37:40.655805+00:00"
