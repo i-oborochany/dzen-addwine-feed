@@ -3,6 +3,13 @@
   "content_plan_index": 18,
   "history": [
     {
+      "date": "2026-08-11T15:29:24.347763+00:00",
+      "cycle_position": 1,
+      "topic_type": "water",
+      "title": "Гид по Апероль-шприцу: как итальянский аперитив стал главным коктейлем лета",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-koktejlej_62"
+    },
+    {
       "date": "2026-08-11T10:57:26.467899+00:00",
       "cycle_position": 1,
       "topic_type": "food",
@@ -1127,7 +1134,7 @@
   "last_digest_post": "2026-08-09T09:39:37.837246+00:00",
   "last_spirits_post": "2026-08-09T14:36:08.283325+00:00",
   "last_food_post": "2026-08-11T10:57:26.467916+00:00",
-  "last_water_post": "2026-08-07T14:45:12.593997+00:00",
+  "last_water_post": "2026-08-11T15:29:24.347781+00:00",
   "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
   "last_fortified_post": "2026-08-08T14:37:40.655805+00:00"
 }
