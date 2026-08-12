@@ -3,6 +3,13 @@
   "content_plan_index": 18,
   "history": [
     {
+      "date": "2026-08-12T15:03:14.416113+00:00",
+      "cycle_position": 2,
+      "topic_type": "fortified",
+      "title": "Гид по гастрономии White Port: от устриц до миндального пирога",
+      "source_url": "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina/bokaly-dlya-vermuta_61"
+    },
+    {
       "date": "2026-08-12T07:11:03.806715+00:00",
       "cycle_position": 1,
       "topic_type": "trend",
@@ -1143,5 +1150,5 @@
   "last_food_post": "2026-08-11T10:57:26.467916+00:00",
   "last_water_post": "2026-08-11T15:29:24.347781+00:00",
   "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
-  "last_fortified_post": "2026-08-08T14:37:40.655805+00:00"
+  "last_fortified_post": "2026-08-12T15:03:14.416127+00:00"
 }
