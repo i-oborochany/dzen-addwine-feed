@@ -4,22 +4,38 @@ TOPVISOR_PROJECT_ID задан: True
 TOPVISOR_PROJECT_ID = 31407217
 
 ============================================================
-Шаг 1: список всех проектов
+Шаг 1: список всех проектов (с site/name)
 ============================================================
 Сырой ответ (первые 2000 симв.):
 {
   "result": [
     {
-      "id": 31408037
+      "id": 31408037,
+      "name": "AddWine",
+      "site": "addwine.ru",
+      "url": "addwine.ru",
+      "on": 0
     },
     {
-      "id": 31407217
+      "id": 31407217,
+      "name": "FeedAddWine",
+      "site": "feed.addwine.ru",
+      "url": "feed.addwine.ru",
+      "on": 1
     },
     {
-      "id": 9808944
+      "id": 9808944,
+      "name": "AddWine",
+      "site": "addwine.ru",
+      "url": "addwine.ru",
+      "on": -1
     },
     {
-      "id": 2742322
+      "id": 2742322,
+      "name": "addwine.ru",
+      "site": "addwine.ru",
+      "url": "addwine.ru",
+      "on": -1
     }
   ],
   "total": 4
@@ -28,6 +44,70 @@ TOPVISOR_PROJECT_ID = 31407217
 Проектов: 4
 
 ============================================================
-Шаг 2: автопоиск проекта feed.addwine.ru
+Шаг 2: определяем ID проекта feed.addwine.ru
 ============================================================
-❌ Проект feed.addwine.ru не найден в аккаунте
+✅ Использую ID из секрета TOPVISOR_PROJECT_ID: 31407217
+
+============================================================
+Шаг 3: регионы проекта 31407217
+============================================================
+
+[debug] endpoint: get/projects_2/searchers_regions
+[debug] ответ (первые 1500 симв):
+{
+  "result": null,
+  "errors": [
+    {
+      "code": 1003,
+      "string": "Call to undefined method: get/projects_2/searchers/regions",
+      "detail": {
+        "sid": "e2268e274939d66f",
+        "v": "1.20.69"
+      }
+    }
+  ]
+}
+
+[debug] endpoint: get/projects_2/searchers
+[debug] ответ (первые 1500 симв):
+{
+  "result": null,
+  "errors": [
+    {
+      "code": 1003,
+      "string": "Call to undefined method: get/projects_2/searchers",
+      "detail": {
+        "sid": "f64ae4fef7da7d74",
+        "v": "1.20.69"
+      }
+    }
+  ]
+}
+
+[debug] endpoint: get/projects_2/project
+[debug] ответ (первые 1500 симв):
+{
+  "result": null,
+  "errors": [
+    {
+      "code": 1003,
+      "string": "Call to undefined method: get/projects_2/project",
+      "detail": {
+        "sid": "c8c91b7a35979fce",
+        "v": "1.20.69"
+      }
+    }
+  ]
+}
+
+=== Найдено регионов: 0 → [] ===
+
+============================================================
+Шаг 4: позиции ключей проекта 31407217
+============================================================
+  [topvisor] не удалось получить регионы проекта
+
+=== Позиций получено: 0 ===
+  [topvisor] не удалось получить регионы проекта
+
+=== Кандидатов на дожим (4-15): 0 ===

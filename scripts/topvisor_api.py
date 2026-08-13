@@ -249,9 +249,12 @@ def test_connection() -> bool:
 
     # 1. Список проектов с расширенными полями
     print("=" * 60)
-    print("Шаг 1: список всех проектов")
+    print("Шаг 1: список всех проектов (с site/name)")
     print("=" * 60)
-    data = _post("get/projects_2/projects", {"show_headers": 1})
+    data = _post("get/projects_2/projects", {
+        "show_headers": 1,
+        "fields": ["id", "name", "site", "url", "on"],
+    })
     if not data:
         print("❌ API недоступно")
         return False
@@ -261,19 +264,25 @@ def test_connection() -> bool:
     projects = data.get("result", []) if isinstance(data.get("result"), list) else []
     print(f"\nПроектов: {len(projects)}")
 
-    # 2. Ищем наш проект по site 'addwine'
+    # 2. Определяем ID проекта: приоритет — из секрета, иначе автопоиск
     print()
     print("=" * 60)
-    print("Шаг 2: автопоиск проекта feed.addwine.ru")
+    print("Шаг 2: определяем ID проекта feed.addwine.ru")
     print("=" * 60)
-    our_id = find_project_by_site("addwine")
-    if our_id:
-        print(f"✅ Найден наш проект: id={our_id}")
-        env_id = os.environ.get("TOPVISOR_PROJECT_ID", "")
-        if env_id and int(env_id) != our_id:
-            print(f"⚠️  В secret стоит другой ID ({env_id})! Обнови на {our_id}")
-    else:
-        print("❌ Проект feed.addwine.ru не найден в аккаунте")
+    env_id = os.environ.get("TOPVISOR_PROJECT_ID", "").strip()
+    our_id = 0
+    if env_id:
+        try:
+            our_id = int(env_id)
+            print(f"✅ Использую ID из секрета TOPVISOR_PROJECT_ID: {our_id}")
+        except Exception:
+            print(f"❌ Секрет TOPVISOR_PROJECT_ID некорректен: {env_id}")
+    if not our_id:
+        our_id = find_project_by_site("addwine")
+        if our_id:
+            print(f"✅ Найден автопоиском: id={our_id}")
+        else:
+            print("❌ Проект feed.addwine.ru не найден в аккаунте")
 
     # 3. Регионы для нашего проекта
     if our_id:
