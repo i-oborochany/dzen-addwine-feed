@@ -61,7 +61,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/positions_2/searchers",
       "detail": {
-        "sid": "1fb84c29f3a2e75a",
+        "sid": "59350aa4bee2e688",
         "v": "1.20.69"
       }
     }
@@ -77,7 +77,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/positions_2/searchers/list",
       "detail": {
-        "sid": "07e982296a4161a1",
+        "sid": "1f77d24d8a12678f",
         "v": "1.20.69"
       }
     }
@@ -93,7 +93,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/projects_2/searchers/regions/list",
       "detail": {
-        "sid": "e8042aa5cbbf049e",
+        "sid": "af0cd8e513f9cf5c",
         "v": "1.20.69"
       }
     }
@@ -394,9 +394,11 @@ TOPVISOR_PROJECT_ID = 31407217
             "relevant_url": "https://feed.addwine.ru/posts/2026-07-05-razbor-singl-molt-protiv-blended-v-chyom-principia/"
           },
           "2026-08-13:31407217:7": 
+[debug] Маппинг регионов: {'5': 'yandex', '7': 'google'}
 
-=== Позиций получено: 2 ===
-  google  #  2  «разница блендед и сингл молт»  → https://feed.addwine.ru/posts/2026-07-05-razbor-si
-  google  # 71  «как выбрать штопор»  → https://feed.addwine.ru/posts/2026-06-17-kak-vybra
+=== Позиций получено (реальных, не '--'): 2 ===
+  Yandex: 2, Google: 0
+  yandex  #  2  «разница блендед и сингл молт»  → https://feed.addwine.ru/posts/2026-07-05-razbor-singl-molt-p
+  yandex  # 71  «как выбрать штопор»  → https://feed.addwine.ru/posts/2026-06-17-kak-vybrat-shtopor-
 
-=== Кандидатов на дожим (4-15): 0 ===
+=== Кандидатов на дожим (позиции 4-15): 0 ===

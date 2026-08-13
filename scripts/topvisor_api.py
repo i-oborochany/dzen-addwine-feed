@@ -161,10 +161,29 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
         # result может быть dict или list в разных версиях API
         if isinstance(raw, list):
             keywords = raw
+            headers = {}
         elif isinstance(raw, dict):
             keywords = raw.get("keywords") or raw.get("data") or []
+            headers = raw.get("headers") or {}
         else:
             keywords = []
+            headers = {}
+
+        # Строим маппинг region_index → se_name из headers
+        # headers.projects[N].searchers[M].regions[K].index + searchers[M].key
+        region_to_se = {}
+        for proj in headers.get("projects", []) or []:
+            for searcher in proj.get("searchers", []) or []:
+                se_key = searcher.get("key", 0)
+                se_name = "yandex" if se_key == 0 else "google"
+                for reg in searcher.get("regions", []) or []:
+                    idx = reg.get("index")
+                    try:
+                        region_to_se[str(idx)] = se_name
+                    except Exception:
+                        pass
+        if debug and region_to_se:
+            print(f"[debug] Маппинг регионов: {region_to_se}")
 
         for kw in keywords:
             if not isinstance(kw, dict):
@@ -179,15 +198,14 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
             for full_key, val in positions_data.items():
                 if not val or not isinstance(val, dict):
                     continue
-                # Разбираем sound-part ключа: date:se:region
+                # Формат ключа: date:project_id:region_index
                 parts = full_key.split(":")
-                # Определяем searcher: если первая часть похожа на дату
-                se_index = "0"
-                if len(parts) >= 2 and parts[0][:4].isdigit() and "-" in parts[0]:
-                    se_index = parts[1] if len(parts) > 1 else "0"
-                elif len(parts) >= 1:
-                    se_index = parts[0]
-                se = "yandex" if se_index in ("0", 0) else "google"
+                region_index = parts[-1] if parts else ""
+                # Определяем se по маппингу из headers, fallback по index
+                se = region_to_se.get(str(region_index))
+                if not se:
+                    # Fallback: 5 = yandex, 7 = google (типичные индексы РФ)
+                    se = "yandex" if str(region_index) in ("5", "0") else "google"
 
                 # Достаём position/url — либо напрямую, либо из вложенного dict дат
                 position = val.get("position")
@@ -320,14 +338,27 @@ def test_connection() -> bool:
         print(f"Шаг 4: позиции ключей проекта {our_id}")
         print("=" * 60)
         os.environ["TOPVISOR_PROJECT_ID"] = str(our_id)
-        positions = get_positions(debug=True)
-        print(f"\n=== Позиций получено: {len(positions)} ===")
-        for p in positions[:30]:
-            print(f"  {p['se']:6}  #{p['position']:3}  «{p['keyword'][:55]}»  → {p['url'][:50]}")
+        # Пробуем сразу 30 дней истории — вдруг съём был давно
+        positions = get_positions(days_back=30, debug=True)
+        print(f"\n=== Позиций получено (реальных, не '--'): {len(positions)} ===")
+        # Группируем по se
+        by_se = {"yandex": 0, "google": 0}
+        for p in positions:
+            by_se[p["se"]] = by_se.get(p["se"], 0) + 1
+        print(f"  Yandex: {by_se.get('yandex', 0)}, Google: {by_se.get('google', 0)}")
+        for p in sorted(positions, key=lambda x: x["position"])[:30]:
+            print(f"  {p['se']:6}  #{p['position']:3}  «{p['keyword'][:55]}»  → {p['url'][:60]}")
 
-        # 5. Кандидаты
-        candidates = find_boost_candidates()
-        print(f"\n=== Кандидатов на дожим (4-15): {len(candidates)} ===")
+        # 5. Кандидаты (используем те же 30 дней)
+        candidates = {}
+        for p in positions:
+            if 4 <= p["position"] <= 15 and p["url"]:
+                key = p["url"]
+                if key not in candidates:
+                    candidates[key] = {"url": p["url"], "keywords": []}
+                candidates[key]["keywords"].append({"kw": p["keyword"], "pos": p["position"], "se": p["se"]})
+        candidates = list(candidates.values())
+        print(f"\n=== Кандидатов на дожим (позиции 4-15): {len(candidates)} ===")
         for c in candidates[:10]:
             keys = ", ".join(f"«{k['kw']}» #{k['pos']}" for k in c["keywords"][:3])
             print(f"  {c['url']}")
