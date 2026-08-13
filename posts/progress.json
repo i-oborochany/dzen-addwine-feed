@@ -1,7 +1,14 @@
 {
-  "cycle_position": 2,
+  "cycle_position": 3,
   "content_plan_index": 18,
   "history": [
+    {
+      "date": "2026-08-13T07:11:13.613345+00:00",
+      "cycle_position": 2,
+      "topic_type": "trend",
+      "title": "Рейтинг винных карт ресторанов: по каким критериям составляют и что он говорит о заведении",
+      "source_url": ""
+    },
     {
       "date": "2026-08-12T15:03:14.416113+00:00",
       "cycle_position": 2,
