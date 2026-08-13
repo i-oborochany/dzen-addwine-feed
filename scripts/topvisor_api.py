@@ -65,7 +65,7 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
         "show_headers": 1,
         "show_exists_dates": 1,
         "fields": ["name", "id"],
-        "positions_fields": ["position", "url", "relevant_url"],
+        "positions_fields": ["position", "relevant_url"],  # правильные имена полей
     }
     data = _post("get/positions_2/history", payload)
     if not data:
@@ -74,17 +74,27 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
     if debug:
         import json as _j
         print("[debug] Топ-уровневые ключи ответа:", list(data.keys()))
+        errors = data.get("errors")
+        if errors:
+            print("[debug] Ошибки API:", _j.dumps(errors, ensure_ascii=False, indent=2))
         print("[debug] Сырой ответ (первые 2000 симв.):")
         print(_j.dumps(data, ensure_ascii=False, indent=2)[:2000])
 
+    # Проверяем что result не null и не пустой
+    raw = data.get("result")
+    if raw is None:
+        print("  [topvisor] result: null (обычно значит что позиции ещё не собраны или ошибка)")
+        return []
+
     result = []
     try:
-        raw = data.get("result", {})
-        # result может быть dict или list, в разных версиях API
+        # result может быть dict или list в разных версиях API
         if isinstance(raw, list):
             keywords = raw
-        else:
+        elif isinstance(raw, dict):
             keywords = raw.get("keywords") or raw.get("data") or []
+        else:
+            keywords = []
 
         for kw in keywords:
             if not isinstance(kw, dict):
