@@ -167,6 +167,13 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
     # сохраняем
     feed_io.write_feed(feed_data["channel"], feed_data["items"])
 
+    # IndexNow — мгновенный пинг Яндекса о новой странице
+    try:
+        import indexnow_ping
+        indexnow_ping.ping_urls([permalink])
+    except Exception as e:
+        print(f"[publisher] IndexNow пропущен: {e}")
+
     # генерируем HTML-страницу статьи и обновляем главную
     try:
         import html_renderer

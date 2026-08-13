@@ -929,6 +929,55 @@ def render_index_page(posts_meta: list) -> str:
 <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Журнал AddWine">
 <link rel="icon" href="https://addwine.ru/favicon.ico">
 <style>{BASE_CSS}</style>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AddWine",
+  "url": "https://addwine.ru",
+  "logo": {{
+    "@type": "ImageObject",
+    "url": "https://feed.addwine.ru/logo.png",
+    "width": 300,
+    "height": 60
+  }},
+  "description": "Крупнейший в России магазин винных аксессуаров: бокалы, штопоры, декантеры, охладители.",
+  "telephone": "+7 495 297-27-97",
+  "address": {{
+    "@type": "PostalAddress",
+    "addressCountry": "RU",
+    "addressLocality": "Москва"
+  }},
+  "sameAs": [
+    "https://dzen.ru/addwine",
+    "https://t.me/justaddwine",
+    "https://t.me/addwine_shop"
+  ]
+}}
+</script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Журнал AddWine",
+  "alternateName": "AddWine Magazine",
+  "url": "https://feed.addwine.ru/",
+  "inLanguage": "ru-RU",
+  "publisher": {{
+    "@type": "Organization",
+    "name": "AddWine",
+    "url": "https://addwine.ru"
+  }},
+  "potentialAction": {{
+    "@type": "SearchAction",
+    "target": {{
+      "@type": "EntryPoint",
+      "urlTemplate": "https://feed.addwine.ru/?q={{search_term_string}}"
+    }},
+    "query-input": "required name=search_term_string"
+  }}
+}}
+</script>
 {ANALYTICS_HEAD}
 </head>
 <body>
@@ -1004,6 +1053,21 @@ def rebuild_index() -> None:
         category_renderer.rebuild_all_categories()
     except Exception as e:
         print(f"[html_renderer] страницы категорий не пересобрались: {e}")
+    try:
+        import html_sitemap
+        html_sitemap.generate()
+    except Exception as e:
+        print(f"[html_renderer] HTML-карта не создана: {e}")
+    try:
+        import llms_txt_gen
+        llms_txt_gen.generate()
+    except Exception as e:
+        print(f"[html_renderer] llms.txt не создан: {e}")
+    try:
+        import indexnow_ping
+        indexnow_ping.ensure_key_file()  # обеспечиваем наличие ключ-файла в корне
+    except Exception as e:
+        print(f"[html_renderer] IndexNow ключ не создан: {e}")
 
 
 def rebuild_from_feed(pages_base: str) -> None:
