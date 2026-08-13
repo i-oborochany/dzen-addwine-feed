@@ -44,6 +44,29 @@ def _post(path: str, payload: dict) -> dict:
     return {}
 
 
+def _get_project_regions(project_id: int) -> List[int]:
+    """
+    Достаёт список индексов регионов конкретного проекта.
+    Разные проекты имеют разные regions_indexes.
+    """
+    data = _post("get/projects_2/searchers_regions", {"project_id": project_id})
+    if not data:
+        return []
+    raw = data.get("result")
+    if not raw:
+        return []
+    indexes = []
+    try:
+        for item in (raw if isinstance(raw, list) else raw.get("regions", [])):
+            if isinstance(item, dict):
+                idx = item.get("index")
+                if idx is not None:
+                    indexes.append(int(idx))
+    except Exception as e:
+        print(f"  [topvisor] regions parse: {e}")
+    return indexes
+
+
 def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
     """
     Получает последние позиции по всем ключам проекта.
@@ -57,15 +80,21 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
     date_to = datetime.now().strftime("%Y-%m-%d")
     date_from = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
 
+    # Сначала узнаём реальные regions_indexes проекта (у каждого свои)
+    regions = _get_project_regions(int(project_id))
+    if not regions:
+        print("  [topvisor] не удалось получить регионы проекта")
+        return []
+
     payload = {
         "project_id": int(project_id),
-        "regions_indexes": [0, 1, 2, 3],
+        "regions_indexes": regions,
         "date1": date_from,
         "date2": date_to,
         "show_headers": 1,
         "show_exists_dates": 1,
         "fields": ["name", "id"],
-        "positions_fields": ["position", "relevant_url"],  # правильные имена полей
+        "positions_fields": ["position", "relevant_url"],
     }
     data = _post("get/positions_2/history", payload)
     if not data:
