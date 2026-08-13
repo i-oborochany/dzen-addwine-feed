@@ -140,8 +140,15 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
         errors = data.get("errors")
         if errors:
             print("[debug] Ошибки API:", _j.dumps(errors, ensure_ascii=False, indent=2))
-        print("[debug] Сырой ответ (первые 2000 симв.):")
-        print(_j.dumps(data, ensure_ascii=False, indent=2)[:2000])
+        # Печатаем структуру первого ключа отдельно чтобы увидеть positionsData
+        raw_dbg = data.get("result")
+        if isinstance(raw_dbg, dict):
+            kws_dbg = raw_dbg.get("keywords") or []
+            if kws_dbg and isinstance(kws_dbg[0], dict):
+                print("[debug] Первый keyword целиком:")
+                print(_j.dumps(kws_dbg[0], ensure_ascii=False, indent=2))
+        print("[debug] Сырой ответ (первые 5000 симв.):")
+        print(_j.dumps(data, ensure_ascii=False, indent=2)[:5000])
 
     # Проверяем что result не null и не пустой
     raw = data.get("result")
@@ -166,21 +173,34 @@ def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
             positions_data = kw.get("positionsData") or kw.get("positions_data") or {}
             if not isinstance(positions_data, dict):
                 continue
-            for region_key, positions in positions_data.items():
-                if not positions or not isinstance(positions, dict):
+            # Formatteр ключа в Topvisor: date:searcher_key:region_index:region_key:lang:device
+            # Значение может быть либо сразу {position, relevant_url} (одноуровневая),
+            # либо dict дат {date: {position, ...}} (двухуровневая).
+            for full_key, val in positions_data.items():
+                if not val or not isinstance(val, dict):
                     continue
-                # Берём последнюю дату
-                latest_key = sorted(positions.keys())[-1] if positions else None
-                if not latest_key:
-                    continue
-                latest = positions.get(latest_key)
-                if not isinstance(latest, dict):
-                    continue
-                position = latest.get("position", 0)
-                url = latest.get("url", "") or latest.get("relevant_url", "")
-                parts = region_key.split(":")
-                se_index = parts[1] if len(parts) > 1 else "0"
-                se = "yandex" if se_index == "0" else "google"
+                # Разбираем sound-part ключа: date:se:region
+                parts = full_key.split(":")
+                # Определяем searcher: если первая часть похожа на дату
+                se_index = "0"
+                if len(parts) >= 2 and parts[0][:4].isdigit() and "-" in parts[0]:
+                    se_index = parts[1] if len(parts) > 1 else "0"
+                elif len(parts) >= 1:
+                    se_index = parts[0]
+                se = "yandex" if se_index in ("0", 0) else "google"
+
+                # Достаём position/url — либо напрямую, либо из вложенного dict дат
+                position = val.get("position")
+                url = val.get("url", "") or val.get("relevant_url", "")
+                if position is None and all(isinstance(v, dict) for v in val.values()):
+                    # это двухуровневая — берём последнюю дату
+                    latest_key = sorted(val.keys())[-1] if val else None
+                    if latest_key:
+                        inner = val.get(latest_key, {})
+                        if isinstance(inner, dict):
+                            position = inner.get("position")
+                            url = inner.get("url", "") or inner.get("relevant_url", "") or url
+
                 try:
                     position_int = int(position)
                 except Exception:

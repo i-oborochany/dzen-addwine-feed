@@ -61,7 +61,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/positions_2/searchers",
       "detail": {
-        "sid": "0d31b7e460fe9436",
+        "sid": "628545029964b0dc",
         "v": "1.20.69"
       }
     }
@@ -77,7 +77,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/positions_2/searchers/list",
       "detail": {
-        "sid": "f37dbf08331ab71d",
+        "sid": "4263f7ee891a516b",
         "v": "1.20.69"
       }
     }
@@ -93,7 +93,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/projects_2/searchers/regions/list",
       "detail": {
-        "sid": "5eff6c648b2183e0",
+        "sid": "a3bdb59a1d070db7",
         "v": "1.20.69"
       }
     }
@@ -174,7 +174,22 @@ TOPVISOR_PROJECT_ID = 31407217
 Шаг 4: позиции ключей проекта 31407217
 ============================================================
 [debug] Топ-уровневые ключи ответа: ['result', 'total']
-[debug] Сырой ответ (первые 2000 симв.):
+[debug] Первый keyword целиком:
+{
+  "name": "негрони рецепт",
+  "id": 186641801,
+  "positionsData": {
+    "2026-08-13:31407217:5": {
+      "position": "--",
+      "relevant_url": ""
+    },
+    "2026-08-13:31407217:7": {
+      "position": "--",
+      "relevant_url": ""
+    }
+  }
+}
+[debug] Сырой ответ (первые 5000 симв.):
 {
   "result": {
     "headers": {
@@ -260,8 +275,128 @@ TOPVISOR_PROJECT_ID = 31407217
     "keywords": [
       {
         "name": "негрони рецепт",
-     
+        "id": 186641801,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "российское виноделие",
+        "id": 12036862,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "сингл молт виски",
+        "id": 87067570,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "каберне совиньон",
+        "id": 36925243,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "штопор для вина",
+        "id": 4793084,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "как выбрать бокал для вина",
+        "id": 414919720,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "крепкий алкоголь",
+        "id": 1635451,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "что пить с красным мясом",
+        "id": 1074086172,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "--",
+            "relevant_url": ""
+          },
+          "2026-08-13:31407217:7": {
+            "position": "--",
+            "relevant_url": ""
+          }
+        }
+      },
+      {
+        "name": "разница блендед и сингл молт",
+        "id": 1074086173,
+        "positionsData": {
+          "2026-08-13:31407217:5": {
+            "position": "2",
+            "relevant_url": "https://feed.addwine.ru/posts/2026-07-05-razbor-singl-molt-protiv-blended-v-chyom-principia/"
+          },
+          "2026-08-13:31407217:7": 
 
-=== Позиций получено: 0 ===
+=== Позиций получено: 2 ===
+  google  #  2  «разница блендед и сингл молт»  → https://feed.addwine.ru/posts/2026-07-05-razbor-si
+  google  # 71  «как выбрать штопор»  → https://feed.addwine.ru/posts/2026-06-17-kak-vybra
 
 === Кандидатов на дожим (4-15): 0 ===
