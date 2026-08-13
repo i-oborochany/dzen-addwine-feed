@@ -44,7 +44,7 @@ def _post(path: str, payload: dict) -> dict:
     return {}
 
 
-def get_positions(days_back: int = 7) -> List[Dict]:
+def get_positions(days_back: int = 7, debug: bool = False) -> List[Dict]:
     """
     Получает последние позиции по всем ключам проекта.
     Возвращает [{keyword, se: 'yandex'/'google', region, position, url}]
@@ -59,42 +59,70 @@ def get_positions(days_back: int = 7) -> List[Dict]:
 
     payload = {
         "project_id": int(project_id),
-        "regions_indexes": [0, 1],  # 0 = первый регион (Яндекс), 1 = Google
+        "regions_indexes": [0, 1, 2, 3],
         "date1": date_from,
         "date2": date_to,
         "show_headers": 1,
-        "fields": ["name"],
-        "positions_fields": ["position", "url"],
+        "show_exists_dates": 1,
+        "fields": ["name", "id"],
+        "positions_fields": ["position", "url", "relevant_url"],
     }
     data = _post("get/positions_2/history", payload)
     if not data:
         return []
 
+    if debug:
+        import json as _j
+        print("[debug] Топ-уровневые ключи ответа:", list(data.keys()))
+        print("[debug] Сырой ответ (первые 2000 симв.):")
+        print(_j.dumps(data, ensure_ascii=False, indent=2)[:2000])
+
     result = []
     try:
-        keywords = data.get("result", {}).get("keywords", [])
+        raw = data.get("result", {})
+        # result может быть dict или list, в разных версиях API
+        if isinstance(raw, list):
+            keywords = raw
+        else:
+            keywords = raw.get("keywords") or raw.get("data") or []
+
         for kw in keywords:
+            if not isinstance(kw, dict):
+                continue
             name = kw.get("name", "")
-            for region_key, positions in kw.get("positionsData", {}).items():
-                if not positions:
+            positions_data = kw.get("positionsData") or kw.get("positions_data") or {}
+            if not isinstance(positions_data, dict):
+                continue
+            for region_key, positions in positions_data.items():
+                if not positions or not isinstance(positions, dict):
                     continue
-                # Берём самую свежую позицию из истории
-                latest = list(positions.values())[-1] if positions else {}
+                # Берём последнюю дату
+                latest_key = sorted(positions.keys())[-1] if positions else None
+                if not latest_key:
+                    continue
+                latest = positions.get(latest_key)
+                if not isinstance(latest, dict):
+                    continue
                 position = latest.get("position", 0)
-                url = latest.get("url", "")
-                # region_key типа "20260713:1:0" — второй элемент это индекс региона
+                url = latest.get("url", "") or latest.get("relevant_url", "")
                 parts = region_key.split(":")
                 se_index = parts[1] if len(parts) > 1 else "0"
                 se = "yandex" if se_index == "0" else "google"
-                if position and int(position) > 0:
+                try:
+                    position_int = int(position)
+                except Exception:
+                    continue
+                if position_int > 0 and position_int < 200:
                     result.append({
                         "keyword": name,
                         "se": se,
-                        "position": int(position),
+                        "position": position_int,
                         "url": url,
                     })
     except Exception as e:
-        print(f"  [topvisor] парсинг: {e}")
+        print(f"  [topvisor] парсинг: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
     return result
 
 
