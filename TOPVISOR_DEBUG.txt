@@ -52,62 +52,216 @@ TOPVISOR_PROJECT_ID = 31407217
 Шаг 3: регионы проекта 31407217
 ============================================================
 
-[debug] endpoint: get/projects_2/searchers_regions
+[debug] endpoint: get/positions_2/searchers
 [debug] ответ (первые 1500 симв):
 {
   "result": null,
   "errors": [
     {
       "code": 1003,
-      "string": "Call to undefined method: get/projects_2/searchers/regions",
+      "string": "Call to undefined method: get/positions_2/searchers",
       "detail": {
-        "sid": "e2268e274939d66f",
+        "sid": "0d31b7e460fe9436",
         "v": "1.20.69"
       }
     }
   ]
 }
 
-[debug] endpoint: get/projects_2/searchers
+[debug] endpoint: get/positions_2/searchers/list
 [debug] ответ (первые 1500 симв):
 {
   "result": null,
   "errors": [
     {
       "code": 1003,
-      "string": "Call to undefined method: get/projects_2/searchers",
+      "string": "Call to undefined method: get/positions_2/searchers/list",
       "detail": {
-        "sid": "f64ae4fef7da7d74",
+        "sid": "f37dbf08331ab71d",
         "v": "1.20.69"
       }
     }
   ]
 }
 
-[debug] endpoint: get/projects_2/project
+[debug] endpoint: get/projects_2/searchers_regions/list
 [debug] ответ (первые 1500 симв):
 {
   "result": null,
   "errors": [
     {
       "code": 1003,
-      "string": "Call to undefined method: get/projects_2/project",
+      "string": "Call to undefined method: get/projects_2/searchers/regions/list",
       "detail": {
-        "sid": "c8c91b7a35979fce",
+        "sid": "5eff6c648b2183e0",
         "v": "1.20.69"
       }
     }
   ]
 }
 
-=== Найдено регионов: 0 → [] ===
+[debug] endpoint: get/projects_2/projects
+[debug] ответ (первые 1500 симв):
+{
+  "result": [
+    {
+      "id": 31407217,
+      "name": "FeedAddWine",
+      "site": "feed.addwine.ru",
+      "searchers": [
+        {
+          "id": 22788923,
+          "project_id": 31407217,
+          "searcher": 0,
+          "enabled": 1,
+          "ord": 1,
+          "key": 0,
+          "name": "Yandex",
+          "regions": [
+            {
+              "id": 24919400,
+              "key": 225,
+              "lang": "ru",
+              "device": 0,
+              "depth": 1,
+              "index": 5,
+              "enabled": 1,
+              "searcher_key": 0,
+              "type": "COUNTRY",
+              "countryCode": "RU",
+              "name": "Россия",
+              "areaName": "",
+              "domain": ".ru",
+              "parentId": 10001
+            }
+          ]
+        },
+        {
+          "id": 22788925,
+          "project_id": 31407217,
+          "searcher": 1,
+          "enabled": 1,
+          "ord": 2,
+          "key": 1,
+          "name": "Google",
+          "regions": [
+            {
+              "id": 24919401,
+              "key": 225,
+              "lang": "ru",
+              "device": 0,
+              "depth": 1,
+              "index": 7,
+              "enabled": 1,
+              "searcher_key": 1,
+              "type": "COUNTRY",
+              "countryCode": "RU",
+              "name": "Россия",
+              "areaName": "",
+              "domain": ".ru",
+              "parentId": 10001
+            }
+          ]
+        }
+      ]
+    }
+  ],
+[debug] найдены индексы через get/projects_2/projects: [5, 7]
+
+=== Найдено регионов: 2 → [5, 7] ===
 
 ============================================================
 Шаг 4: позиции ключей проекта 31407217
 ============================================================
-  [topvisor] не удалось получить регионы проекта
+[debug] Топ-уровневые ключи ответа: ['result', 'total']
+[debug] Сырой ответ (первые 2000 симв.):
+{
+  "result": {
+    "headers": {
+      "fields": [
+        {
+          "name": "name",
+          "alias": "name",
+          "qualifiers": [],
+          "label": "Запросы",
+          "labelData": {
+            "label": "Запросы",
+            "tooltip": "",
+            "hint": ""
+          }
+        },
+        {
+          "name": "id",
+          "alias": "id",
+          "qualifiers": [],
+          "label": "ID Запроса",
+          "labelData": {
+            "label": "ID Запроса",
+            "tooltip": "",
+            "hint": ""
+          }
+        }
+      ],
+      "project_id": 31407217,
+      "historyFields": [
+        "position",
+        "relevant_url"
+      ],
+      "dates": [
+        "2026-08-13"
+      ],
+      "projects": [
+        {
+          "id": 31407217,
+          "name": "FeedAddWine",
+          "site": "feed.addwine.ru",
+          "searchers": [
+            {
+              "name": "Yandex",
+              "key": 0,
+              "regions": [
+                {
+                  "countryCode": "RU",
+                  "name": "Россия",
+                  "areaName": "",
+                  "searcher_key": 0,
+                  "index": "5",
+                  "key": 225,
+                  "lang": "ru",
+                  "device": 0,
+                  "device_name": "ПК"
+                }
+              ]
+            },
+            {
+              "name": "Google",
+              "key": 1,
+              "regions": [
+                {
+                  "countryCode": "RU",
+                  "name": "Россия",
+                  "areaName": "",
+                  "searcher_key": 1,
+                  "index": "7",
+                  "key": 225,
+                  "lang": "ru",
+                  "device": 0,
+                  "device_name": "ПК"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "folderName": null,
+      "groupName": null,
+      "snippetsTagsByHash": null
+    },
+    "keywords": [
+      {
+        "name": "негрони рецепт",
+     
 
 === Позиций получено: 0 ===
-  [topvisor] не удалось получить регионы проекта
 
 === Кандидатов на дожим (4-15): 0 ===

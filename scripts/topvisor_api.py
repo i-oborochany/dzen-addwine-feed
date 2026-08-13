@@ -51,11 +51,12 @@ def _get_project_regions(project_id: int, debug: bool = False) -> List[int]:
     """
     import json as _j
 
-    # Попытка 1: получить проект целиком с настройками
+    # В Topvisor API v2 регионы возвращаются через positions_2/searchers
     endpoints = [
-        ("get/projects_2/searchers_regions", {"project_id": project_id}),
-        ("get/projects_2/searchers", {"project_id": project_id}),
-        ("get/projects_2/project", {"id": project_id, "show_searchers": 1}),
+        ("get/positions_2/searchers", {"project_id": project_id}),
+        ("get/positions_2/searchers/list", {"project_id": project_id}),
+        ("get/projects_2/searchers_regions/list", {"project_id": project_id}),
+        ("get/projects_2/projects", {"filters": [{"name": "id", "operator": "EQUALS", "values": [project_id]}], "fields": ["id", "name", "site"], "show_searchers_and_regions": 1}),
     ]
 
     for path, payload in endpoints:
