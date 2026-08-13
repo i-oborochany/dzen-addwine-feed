@@ -215,6 +215,27 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 .post-body a:hover { border-color: transparent; }
 .post-body strong { font-weight: 600; }
 
+/* Свежий абзац от актуализации */
+.refresh-2026 {
+  border-left: 3px solid var(--accent);
+  padding: 12px 18px;
+  background: #fefbf5;
+  margin: 24px 0;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+.refresh-2026::before {
+  content: "🔄 Обновлено:";
+  display: block;
+  font-size: 12px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
 /* FAQ секция */
 .faq { margin: 32px 0; padding: 24px 28px; background: #fafaf7; border-radius: 12px; border: 1px solid var(--border); }
 .faq h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; color: var(--text); }
@@ -678,13 +699,19 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
         "isFamilyFriendly": False,
         "isAccessibleForFree": True,
         "author": {
-            "@type": "Organization",
-            "name": "Редакция журнала AddWine",
+            "@type": "Person",
+            "name": "Редакция AddWine",
             "url": "https://feed.addwine.ru/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://feed.addwine.ru/logo.png"
-            }
+            "jobTitle": "Редактор винного журнала",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "AddWine",
+                "url": "https://addwine.ru"
+            },
+            "sameAs": [
+                "https://dzen.ru/addwine",
+                "https://t.me/justaddwine"
+            ]
         },
         "publisher": {
             "@type": "Organization",
