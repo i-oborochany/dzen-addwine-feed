@@ -1,0 +1,160 @@
+"""
+Обёртка над API Topvisor v2.
+Документация: https://topvisor.com/ru/api/
+
+Получает позиции ключевых запросов проекта в Яндексе и Google.
+"""
+import json
+import os
+import sys
+from datetime import datetime, timedelta
+from typing import List, Dict
+
+import requests
+
+API_URL = "https://api.topvisor.com/v2/json"
+TIMEOUT = 30
+
+
+def _headers() -> Dict[str, str]:
+    api_key = os.environ.get("TOPVISOR_API_KEY", "").strip()
+    user_id = os.environ.get("TOPVISOR_USER_ID", "").strip()
+    return {
+        "Authorization": f"bearer {api_key}",
+        "User-Id": user_id,
+        "Content-Type": "application/json",
+    }
+
+
+def _project_id() -> str:
+    return os.environ.get("TOPVISOR_PROJECT_ID", "").strip()
+
+
+def _post(path: str, payload: dict) -> dict:
+    """Универсальный POST-запрос к Topvisor API."""
+    url = f"{API_URL}/{path.lstrip('/')}"
+    try:
+        r = requests.post(url, json=payload, headers=_headers(), timeout=TIMEOUT)
+        if r.status_code == 200:
+            return r.json()
+        else:
+            print(f"  [topvisor] {url} → HTTP {r.status_code}: {r.text[:300]}")
+    except Exception as e:
+        print(f"  [topvisor] {url} → {type(e).__name__}: {e}")
+    return {}
+
+
+def get_positions(days_back: int = 7) -> List[Dict]:
+    """
+    Получает последние позиции по всем ключам проекта.
+    Возвращает [{keyword, se: 'yandex'/'google', region, position, url}]
+    """
+    project_id = _project_id()
+    if not project_id:
+        print("  [topvisor] TOPVISOR_PROJECT_ID не задан")
+        return []
+
+    date_to = datetime.now().strftime("%Y-%m-%d")
+    date_from = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
+
+    payload = {
+        "project_id": int(project_id),
+        "regions_indexes": [0, 1],  # 0 = первый регион (Яндекс), 1 = Google
+        "date1": date_from,
+        "date2": date_to,
+        "show_headers": 1,
+        "fields": ["name"],
+        "positions_fields": ["position", "url"],
+    }
+    data = _post("get/positions_2/history", payload)
+    if not data:
+        return []
+
+    result = []
+    try:
+        keywords = data.get("result", {}).get("keywords", [])
+        for kw in keywords:
+            name = kw.get("name", "")
+            for region_key, positions in kw.get("positionsData", {}).items():
+                if not positions:
+                    continue
+                # Берём самую свежую позицию из истории
+                latest = list(positions.values())[-1] if positions else {}
+                position = latest.get("position", 0)
+                url = latest.get("url", "")
+                # region_key типа "20260713:1:0" — второй элемент это индекс региона
+                parts = region_key.split(":")
+                se_index = parts[1] if len(parts) > 1 else "0"
+                se = "yandex" if se_index == "0" else "google"
+                if position and int(position) > 0:
+                    result.append({
+                        "keyword": name,
+                        "se": se,
+                        "position": int(position),
+                        "url": url,
+                    })
+    except Exception as e:
+        print(f"  [topvisor] парсинг: {e}")
+    return result
+
+
+def find_boost_candidates(min_pos: int = 4, max_pos: int = 15) -> List[Dict]:
+    """
+    Находит статьи которые почти в топе (позиции min_pos - max_pos).
+    Возвращает список URL с ключами и позициями.
+    """
+    positions = get_positions()
+    candidates = {}
+    for p in positions:
+        if min_pos <= p["position"] <= max_pos and p["url"]:
+            key = p["url"]
+            if key not in candidates:
+                candidates[key] = {
+                    "url": p["url"],
+                    "keywords": [],
+                }
+            candidates[key]["keywords"].append({
+                "kw": p["keyword"],
+                "pos": p["position"],
+                "se": p["se"],
+            })
+    return list(candidates.values())
+
+
+def test_connection() -> bool:
+    """Проверяет что API-доступы валидные."""
+    print(f"TOPVISOR_USER_ID задан: {bool(os.environ.get('TOPVISOR_USER_ID'))}")
+    print(f"TOPVISOR_API_KEY задан: {bool(os.environ.get('TOPVISOR_API_KEY'))}")
+    print(f"TOPVISOR_PROJECT_ID задан: {bool(os.environ.get('TOPVISOR_PROJECT_ID'))}")
+    print()
+
+    # Пробуем получить список проектов
+    data = _post("get/projects_2/projects", {"show_headers": 1})
+    if not data:
+        print("❌ API недоступно или ключи неверные")
+        return False
+
+    projects = data.get("result", [])
+    print(f"✅ Топвизор ответил, проектов у аккаунта: {len(projects)}")
+    for p in projects[:5]:
+        print(f"  · id={p.get('id')} site={p.get('site')} name={p.get('name')}")
+
+    # Пробуем получить позиции
+    positions = get_positions()
+    print(f"\nПозиций получено: {len(positions)}")
+    for p in positions[:10]:
+        print(f"  {p['se']:6}  #{p['position']:3}  «{p['keyword'][:50]}»  → {p['url'][:60]}")
+
+    # Кандидаты на дожим
+    candidates = find_boost_candidates()
+    print(f"\nСтраниц-кандидатов на дожим (позиции 4-15): {len(candidates)}")
+    for c in candidates[:5]:
+        keys = ", ".join(f"«{k['kw']}» #{k['pos']}" for k in c["keywords"][:3])
+        print(f"  {c['url']}")
+        print(f"    {keys}")
+
+    return True
+
+
+if __name__ == "__main__":
+    test_connection()
