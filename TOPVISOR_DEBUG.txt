@@ -61,7 +61,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/positions_2/searchers",
       "detail": {
-        "sid": "628545029964b0dc",
+        "sid": "1fb84c29f3a2e75a",
         "v": "1.20.69"
       }
     }
@@ -77,7 +77,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/positions_2/searchers/list",
       "detail": {
-        "sid": "4263f7ee891a516b",
+        "sid": "07e982296a4161a1",
         "v": "1.20.69"
       }
     }
@@ -93,7 +93,7 @@ TOPVISOR_PROJECT_ID = 31407217
       "code": 1003,
       "string": "Call to undefined method: get/projects_2/searchers/regions/list",
       "detail": {
-        "sid": "a3bdb59a1d070db7",
+        "sid": "e8042aa5cbbf049e",
         "v": "1.20.69"
       }
     }
