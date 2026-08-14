@@ -113,6 +113,12 @@ def pick_topic(used_titles: list, history: list = None) -> str:
     if not fresh:
         fresh = topics
 
+    # Стоп-лист тем (не пишем про бокалы/штопоры/бренды AddWine)
+    import stop_list
+    filtered = stop_list.filter_topics(fresh)
+    if filtered:
+        fresh = filtered
+
     if history:
         import dedup
         no_dupes = dedup.filter_topics(fresh, history, days=90)

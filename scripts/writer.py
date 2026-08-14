@@ -219,9 +219,10 @@ def _brand_hint_for_theme(theme: str) -> str:
     return ""
 
 
-def write_trend_article(seed_titles: list, recent_history: list, brand_colors: dict) -> dict:
+def write_trend_article(seed_titles: list, recent_history: list, brand_colors: dict, keywords_hint: str = "") -> dict:
     seeds_text = "\n".join(f"- {t}" for t in seed_titles[:30])
     history_text = "\n".join(f"- {t}" for t in recent_history) if recent_history else "(пусто)"
+    seo_block = f"\n{keywords_hint}\n" if keywords_hint else ""
 
     user = f"""РЕЖИМ: ТРЕНДОВАЯ СТАТЬЯ (без CTA, без упоминания бренда)
 
@@ -230,12 +231,13 @@ def write_trend_article(seed_titles: list, recent_history: list, brand_colors: d
 
 Уже публиковали за 60 дней (не повторяйся):
 {history_text}
-
+{seo_block}
 Задача:
 1. Выбери ОДНУ актуальную тему интересную аудитории и не повторяющуюся.
 2. Напиши полностью оригинальную статью со своей структурой и примерами.
 3. НЕ упоминай AddWine, не давай ссылок, не делай CTA. Без блока «AddWine рекомендует».
 4. Присвой 1–2 категории из допустимого списка.
+5. Если дан SEO-бриф — вплетай ключи естественно в title, первый абзац и h2.
 
 Ответ строго в JSON по схеме из системного промпта."""
 

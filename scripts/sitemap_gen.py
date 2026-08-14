@@ -83,6 +83,16 @@ def generate_sitemap_categories() -> None:
         '  </url>',
     ])
 
+    # страница о редакции (E-E-A-T)
+    lines.extend([
+        '  <url>',
+        f'    <loc>{SITE_URL}/about-editorial/</loc>',
+        f'    <lastmod>{today}</lastmod>',
+        '    <changefreq>monthly</changefreq>',
+        '    <priority>0.5</priority>',
+        '  </url>',
+    ])
+
     # страницы категорий
     for cat_name, meta in cats.items():
         lines.extend([

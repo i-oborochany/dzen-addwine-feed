@@ -42,6 +42,12 @@ def pick_topic(rubric_config: dict, used_titles: list, history: list = None) -> 
     if not fresh:
         fresh = topics
 
+    # 1.5. Стоп-лист тем/брендов (не пересекаться с коммерческим блогом)
+    import stop_list
+    filtered = stop_list.filter_topics(fresh)
+    if filtered:
+        fresh = filtered
+
     # 2. Семантический дедуп через dedup.py на 90 дней
     if history:
         import dedup

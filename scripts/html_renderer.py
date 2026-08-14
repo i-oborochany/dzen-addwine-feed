@@ -202,6 +202,9 @@ main { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
 }
 .post-meta-bar .cat { color: var(--text-soft); font-weight: 500; }
 .post-meta-bar .date { color: var(--text-soft); margin-left: auto; font-variant-numeric: tabular-nums; }
+.post-meta-bar .author-line a { color: var(--text-soft); text-decoration: underline; text-decoration-color: rgba(0,0,0,.2); }
+.post-signature { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border, #e5e5e5); color: var(--text-soft); font-size: 14px; }
+.post-signature a { color: inherit; text-decoration: underline; }
 .post-header .lead { font-size: 18px; color: var(--text-muted); line-height: 1.5; }
 .post-body { font-size: 17px; line-height: 1.75; color: #2a2a2a; }
 .post-body p { margin-bottom: 20px; }
@@ -304,87 +307,45 @@ footer.site { background: var(--bg-alt); border-top: 1px solid var(--border); ma
 
 HEADER_HTML = """<header class="site">
   <div class="header-wrap">
-    <a class="brand" href="https://addwine.ru">
+    <a class="brand" href="/">
       __LOGO_HEADER__
     </a>
     <nav class="header-nav">
-      <a href="https://addwine.ru/catalogue" class="catalog-link">Каталог</a>
       <a href="/">Журнал</a>
+      <a href="/sitemap-html/">Все статьи</a>
       <a href="https://dzen.ru/addwine" target="_blank" rel="noopener">Дзен</a>
-      <a href="https://addwine.ru/contacts">Контакты</a>
+      <a href="https://addwine.ru/catalogue" class="catalog-link" rel="nofollow">Магазин AddWine</a>
     </nav>
-    <div class="header-icons">
-      <a href="https://addwine.ru/user/notifications" aria-label="Уведомления">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-      </a>
-      <a href="https://addwine.ru/favorites" aria-label="Избранное">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      </a>
-      <a href="https://addwine.ru/user" aria-label="Профиль">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </a>
-    </div>
   </div>
-</header>
-<div class="brand-strip">
-  <div class="brand-strip-wrap">
-    <a href="https://add-event.ru/" target="_blank" rel="noopener" class="brand-link">
-      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      Аренда с AddEvent
-    </a>
-    <a href="https://sellers.addwine.ru/" target="_blank" rel="noopener" class="brand-link">
-      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
-      Дистрибьюция с AddSeller
-    </a>
-    <a href="https://addwibe.ru/" target="_blank" rel="noopener" class="brand-link">
-      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2v6c0 2 2 4 4 4s4-2 4-4V2H8z"/><path d="M12 12v8M9 22h6"/></svg>
-      Дегустации с AddWibe
-    </a>
-    <span class="brand-strip-sep"></span>
-    <a href="https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina">Бокалы</a>
-    <a href="https://addwine.ru/catalogue/category/servirovka/shtopory">Штопоры</a>
-    <a href="https://addwine.ru/catalogue/category/podacha/dekantery">Декантеры</a>
-    <a href="https://addwine.ru/catalogue/category/izuchenie">Подарки</a>
-  </div>
-</div>"""
+</header>"""
 
 FOOTER_HTML = """<footer class="site">
   <div class="footer-wrap">
     <div class="footer-grid">
       <div class="footer-col footer-about">
-        <a href="https://addwine.ru" style="display:inline-block;margin-bottom:12px">__LOGO_FOOTER__</a>
-        <p>Журнал о вине, виноделии и винной культуре от команды AddWine — крупнейшего в России магазина аксессуаров для вина.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Каталог</h4>
-        <ul>
-          <li><a href="https://addwine.ru/catalogue/category/hranenie">Хранение вина</a></li>
-          <li><a href="https://addwine.ru/catalogue/category/servirovka">Сервировка</a></li>
-          <li><a href="https://addwine.ru/catalogue/category/podacha">Дегустация</a></li>
-          <li><a href="https://addwine.ru/catalogue/category/izuchenie">Винные подарки</a></li>
-        </ul>
+        <a href="/" style="display:inline-block;margin-bottom:12px">__LOGO_FOOTER__</a>
+        <p>Журнал о вине, виноделии и винной культуре. Материалы готовит <a href="/about-editorial/">редакция журнала AddWine</a> с использованием ИИ-инструментов; тексты проверяются людьми.</p>
       </div>
       <div class="footer-col">
         <h4>Журнал</h4>
         <ul>
           <li><a href="/">Все статьи</a></li>
+          <li><a href="/sitemap-html/">Карта статей</a></li>
+          <li><a href="/about-editorial/">О редакции</a></li>
           <li><a href="/feed.xml">RSS-лента</a></li>
-          <li><a href="https://dzen.ru/addwine" target="_blank">Канал на Дзене</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Компания</h4>
+        <h4>Мы в сети</h4>
         <ul>
-          <li><a href="https://addwine.ru/about">О компании</a></li>
-          <li><a href="https://addwine.ru/contacts">Контакты</a></li>
-          <li><a href="https://addwine.ru/delivery-info">Доставка и оплата</a></li>
-          <li><a href="https://t.me/justaddwine" target="_blank">Telegram</a></li>
+          <li><a href="https://dzen.ru/addwine" target="_blank" rel="noopener">Канал на Дзене</a></li>
+          <li><a href="https://t.me/justaddwine" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://addwine.ru" rel="nofollow">Магазин AddWine</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>® AddWine 2017-2026. Материалы для лиц старше 18 лет.</span>
-      <span><a href="https://addwine.ru/privacy-policy">Политика конфиденциальности</a></span>
     </div>
   </div>
 </footer>"""
@@ -699,15 +660,9 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
         "isFamilyFriendly": False,
         "isAccessibleForFree": True,
         "author": {
-            "@type": "Person",
-            "name": "Редакция AddWine",
-            "url": "https://feed.addwine.ru/",
-            "jobTitle": "Редактор винного журнала",
-            "worksFor": {
-                "@type": "Organization",
-                "name": "AddWine",
-                "url": "https://addwine.ru"
-            },
+            "@type": "Organization",
+            "name": "Редакция журнала AddWine",
+            "url": "https://feed.addwine.ru/about-editorial/",
             "sameAs": [
                 "https://dzen.ru/addwine",
                 "https://t.me/justaddwine"
@@ -847,11 +802,16 @@ def render_post_page(article: dict, slug: str, pub_date: datetime, categories: l
         <h1>{title}</h1>
         <div class="post-meta-bar">
           <span class="cat">{cat_html or "Журнал AddWine"}</span>
+          <span class="author-line"><a href="/about-editorial/" rel="author">Редакция журнала AddWine</a></span>
           <span class="date">{_ru_date(pub_date)}</span>
         </div>
       </header>
       <div class="post-body">
 {body_html}
+      </div>
+      <div class="post-signature">
+        <p>Материал подготовила <a href="/about-editorial/" rel="author">редакция журнала AddWine</a>.
+        Опубликовано {_ru_date(pub_date)}.</p>
       </div>
     </article>
 {_related_posts_html(slug, cats, limit=4)}
@@ -1095,6 +1055,78 @@ def rebuild_index() -> None:
         indexnow_ping.ensure_key_file()  # обеспечиваем наличие ключ-файла в корне
     except Exception as e:
         print(f"[html_renderer] IndexNow ключ не создан: {e}")
+    try:
+        write_about_editorial()
+    except Exception as e:
+        print(f"[html_renderer] страница о редакции не создана: {e}")
+
+
+def write_about_editorial() -> None:
+    """Генерирует страницу /about-editorial/ — единый автор всех материалов журнала."""
+    header = HEADER_HTML.replace("__LOGO_HEADER__", LOGO_HEADER)
+    footer = FOOTER_HTML.replace("__LOGO_FOOTER__", LOGO_FOOTER)
+    jsonld = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Редакция журнала AddWine",
+        "url": "https://feed.addwine.ru/about-editorial/",
+        "parentOrganization": {
+            "@type": "Organization",
+            "name": "AddWine",
+            "url": "https://addwine.ru"
+        },
+        "sameAs": ["https://dzen.ru/addwine", "https://t.me/justaddwine"]
+    }
+    html = f"""<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О редакции — Журнал AddWine</title>
+<meta name="description" content="Кто и как делает журнал AddWine: редакционный процесс, использование ИИ-инструментов, проверка фактов.">
+<link rel="canonical" href="https://feed.addwine.ru/about-editorial/">
+<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
+<style>{BASE_CSS}</style>
+</head>
+<body>
+{header}
+<main>
+  <div class="post-wrap">
+    <article>
+      <header class="post-header">
+        <h1>О редакции журнала AddWine</h1>
+      </header>
+      <div class="post-body">
+        <p>Журнал AddWine — издание о вине, виноделии и винной культуре. Мы пишем о сортах и стилях,
+        регионах и терруарах, российском виноделии, гастрономических сочетаниях и людях,
+        которые делают винный мир интересным.</p>
+        <h2>Как готовятся материалы</h2>
+        <p>Материалы журнала готовит редакция AddWine с использованием современных ИИ-инструментов.
+        Каждый текст проходит редакционный процесс: мы формируем тему и структуру, проверяем факты,
+        имена, даты и цифры, актуализируем устаревшие статьи. Мы честно говорим об этом,
+        потому что считаем, что ценность материала определяется его пользой для читателя,
+        а не способом производства.</p>
+        <h2>Что мы не делаем</h2>
+        <p>Мы не публикуем непроверенные сведения, не используем кликбейт и не выдаём материалы
+        за мнения выдуманных экспертов. Если вы нашли неточность — напишите нам в
+        <a href="https://t.me/justaddwine" target="_blank" rel="noopener">Telegram</a>,
+        мы исправим и обновим материал.</p>
+        <h2>Связь</h2>
+        <p>Журнал издаётся командой <a href="https://addwine.ru" rel="nofollow">AddWine</a>.
+        Мы на связи в <a href="https://t.me/justaddwine" target="_blank" rel="noopener">Telegram</a>
+        и на <a href="https://dzen.ru/addwine" target="_blank" rel="noopener">Дзене</a>.</p>
+      </div>
+    </article>
+  </div>
+</main>
+{footer}
+</body>
+</html>
+"""
+    out_dir = REPO_ROOT / "about-editorial"
+    out_dir.mkdir(exist_ok=True)
+    (out_dir / "index.html").write_text(html, encoding="utf-8")
+    print("[html_renderer] /about-editorial/ создана")
 
 
 def rebuild_from_feed(pages_base: str) -> None:

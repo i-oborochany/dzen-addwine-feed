@@ -113,12 +113,18 @@ def load_topics() -> list:
 
 
 def pick_topic(used_titles: list, history: list = None) -> str:
-    """Выбирает следующую неиспользованную тему + семантический дедуп на 90 дней."""
+    """Выбирает следующую неиспользованную тему + стоп-лист + семантический дедуп 90 дней."""
     topics = load_topics()
     used_lower = [t.lower() for t in used_titles]
     fresh = [t for t in topics if not any(t.lower()[:30] in u for u in used_lower)]
     if not fresh:
         fresh = topics
+
+    # Стоп-лист тем (не пишем про бокалы/штопоры/бренды AddWine)
+    import stop_list
+    filtered = stop_list.filter_topics(fresh)
+    if filtered:
+        fresh = filtered
 
     if history:
         import dedup

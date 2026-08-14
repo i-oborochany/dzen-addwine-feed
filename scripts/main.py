@@ -19,6 +19,8 @@ import publisher
 import progress as progress_mod
 import addwine_linker
 import seo_planner
+import stop_list
+import dedup
 
 
 def already_published_today(progress: dict) -> bool:
@@ -61,7 +63,18 @@ def main() -> int:
         if plan_idx >= len(plan):
             print(f"Контент-план исчерпан ({plan_idx}/{len(plan)}), начинаем сначала")
             plan_idx = 0
+
+        # Стоп-лист: пропускаем строки плана, попавшие в фильтр
+        max_tries = len(plan)
         plan_row = plan[plan_idx]
+        while max_tries > 0:
+            skip, reason = stop_list.should_skip_topic(plan_row.get("title", ""))
+            if not skip:
+                break
+            print(f"  [stop-list] строка #{plan_row.get('number')} пропущена: {reason}")
+            plan_idx = (plan_idx + 1) % len(plan)
+            plan_row = plan[plan_idx]
+            max_tries -= 1
 
         print(f"\n[1/4] Контент-план строка #{plan_row['number']}: {plan_row['title']}")
         print(f"  Категория: {plan_row['promote_category']} → {plan_row['promote_link']}")
@@ -79,16 +92,53 @@ def main() -> int:
         # TREND режим
         print("\n[1/4] Собираем заголовки-затравки из источников")
         seeds = sources.collect_seeds(config)
+        # Подмешиваем редакционный банк тем (editorial_topics.json в корне репо)
+        try:
+            import json as _json
+            ed_path = Path(__file__).resolve().parent.parent / "editorial_topics.json"
+            if ed_path.exists():
+                ed_topics = _json.loads(ed_path.read_text(encoding="utf-8")).get("topics", [])
+                seeds = ed_topics + seeds  # редакционные в приоритете
+                print(f"  + {len(ed_topics)} редакционных тем из editorial_topics.json")
+        except Exception as e:
+            print(f"  [!] editorial_topics не прочитан: {e}")
         print(f"  всего заголовков: {len(seeds)}")
         if len(seeds) < 5:
             print("  слишком мало затравок, выходим")
             return 1
 
+        # Стоп-лист: убираем seeds, попавшие в фильтр (бокалы/штопоры/бренды AddWine)
+        filtered = stop_list.filter_topics(seeds)
+        if filtered:
+            seeds = filtered
+
+        # Семантический дедуп 90 дней
+        history = progress.get("history", [])
+        no_dupes = dedup.filter_topics(seeds, history, days=90)
+        if no_dupes:
+            seeds = no_dupes
+            print(f"  [dedup] после фильтра 90 дней осталось {len(seeds)} затравок")
+
+        if not seeds:
+            print("  ⚠️  после всех фильтров не осталось тем — выходим")
+            return 1
+
+        # SEO-план на базе первой (топ-)темы
+        print("\n[1.5/4] SEO-план: Wordstat-ключи под топ-затравку")
+        keywords_hint = ""
+        try:
+            top_seed = seeds[0]
+            keywords = seo_planner.discover_keywords(top_seed, lead="", limit=15)
+            keywords_hint = seo_planner.format_seo_brief(keywords)
+            print(f"  {len(keywords)} ключей, режим брифа готов")
+        except Exception as e:
+            print(f"  [!] SEO-план упал: {e} — пишем без брифа")
+
         recent_titles = progress_mod.recent_titles(progress, days=60)
         print(f"  заголовков в истории (60 дней): {len(recent_titles)}")
 
         print("\n[2/4] Claude выбирает тему и пишет статью с нуля")
-        article = writer.write_trend_article(seeds, recent_titles, config.get("brand_colors", {}))
+        article = writer.write_trend_article(seeds, recent_titles, config.get("brand_colors", {}), keywords_hint=keywords_hint)
         topic_type = "trend"
         source_url = ""
 

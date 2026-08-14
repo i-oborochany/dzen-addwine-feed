@@ -17,6 +17,12 @@ from xml.etree import ElementTree as ET
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FEED_PATH = REPO_ROOT / "feed.xml"
+# Полное хранилище всех статей (включая ещё не "выпущенные" в Дзен)
+FEED_FULL_PATH = REPO_ROOT / "feed_full.json"
+
+# Задержка публикации в Дзен: статья появляется в feed.xml только через N часов
+# после публикации на поддомене. Так Яндекс считает первоисточником наш домен.
+DZEN_DELAY_HOURS = 24
 
 # Допустимые теги для Дзена в content:encoded
 ALLOWED_TAGS = {
@@ -143,9 +149,23 @@ def _parse_pubdate(s: str) -> datetime:
 
 
 def read_feed() -> dict:
-    """Читает feed.xml. Возвращает {channel: {...}, items: [...]}.
-    Совместим с обоими форматами: старым (yandex:full-text) и новым (content:encoded).
+    """Читает полное хранилище статей. Возвращает {channel: {...}, items: [...]}.
+
+    Приоритет: feed_full.json (полное хранилище, включая непроставленные в Дзен).
+    Fallback: парсинг feed.xml (для обратной совместимости при первом запуске).
     """
+    # 1. Полное хранилище
+    if FEED_FULL_PATH.exists():
+        try:
+            import json as _json
+            data = _json.loads(FEED_FULL_PATH.read_text(encoding="utf-8"))
+            items = data.get("items", [])
+            # pub_date хранится как RFC822-строка — оставляем как есть,
+            # write_feed умеет работать со строками
+            return {"channel": data.get("channel", {}), "items": items}
+        except Exception as e:
+            print(f"[feed_io] feed_full.json не читается ({e}), fallback на feed.xml")
+
     if not FEED_PATH.exists():
         return {"channel": {}, "items": []}
 
@@ -213,14 +233,50 @@ def _esc(s: str) -> str:
 
 def write_feed(channel: dict, items: list) -> None:
     """
-    Сохраняет feed.xml в формате Дзена.
-    Полностью соответствует примеру из https://dzen.ru/help/ru/website/rss-modify.html:
-    - xmlns:content, xmlns:dc, xmlns:media, xmlns:atom
-    - content:encoded с CDATA
-    - figure/img внутри content
-    - media:rating
-    - одна category (format-article)
+    Сохраняет:
+    1. feed_full.json — ПОЛНОЕ хранилище всех статей (для внутренних скриптов)
+    2. feed.xml — фид для Дзена, куда попадают только статьи старше DZEN_DELAY_HOURS.
+       Так поддомен становится первоисточником, а Дзен получает копию через сутки.
+
+    Формат Дзена: https://dzen.ru/help/ru/website/rss-modify.html
     """
+    import json as _json
+    import os as _os
+
+    # --- 1. Полное хранилище ---
+    full_items = []
+    for it in items:
+        it2 = dict(it)
+        pub = it2.get("pub_date")
+        if isinstance(pub, datetime):
+            it2["pub_date"] = format_datetime(pub)
+        full_items.append(it2)
+    FEED_FULL_PATH.write_text(
+        _json.dumps({"channel": channel, "items": full_items}, ensure_ascii=False, indent=1),
+        encoding="utf-8",
+    )
+
+    # --- 2. Фильтр для Дзена: только статьи старше DZEN_DELAY_HOURS ---
+    delay_h = float(_os.environ.get("DZEN_DELAY_HOURS", DZEN_DELAY_HOURS))
+    now = datetime.now(timezone.utc)
+    visible = []
+    held = 0
+    for it in full_items:
+        try:
+            dt = _parse_pubdate(it.get("pub_date", ""))
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            age_h = (now - dt).total_seconds() / 3600
+            if age_h >= delay_h:
+                visible.append(it)
+            else:
+                held += 1
+        except Exception:
+            visible.append(it)
+    if held:
+        print(f"[feed_io] {held} стат. держим вне Дзен-фида (моложе {delay_h:.0f}ч) — выйдут при следующей пересборке")
+
+    items = visible
     lines = []
     lines.append('<?xml version="1.0" encoding="UTF-8"?>')
     # Полный набор namespace, как в примере Дзена
