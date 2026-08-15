@@ -1,7 +1,14 @@
 {
-  "cycle_position": 4,
+  "cycle_position": 5,
   "content_plan_index": 18,
   "history": [
+    {
+      "date": "2026-08-15T07:10:40.912889+00:00",
+      "cycle_position": 4,
+      "topic_type": "trend",
+      "title": "Гид по оранжевому вину: технология, вкус и правила подачи",
+      "source_url": ""
+    },
     {
       "date": "2026-08-14T07:10:51.589441+00:00",
       "cycle_position": 3,
