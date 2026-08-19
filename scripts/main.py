@@ -44,6 +44,14 @@ def main() -> int:
 
     progress = progress_mod.load_progress()
 
+    # НОВЫЙ ТЕМП (14.08.2026): ежедневная рубрика выходит только Пн/Ср/Пт.
+    # Гейт нужен потому что workflow_dispatch может дёргаться внешним cron ежедневно.
+    weekday = datetime.now(timezone.utc).weekday()  # 0=Пн ... 6=Вс
+    if weekday not in (0, 2, 4) and not os.environ.get("FORCE_PUBLISH"):
+        print(f"⚠️  Сегодня день недели {weekday} (0=Пн). Публикуем только Пн/Ср/Пт.")
+        print("    Пропускаем запуск. Чтобы форсировать — установи FORCE_PUBLISH=1")
+        return 0
+
     # дедуп: если сегодня уже было — пропускаем (защита от тройного cron)
     if already_published_today(progress) and not os.environ.get("FORCE_PUBLISH"):
         last = progress["history"][0]
