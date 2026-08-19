@@ -167,12 +167,10 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
     # сохраняем
     feed_io.write_feed(feed_data["channel"], feed_data["items"])
 
-    # IndexNow — мгновенный пинг Яндекса о новой странице
-    try:
-        import indexnow_ping
-        indexnow_ping.ping_urls([permalink])
-    except Exception as e:
-        print(f"[publisher] IndexNow пропущен: {e}")
+    # IndexNow НЕ пингуем здесь: страница появится на Pages только после git push.
+    # Пинг делает отдельный шаг воркфлоу (scripts/ping_recent.py) после деплоя,
+    # иначе Яндекс приходит раньше деплоя и получает 404.
+    print(f"[publisher] IndexNow-пинг отложен до пост-деплой шага: {permalink}")
 
     # генерируем HTML-страницу статьи и обновляем главную
     try:

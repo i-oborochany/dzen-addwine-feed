@@ -48,3 +48,9 @@ jobs:
             git commit -m "Spirits post $(date -u +%Y-%m-%d)"
             git push
           fi
+
+      - name: Ping IndexNow after deploy
+        if: success()
+        run: |
+          pip install requests -q
+          python scripts/ping_recent.py || echo "ping не критичен"
