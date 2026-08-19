@@ -170,12 +170,14 @@ def build_system_prompt(rubric_config: dict) -> str:
 
 def write_article(rubric: str, topic_idea: str, recent_titles: list, keywords_hint: str = "") -> dict:
     """Основная функция генерации."""
+    import title_rules
     cfg = load_config(rubric)
     system = build_system_prompt(cfg)
     link = pick_link(cfg, topic_idea)
     history = "\n".join(f"- {t}" for t in recent_titles[:30]) if recent_titles else "(пусто)"
 
     seo_block = f"\n\n{keywords_hint}\n" if keywords_hint else ""
+    seo_block += title_rules.forbidden_starts_block(recent_titles)
 
     user = f"""ИДЕЯ ДЛЯ СТАТЬИ: {topic_idea}
 
