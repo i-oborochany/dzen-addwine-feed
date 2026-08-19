@@ -95,6 +95,8 @@ def main() -> int:
     for i, prompt in enumerate(article["image_prompts"][:1], 1):
         print(f"  фото {i}/1 ...")
         try:
+            import image_style
+            prompt = image_style.enrich(prompt, article.get("title", "") or article.get("title_chosen", ""))
             img = openai_api.generate_image(prompt)
             images.append(img)
             print(f"     ok, {len(img)} байт")

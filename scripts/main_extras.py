@@ -86,6 +86,8 @@ def main() -> int:
         print(f"  фото {i}/1 ...")
         print(f"     промпт (первые 150 симв.): {prompt[:150]}")
         try:
+            import image_style
+            prompt = image_style.enrich(prompt, article.get("title", "") or article.get("title_chosen", ""))
             img = openai_api.generate_image(prompt)
             images.append(img)
             print(f"     ok, {len(img)} байт")
