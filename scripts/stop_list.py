@@ -33,6 +33,9 @@ STOP_WORDS = [
     "термометр", "каплеуловитель", "дроп-стоп",
     "охладитель", "ведёрко", "ведерко", "кулер для вина",
     "маркер для бокал",
+    # Безалкогольное (добавлено в ТЗ 20.08.2026 — тема уходит основному сайту)
+    "безалкогольн", "деалкоголиз", "0,0%", "0.0%",
+    "no alcohol", "alcohol-free", "alcohol free",
 ]
 
 # Бренды, которые продаёт AddWine — про них пишет только коммерческий блог
@@ -44,6 +47,9 @@ STOP_BRANDS = [
     "wecomatic", "repour", "ullo", "vspin",
     "l'atelier du vin", "atelier du vin", "l atelier du vin",
     "legnoart", "lalique", "peugeot", "le nez du vin",
+    # Безалкогольные бренды (ТЗ 20.08.2026)
+    "oddbird", "torres natureo", "natureo", "so free",
+    "lyre's", "lyres", "vina albali", "виня албали",
 ]
 
 
