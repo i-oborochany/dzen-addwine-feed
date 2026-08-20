@@ -3,6 +3,13 @@
   "content_plan_index": 19,
   "history": [
     {
+      "date": "2026-08-20T10:27:51.968520+00:00",
+      "cycle_position": 4,
+      "topic_type": "food",
+      "title": "Почему повара Прованса никогда не подают кролика без белого вина",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-08-19T07:11:17.846763+00:00",
       "cycle_position": 3,
       "topic_type": "trend",
@@ -1224,7 +1231,7 @@
   "last_russian_post": "2026-08-18T10:31:52.557088+00:00",
   "last_digest_post": "2026-08-16T09:26:48.508505+00:00",
   "last_spirits_post": "2026-08-13T14:59:07.669816+00:00",
-  "last_food_post": "2026-08-13T11:06:24.718003+00:00",
+  "last_food_post": "2026-08-20T10:27:51.968533+00:00",
   "last_water_post": "2026-08-11T15:29:24.347781+00:00",
   "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
   "last_fortified_post": "2026-08-12T15:03:14.416127+00:00"
