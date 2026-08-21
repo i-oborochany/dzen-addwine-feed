@@ -1,0 +1,40 @@
+name: Feed release (Dzen 24h)
+
+on:
+  schedule:
+    # Каждые 3 часа: выпускает в feed.xml статьи, которым исполнилось 24ч
+    - cron: "13 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Release matured items
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/feed_release.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "feed-release-bot"
+          git config user.email "bot@addwine.local"
+          git add feed.xml feed_full.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Feed release $(date -u +%Y-%m-%dT%H:%M)"
+            git push
+          fi
