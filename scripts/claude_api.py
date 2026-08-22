@@ -26,15 +26,21 @@ def _get_client() -> Anthropic:
 def generate_json(system: str, user: str, max_tokens: int = 8000, temperature: float = 0.7) -> dict:
     """
     Дёргает Claude, ожидает JSON в ответе. Парсит и возвращает dict.
+    Совместимо со старым и новым SDK: новые версии anthropic убрали
+    параметр temperature из messages.create() — при TypeError повторяем без него.
     """
     client = _get_client()
-    response = client.messages.create(
+    kwargs = dict(
         model=MODEL,
         max_tokens=max_tokens,
-        temperature=temperature,
         system=system,
         messages=[{"role": "user", "content": user}],
     )
+    try:
+        response = client.messages.create(temperature=temperature, **kwargs)
+    except TypeError:
+        # новый SDK без temperature
+        response = client.messages.create(**kwargs)
     raw = response.content[0].text.strip()
 
     # снимаем markdown-обрамление если есть
