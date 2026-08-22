@@ -6,7 +6,7 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,25 +17,31 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Install deps
+        run: pip install -r requirements.txt
       - name: Configure git
         run: |
           git config user.name "bootstrap"
           git config user.email "bootstrap@local"
           git remote set-url origin "https://x-access-token:${{ secrets.PAT_WORKFLOWS }}@github.com/${{ github.repository }}.git"
-      - name: Deploy feed releaser
+      - name: Deploy fixed claude_api.py
         run: |
-          mkdir -p scripts .github/workflows
-          echo 'IiIiCtCg0LXQu9C40LfQtdGAINCU0LfQtdC9LdGE0LjQtNCwLiDQl9Cw0L/Rg9GB0LrQsNC10YLRgdGPINC/0L4g0LrRgNC+0L3RgyDQutCw0LbQtNGL0LUgMyDRh9Cw0YHQsC4KCtCf0LXRgNC10YHQvtCx0LjRgNCw0LXRgiBmZWVkLnhtbCDQuNC3IGZlZWRfZnVsbC5qc29uOiDRgdGC0LDRgtGM0LgsINC60L7RgtC+0YDRi9C8INC40YHQv9C+0LvQvdC40LvQvtGB0YwgMjQg0YfQsNGB0LAsCtC/0L7Qv9Cw0LTQsNGO0YIg0LIg0YTQuNC0ICjQuCDQt9C90LDRh9C40YIg0LIg0JTQt9C10L0pINCx0LXQtyDQvtC20LjQtNCw0L3QuNGPINGB0LvQtdC00YPRjtGJ0LXQuSDQv9GD0LHQu9C40LrQsNGG0LjQuC4KCtCR0LXQtyDRjdGC0L7Qs9C+INGB0YLQsNGC0YzRjyDQttC00LDQu9CwINC90LUgMjTRhywg0LAgwqsyNNGHICsg0LTQviDRgdC70LXQtNGD0Y7RidC10Lkg0L/Rg9Cx0LvQuNC60LDRhtC40LjCuyAo0LTQviAyINGB0YPRgtC+0LopLgoiIiIKaW1wb3J0IHN5cwpmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgKCnN5cy5wYXRoLmluc2VydCgwLCBzdHIoUGF0aChfX2ZpbGVfXykucmVzb2x2ZSgpLnBhcmVudCkpCmltcG9ydCBmZWVkX2lvCgoKZGVmIG1haW4oKToKICAgIGRhdGEgPSBmZWVkX2lvLnJlYWRfZmVlZCgpCiAgICBpZiBub3QgZGF0YS5nZXQoIml0ZW1zIik6CiAgICAgICAgcHJpbnQoIltmZWVkX3JlbGVhc2VdINGF0YDQsNC90LjQu9C40YnQtSDQv9GD0YHRgtC+0LUg4oCUINC90LXRh9C10LPQviDQstGL0L/Rg9GB0LrQsNGC0YwiKQogICAgICAgIHJldHVybiAwCiAgICBiZWZvcmUgPSBmZWVkX2lvLkZFRURfUEFUSC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikgaWYgZmVlZF9pby5GRUVEX1BBVEguZXhpc3RzKCkgZWxzZSAiIgogICAgZmVlZF9pby53cml0ZV9mZWVkKGRhdGFbImNoYW5uZWwiXSwgZGF0YVsiaXRlbXMiXSkKICAgIGFmdGVyID0gZmVlZF9pby5GRUVEX1BBVEgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCiAgICBpZiBiZWZvcmUgPT0gYWZ0ZXI6CiAgICAgICAgcHJpbnQoIltmZWVkX3JlbGVhc2VdINC40LfQvNC10L3QtdC90LjQuSDQvdC10YIgKNC90L7QstGL0YUgwqvRgdC+0LfRgNC10LLRiNC40YXCuyDRgdGC0LDRgtC10Lkg0L3QtSDQv9C+0Y/QstC40LvQvtGB0YwpIikKICAgIGVsc2U6CiAgICAgICAgcHJpbnQoIltmZWVkX3JlbGVhc2VdIOKchSBmZWVkLnhtbCDQvtCx0L3QvtCy0LvRkdC9IOKAlCDRgdC+0LfRgNC10LLRiNC40LUg0YHRgtCw0YLRjNC4INCy0YvQv9GD0YnQtdC90Ysg0LIg0JTQt9C10L0iKQogICAgcmV0dXJuIDAKCgppZiBfX25hbWVfXyA9PSAiX19tYWluX18iOgogICAgc3lzLmV4aXQobWFpbigpKQo=' | base64 -d > scripts/feed_release.py
-          echo 'bmFtZTogRmVlZCByZWxlYXNlIChEemVuIDI0aCkKCm9uOgogIHNjaGVkdWxlOgogICAgIyDQmtCw0LbQtNGL0LUgMyDRh9Cw0YHQsDog0LLRi9C/0YPRgdC60LDQtdGCINCyIGZlZWQueG1sINGB0YLQsNGC0YzQuCwg0LrQvtGC0L7RgNGL0Lwg0LjRgdC/0L7Qu9C90LjQu9C+0YHRjCAyNNGHCiAgICAtIGNyb246ICIxMyAqLzMgKiAqICoiCiAgd29ya2Zsb3dfZGlzcGF0Y2g6CgpwZXJtaXNzaW9uczoKICBjb250ZW50czogd3JpdGUKCmpvYnM6CiAgcmVsZWFzZToKICAgIHJ1bnMtb246IHVidW50dS1sYXRlc3QKICAgIHRpbWVvdXQtbWludXRlczogMTAKICAgIHN0ZXBzOgogICAgICAtIG5hbWU6IENoZWNrb3V0CiAgICAgICAgdXNlczogYWN0aW9ucy9jaGVja291dEB2NAoKICAgICAgLSBuYW1lOiBTZXR1cCBQeXRob24KICAgICAgICB1c2VzOiBhY3Rpb25zL3NldHVwLXB5dGhvbkB2NQogICAgICAgIHdpdGg6CiAgICAgICAgICBweXRob24tdmVyc2lvbjogIjMuMTEiCgogICAgICAtIG5hbWU6IFJlbGVhc2UgbWF0dXJlZCBpdGVtcwogICAgICAgIGVudjoKICAgICAgICAgIFBZVEhPTlVOQlVGRkVSRUQ6ICIxIgogICAgICAgIHJ1bjogcHl0aG9uIHNjcmlwdHMvZmVlZF9yZWxlYXNlLnB5CgogICAgICAtIG5hbWU6IENvbW1pdCBhbmQgcHVzaAogICAgICAgIHJ1bjogfAogICAgICAgICAgZ2l0IGNvbmZpZyB1c2VyLm5hbWUgImZlZWQtcmVsZWFzZS1ib3QiCiAgICAgICAgICBnaXQgY29uZmlnIHVzZXIuZW1haWwgImJvdEBhZGR3aW5lLmxvY2FsIgogICAgICAgICAgZ2l0IGFkZCBmZWVkLnhtbCBmZWVkX2Z1bGwuanNvbgogICAgICAgICAgaWYgZ2l0IGRpZmYgLS1jYWNoZWQgLS1xdWlldDsgdGhlbgogICAgICAgICAgICBlY2hvICJOb3RoaW5nIHRvIGNvbW1pdCIKICAgICAgICAgIGVsc2UKICAgICAgICAgICAgZ2l0IGNvbW1pdCAtbSAiRmVlZCByZWxlYXNlICQoZGF0ZSAtdSArJVktJW0tJWRUJUg6JU0pIgogICAgICAgICAgICBnaXQgcHVzaAogICAgICAgICAgZmkK' | base64 -d > .github/workflows/feed_release.yml
-          wc -c scripts/feed_release.py .github/workflows/feed_release.yml
-      - name: Run release now
+          mkdir -p scripts
+          echo 'IiIiCtCi0L7QvdC60LDRjyDQvtCx0ZHRgNGC0LrQsCDQvdCw0LQgQW50aHJvcGljIEFQSSDQtNC70Y8g0LPQtdC90LXRgNCw0YbQuNC4INGC0LXQutGB0YLQsCDRgdGC0LDRgtC10LkuCtCY0YHQv9C+0LvRjNC30YPQtdC8IGNsYXVkZS1zb25uZXQtNC02LgoiIiIKaW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCByZQoKZnJvbSBhbnRocm9waWMgaW1wb3J0IEFudGhyb3BpYwoKTU9ERUwgPSAiY2xhdWRlLXNvbm5ldC00LTYiCgpfY2xpZW50ID0gTm9uZQoKCmRlZiBfZ2V0X2NsaWVudCgpIC0+IEFudGhyb3BpYzoKICAgIGdsb2JhbCBfY2xpZW50CiAgICBpZiBfY2xpZW50IGlzIE5vbmU6CiAgICAgICAgYXBpX2tleSA9IG9zLmVudmlyb24uZ2V0KCJBTlRIUk9QSUNfQVBJX0tFWSIpCiAgICAgICAgaWYgbm90IGFwaV9rZXk6CiAgICAgICAgICAgIHJhaXNlIFJ1bnRpbWVFcnJvcigiQU5USFJPUElDX0FQSV9LRVkgZW52IHZhciBub3Qgc2V0IikKICAgICAgICBfY2xpZW50ID0gQW50aHJvcGljKGFwaV9rZXk9YXBpX2tleSkKICAgIHJldHVybiBfY2xpZW50CgoKZGVmIGdlbmVyYXRlX2pzb24oc3lzdGVtOiBzdHIsIHVzZXI6IHN0ciwgbWF4X3Rva2VuczogaW50ID0gODAwMCwgdGVtcGVyYXR1cmU6IGZsb2F0ID0gMC43KSAtPiBkaWN0OgogICAgIiIiCiAgICDQlNGR0YDQs9Cw0LXRgiBDbGF1ZGUsINC+0LbQuNC00LDQtdGCIEpTT04g0LIg0L7RgtCy0LXRgtC1LiDQn9Cw0YDRgdC40YIg0Lgg0LLQvtC30LLRgNCw0YnQsNC10YIgZGljdC4KICAgINCh0L7QstC80LXRgdGC0LjQvNC+INGB0L4g0YHRgtCw0YDRi9C8INC4INC90L7QstGL0LwgU0RLOiDQvdC+0LLRi9C1INCy0LXRgNGB0LjQuCBhbnRocm9waWMg0YPQsdGA0LDQu9C4CiAgICDQv9Cw0YDQsNC80LXRgtGAIHRlbXBlcmF0dXJlINC40LcgbWVzc2FnZXMuY3JlYXRlKCkg4oCUINC/0YDQuCBUeXBlRXJyb3Ig0L/QvtCy0YLQvtGA0Y/QtdC8INCx0LXQtyDQvdC10LPQvi4KICAgICIiIgogICAgY2xpZW50ID0gX2dldF9jbGllbnQoKQogICAga3dhcmdzID0gZGljdCgKICAgICAgICBtb2RlbD1NT0RFTCwKICAgICAgICBtYXhfdG9rZW5zPW1heF90b2tlbnMsCiAgICAgICAgc3lzdGVtPXN5c3RlbSwKICAgICAgICBtZXNzYWdlcz1beyJyb2xlIjogInVzZXIiLCAiY29udGVudCI6IHVzZXJ9XSwKICAgICkKICAgIHRyeToKICAgICAgICByZXNwb25zZSA9IGNsaWVudC5tZXNzYWdlcy5jcmVhdGUodGVtcGVyYXR1cmU9dGVtcGVyYXR1cmUsICoqa3dhcmdzKQogICAgZXhjZXB0IFR5cGVFcnJvcjoKICAgICAgICAjINC90L7QstGL0LkgU0RLINCx0LXQtyB0ZW1wZXJhdHVyZQogICAgICAgIHJlc3BvbnNlID0gY2xpZW50Lm1lc3NhZ2VzLmNyZWF0ZSgqKmt3YXJncykKICAgIHJhdyA9IHJlc3BvbnNlLmNvbnRlbnRbMF0udGV4dC5zdHJpcCgpCgogICAgIyDRgdC90LjQvNCw0LXQvCBtYXJrZG93bi3QvtCx0YDQsNC80LvQtdC90LjQtSDQtdGB0LvQuCDQtdGB0YLRjAogICAgaWYgcmF3LnN0YXJ0c3dpdGgoImBgYCIpOgogICAgICAgIHJhdyA9IHJlLnN1YihyIl5gYGAoPzpqc29uKT9ccyoiLCAiIiwgcmF3KQogICAgICAgIHJhdyA9IHJlLnN1YihyIlxzKmBgYCQiLCAiIiwgcmF3KQoKICAgIHRyeToKICAgICAgICByZXR1cm4ganNvbi5sb2FkcyhyYXcpCiAgICBleGNlcHQganNvbi5KU09ORGVjb2RlRXJyb3I6CiAgICAgICAgIyDQv9GL0YLQsNC10LzRgdGPINCy0YvQtNC10YDQvdGD0YLRjCBKU09OLdC+0LHRitC10LrRgiDQuNC3INGC0LXQutGB0YLQsAogICAgICAgIG0gPSByZS5zZWFyY2gociJcey4qXH0iLCByYXcsIHJlLkRPVEFMTCkKICAgICAgICBpZiBub3QgbToKICAgICAgICAgICAgcmFpc2UgUnVudGltZUVycm9yKGYi0J3QtSBKU09OINCyINC+0YLQstC10YLQtSBDbGF1ZGU6IHtyYXdbOjUwMF19IikKICAgICAgICByZXR1cm4ganNvbi5sb2FkcyhtLmdyb3VwKDApKQo=' | base64 -d > scripts/claude_api.py
+          wc -c scripts/claude_api.py
+      - name: Publish missed Friday article
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FORCE_PUBLISH: "1"
           PYTHONUNBUFFERED: "1"
-        run: |
-          python scripts/feed_release.py
-          echo "=== Верхние даты feed.xml после релиза:"
-          grep -o "<pubDate>[^<]*</pubDate>" feed.xml | head -5
+        run: python scripts/main.py
       - name: Commit & push
         run: |
           git add -A
-          git diff --cached --quiet || (git commit -m "Релизер Дзен-фида: выпуск созревших статей каждые 3 часа" && git push origin HEAD:main)
+          git diff --cached --quiet || (git commit -m "Fix: совместимость с новым anthropic SDK (temperature) + пятничная статья" && git push origin HEAD:main)
+      - name: Ping IndexNow after deploy
+        if: success()
+        run: |
+          pip install requests -q
+          python scripts/ping_recent.py || echo "ping не критичен"
