@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 19,
+  "cycle_position": 1,
+  "content_plan_index": 20,
   "history": [
+    {
+      "date": "2026-08-24T07:10:57.098532+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Набор аксессуаров для вина: что должно быть дома у настоящего ценителя",
+      "source_url": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
+    },
     {
       "date": "2026-08-23T09:26:52.088306+00:00",
       "cycle_position": 0,
