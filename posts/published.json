@@ -2,6 +2,11 @@
   "posts": [
     {
       "url": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
+      "title": "Набор аксессуаров для вина: что должно быть дома у ценителя",
+      "published_at": "2026-09-09T07:10:22.346900+00:00"
+    },
+    {
+      "url": "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
       "title": "Набор аксессуаров для вина: что должно быть дома у настоящего ценителя",
       "published_at": "2026-08-24T07:10:57.099607+00:00"
     },
@@ -107,12 +112,12 @@
     }
   ],
   "urls": [
-    "https://addwine.ru/catalogue",
-    "https://addwine.ru/catalogue/category/izuchenie",
-    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
-    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
+    "https://addwine.ru/catalogue/category/izuchenie",
+    "https://addwine.ru/catalogue",
     "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
+    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
+    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://addwine.ru/catalogue/category/servirovka"
   ]
 }
