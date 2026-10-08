@@ -3,6 +3,13 @@
   "content_plan_index": 23,
   "history": [
     {
+      "date": "2026-10-08T17:12:25.593476+00:00",
+      "cycle_position": 2,
+      "topic_type": "food",
+      "title": "Мальбек и рибай: аргентинский дуэт, который не нуждается в оправданиях",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/nozhi_11"
+    },
+    {
       "date": "2026-10-07T07:11:05.728388+00:00",
       "cycle_position": 1,
       "topic_type": "trend",
@@ -1476,7 +1483,7 @@
   "last_russian_post": "2026-10-06T16:35:35.255471+00:00",
   "last_digest_post": "2026-10-04T14:38:34.211408+00:00",
   "last_spirits_post": "2026-10-03T17:45:51.015312+00:00",
-  "last_food_post": "2026-10-01T16:54:13.353583+00:00",
+  "last_food_post": "2026-10-08T17:12:25.593495+00:00",
   "last_water_post": "2026-08-11T15:29:24.347781+00:00",
   "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
   "last_fortified_post": "2026-08-12T15:03:14.416127+00:00"
