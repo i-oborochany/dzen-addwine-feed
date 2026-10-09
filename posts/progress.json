@@ -1,7 +1,14 @@
 {
-  "cycle_position": 2,
+  "cycle_position": 3,
   "content_plan_index": 23,
   "history": [
+    {
+      "date": "2026-10-09T07:10:59.362082+00:00",
+      "cycle_position": 2,
+      "topic_type": "trend",
+      "title": "Дым и вино: почему лесные пожары стали угрозой для целых урожаев",
+      "source_url": ""
+    },
     {
       "date": "2026-10-08T17:12:25.593476+00:00",
       "cycle_position": 2,
