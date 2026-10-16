@@ -1,7 +1,14 @@
 {
-  "cycle_position": 5,
-  "content_plan_index": 23,
+  "cycle_position": 1,
+  "content_plan_index": 24,
   "history": [
+    {
+      "date": "2026-10-16T07:10:33.774214+00:00",
+      "cycle_position": 5,
+      "topic_type": "content_plan",
+      "title": "Как хранить открытое вино: 5 правил и лучшие аксессуары для вина",
+      "source_url": "https://addwine.ru/catalogue"
+    },
     {
       "date": "2026-10-15T14:46:50.604372+00:00",
       "cycle_position": 5,
