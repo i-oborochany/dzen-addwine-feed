@@ -35,6 +35,22 @@ def load_content_plan() -> list:
     return json.loads(CONTENT_PLAN_PATH.read_text(encoding="utf-8"))["items"]
 
 
+def select_content_plan(plan: list, start_index: int, should_skip) -> tuple:
+    """Выбрать разрешённую строку, не меняя сохранённый курсор до публикации."""
+    if not plan:
+        raise RuntimeError("Контент-план пуст")
+    if not 0 <= start_index < len(plan):
+        start_index = 0
+    for offset in range(len(plan)):
+        index = (start_index + offset) % len(plan)
+        row = plan[index]
+        skip, reason = should_skip(row.get("title", ""))
+        if not skip:
+            return index, row
+        print(f"  [stop-list] строка #{row.get('number')} пропущена: {reason}")
+    raise RuntimeError("В контент-плане нет тем, разрешённых стоп-листом")
+
+
 def recent_titles(progress: dict, days: int = 60) -> list:
     """Заголовки за последние N дней — для дедупликации тем."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)

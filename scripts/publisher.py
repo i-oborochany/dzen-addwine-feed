@@ -164,9 +164,6 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
     # вставляем в начало списка
     feed_data["items"].insert(0, new_item)
 
-    # сохраняем
-    feed_io.write_feed(feed_data["channel"], feed_data["items"])
-
     # IndexNow НЕ пингуем здесь: страница появится на Pages только после git push.
     # Пинг делает отдельный шаг воркфлоу (scripts/ping_recent.py) после деплоя,
     # иначе Яндекс приходит раньше деплоя и получает 404.
@@ -191,4 +188,7 @@ def add_to_feed(article: dict, image_urls: list, source_url: str, config: dict) 
         )
         html_renderer.rebuild_index()
     except Exception as e:
-        print(f"[publisher] HTML-рендер упал (не критично): {e}")
+        raise RuntimeError(f"Не удалось подготовить HTML-публикацию: {e}") from e
+
+    # Фид и прогресс нельзя продвигать, если страница не была подготовлена.
+    feed_io.write_feed(feed_data["channel"], feed_data["items"])

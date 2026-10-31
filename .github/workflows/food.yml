@@ -11,6 +11,11 @@ on:
     # НОВЫЙ ТЕМП (14.08.2026): четверг 1 раз/нед в 10:00 UTC (13:00 МСК).
     - cron: "0 10 * * 4"
 
+concurrency:
+  group: dzen-content-main
+  queue: max
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -19,6 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref }}
           token: ${{ secrets.PAT_WORKFLOWS }}
           persist-credentials: true
 

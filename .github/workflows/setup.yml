@@ -3,6 +3,11 @@ name: Bootstrap project files
 on:
   workflow_dispatch:
 
+concurrency:
+  group: dzen-content-main
+  queue: max
+  cancel-in-progress: false
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -11,6 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref }}
           token: ${{ secrets.PAT_WORKFLOWS }}
           persist-credentials: true
       - name: Setup Python

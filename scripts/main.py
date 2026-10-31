@@ -68,21 +68,9 @@ def main() -> int:
     if cycle_pos == 5:
         # CONTENT_PLAN режим
         plan = progress_mod.load_content_plan()
-        if plan_idx >= len(plan):
-            print(f"Контент-план исчерпан ({plan_idx}/{len(plan)}), начинаем сначала")
-            plan_idx = 0
-
-        # Стоп-лист: пропускаем строки плана, попавшие в фильтр
-        max_tries = len(plan)
-        plan_row = plan[plan_idx]
-        while max_tries > 0:
-            skip, reason = stop_list.should_skip_topic(plan_row.get("title", ""))
-            if not skip:
-                break
-            print(f"  [stop-list] строка #{plan_row.get('number')} пропущена: {reason}")
-            plan_idx = (plan_idx + 1) % len(plan)
-            plan_row = plan[plan_idx]
-            max_tries -= 1
+        plan_idx, plan_row = progress_mod.select_content_plan(
+            plan, plan_idx, stop_list.should_skip_topic,
+        )
 
         print(f"\n[1/4] Контент-план строка #{plan_row['number']}: {plan_row['title']}")
         print(f"  Категория: {plan_row['promote_category']} → {plan_row['promote_link']}")
@@ -194,6 +182,8 @@ def main() -> int:
 
     # обновляем journal
     progress_mod.append_history(progress, article["title"], cycle_pos, topic_type, source_url)
+    if topic_type == "content_plan":
+        progress["content_plan_index"] = plan_idx
     progress_mod.advance_cycle(progress, topic_type)
     progress_mod.save_progress(progress)
 
