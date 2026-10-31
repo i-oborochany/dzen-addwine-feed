@@ -170,7 +170,7 @@ def main() -> int:
     except Exception as e:
         print(f"  [!] не критично: {e}")
 
-    print("\n[3/4] Генерим 1 фото через gpt-image-1 (medium)")
+    print(f"\n[3/4] Генерим 1 фото через {openai_api.MODEL} ({openai_api.QUALITY})")
     images = []
     for i, prompt in enumerate(article["image_prompts"][:1], 1):
         print(f"  фото {i}/1 ...")

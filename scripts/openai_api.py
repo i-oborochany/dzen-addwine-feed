@@ -1,5 +1,5 @@
 """
-Обёртка над OpenAI Images API для gpt-image-1.
+Обёртка над OpenAI Images API для gpt-image-2.5-flare.
 Возвращает bytes JPEG.
 """
 import base64
@@ -8,7 +8,7 @@ import time
 import requests
 
 ENDPOINT = "https://api.openai.com/v1/images/generations"
-MODEL = "gpt-image-1"
+MODEL = "gpt-image-2.5-flare"
 SIZE = "1536x1024"   # 16:9 landscape, оптимально для обложек Дзена
 QUALITY = "medium"   # low | medium | high
 
@@ -22,7 +22,7 @@ def _get_api_key() -> str:
 
 def generate_image(prompt: str, retries: int = 2, quality: str = QUALITY) -> bytes:
     """
-    Генерирует одну картинку через gpt-image-1. Возвращает bytes (JPEG).
+    Генерирует одну картинку через gpt-image-2.5-flare. Возвращает bytes (JPEG).
     """
     headers = {
         "Authorization": f"Bearer {_get_api_key()}",
