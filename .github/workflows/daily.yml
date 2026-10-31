@@ -1,60 +1,56 @@
-name: Daily Wine Post
+name: Verify DZEN image generation
 
 on:
-  schedule:
-    # НОВЫЙ ТЕМП (14.08.2026): Пн/Ср/Пт по одному разу — цель ≤ 4-5 статей/нед всего по всем рубрикам.
-    # 11:17 МСК (08:17 UTC) — не на верхушке часа. Дедуп + already_published_today защищают от дублей.
-    - cron: "17 8 * * 1,3,5"
-  workflow_dispatch:
-    inputs:
-      force:
-        description: "Запустить вне расписания (разовая генерация)"
-        type: boolean
-        default: false
+  push:
+    tags:
+      - "dzen-image-check-20261031-fe90079"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  publish:
+  generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
-
+    timeout-minutes: 8
     steps:
-      - name: Checkout
+      - name: Checkout migrated image client
         uses: actions/checkout@v4
-
+        with:
+          ref: fe900792f679ffa2f4a5a8069c115796ee7e7e30
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
-
-      - name: Install deps
-        run: pip install -r requirements.txt
-
-      - name: Run bot
+      - name: Install image client dependencies
+        run: pip install requests Pillow
+      - name: Generate and verify one JPEG
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           PYTHONUNBUFFERED: "1"
-          FORCE_PUBLISH: ${{ inputs.force && '1' || '' }}
-        run: python scripts/main.py
-
-      - name: Commit and push
         run: |
-          git config user.name "addwine-bot"
-          git config user.email "bot@addwine.local"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "Nothing to commit"
-          else
-            git commit -m "Daily post $(date -u +%Y-%m-%d)"
-            git push
-          fi
-
-      - name: Ping IndexNow after deploy
-        if: success()
-        run: |
-          pip install requests -q
-          python scripts/ping_recent.py || echo "ping не критичен"
+          python - <<'CHECK'
+          import sys, io, json, hashlib, pathlib, os
+          sys.path.insert(0, 'scripts')
+          import openai_api
+          from PIL import Image
+          prompt = 'Editorial still life for a wine magazine: one empty wine glass beside a closed bottle on a wooden table, soft natural window light, realistic photography, no people, no letters or logos.'
+          raw = openai_api.generate_image(prompt, retries=0)
+          picture = Image.open(io.BytesIO(raw))
+          assert picture.format == 'JPEG', picture.format
+          assert picture.size == (1536, 1024), picture.size
+          picture.verify()
+          pathlib.Path('cover-verification.jpg').write_bytes(raw)
+          receipt = {'model': openai_api.MODEL, 'quality': openai_api.QUALITY, 'size': openai_api.SIZE, 'format': 'JPEG', 'byte_count': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'verified': True, 'article_published': False}
+          pathlib.Path('image-verification.json').write_text(json.dumps(receipt, indent=2) + '\n')
+          print(json.dumps(receipt))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('Image generation verified: ' + json.dumps(receipt) + '\n')
+          CHECK
+      - name: Save verification image and receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: dzen-flare-verification
+          path: |
+            cover-verification.jpg
+            image-verification.json
+          retention-days: 3
