@@ -1,6 +1,9 @@
 name: Daily Wine Post
 
 on:
+  push:
+    tags:
+      - "dzen-text-openai-20261031-67eaa83"
   schedule:
     # НОВЫЙ ТЕМП (14.08.2026): Пн/Ср/Пт по одному разу — цель ≤ 4-5 статей/нед всего по всем рубрикам.
     # 11:17 МСК (08:17 UTC) — не на верхушке часа. Дедуп + already_published_today защищают от дублей.
@@ -23,6 +26,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -33,13 +38,15 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Verify migrated text client
+        run: python -B -m unittest discover -s tests -v
+
       - name: Run bot
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           PYTHONUNBUFFERED: "1"
-          FORCE_PUBLISH: ${{ inputs.force && '1' || '' }}
-        run: python scripts/main.py
+          FORCE_PUBLISH: ${{ (inputs.force || github.ref == 'refs/tags/dzen-text-openai-20261031-67eaa83') && '1' || '' }}
+        run: python -B scripts/main.py
 
       - name: Commit and push
         run: |
