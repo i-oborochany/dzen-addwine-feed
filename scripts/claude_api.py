@@ -39,8 +39,7 @@ def generate_json(system: str, user: str, max_tokens: int = 8000, temperature: f
         raise RuntimeError("OPENAI_API_KEY env var not set")
     payload = {
         "model": MODEL,
-        "instructions": system,
-        "input": [{"role": "user", "content": user}],
+        "input": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         "max_output_tokens": max_tokens,
         "reasoning": {"effort": "none"},
         "temperature": temperature,

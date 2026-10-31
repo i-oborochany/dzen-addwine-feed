@@ -18,3 +18,5 @@
 [Модель для текста](https://developers.openai.com/api/docs/models/gpt-6.1-terra) · [Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
 
 Проверки клиента: `python -m unittest discover -s tests -v`.
+
+Системный промпт передаётся отдельным сообщением `system` в `input`, без изменения текста: это сохраняет исходные роли и обеспечивает проверку JSON mode также для коротких запросов подбора фраз и перелинковки.

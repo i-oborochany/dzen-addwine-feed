@@ -33,8 +33,12 @@ class TextApiContractTests(unittest.TestCase):
         self.assertEqual(client.generate_json("JSON: редакционные правила", "Тема без изменений", 500, 0.3),
                          {"title": "Статья", "body": "Текст"})
         payload = self.post.call_args.kwargs["json"]
-        self.assertEqual(payload["instructions"], "JSON: редакционные правила")
-        self.assertEqual(payload["input"], [{"role": "user", "content": "Тема без изменений"}])
+        self.assertEqual(payload["input"], [
+            {"role": "system", "content": "JSON: редакционные правила"},
+            {"role": "user", "content": "Тема без изменений"},
+        ])
+        # JSON mode checks the input messages, including the system message.
+        self.assertIn("json", " ".join(m["content"] for m in payload["input"]).lower())
         self.assertEqual(payload["max_output_tokens"], 500)
         self.assertEqual(payload["temperature"], 0.3)
         self.assertFalse(payload["store"])
