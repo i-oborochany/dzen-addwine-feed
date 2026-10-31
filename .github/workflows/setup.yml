@@ -24,11 +24,8 @@ jobs:
           git config user.name "bootstrap"
           git config user.email "bootstrap@local"
           git remote set-url origin "https://x-access-token:${{ secrets.PAT_WORKFLOWS }}@github.com/${{ github.repository }}.git"
-      - name: Deploy fixed claude_api.py
-        run: |
-          mkdir -p scripts
-          echo 'IiIiCtCi0L7QvdC60LDRjyDQvtCx0ZHRgNGC0LrQsCDQvdCw0LQgQW50aHJvcGljIEFQSSDQtNC70Y8g0LPQtdC90LXRgNCw0YbQuNC4INGC0LXQutGB0YLQsCDRgdGC0LDRgtC10LkuCtCY0YHQv9C+0LvRjNC30YPQtdC8IGNsYXVkZS1zb25uZXQtNC02LgoiIiIKaW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCByZQoKZnJvbSBhbnRocm9waWMgaW1wb3J0IEFudGhyb3BpYwoKTU9ERUwgPSAiY2xhdWRlLXNvbm5ldC00LTYiCgpfY2xpZW50ID0gTm9uZQoKCmRlZiBfZ2V0X2NsaWVudCgpIC0+IEFudGhyb3BpYzoKICAgIGdsb2JhbCBfY2xpZW50CiAgICBpZiBfY2xpZW50IGlzIE5vbmU6CiAgICAgICAgYXBpX2tleSA9IG9zLmVudmlyb24uZ2V0KCJBTlRIUk9QSUNfQVBJX0tFWSIpCiAgICAgICAgaWYgbm90IGFwaV9rZXk6CiAgICAgICAgICAgIHJhaXNlIFJ1bnRpbWVFcnJvcigiQU5USFJPUElDX0FQSV9LRVkgZW52IHZhciBub3Qgc2V0IikKICAgICAgICBfY2xpZW50ID0gQW50aHJvcGljKGFwaV9rZXk9YXBpX2tleSkKICAgIHJldHVybiBfY2xpZW50CgoKZGVmIGdlbmVyYXRlX2pzb24oc3lzdGVtOiBzdHIsIHVzZXI6IHN0ciwgbWF4X3Rva2VuczogaW50ID0gODAwMCwgdGVtcGVyYXR1cmU6IGZsb2F0ID0gMC43KSAtPiBkaWN0OgogICAgIiIiCiAgICDQlNGR0YDQs9Cw0LXRgiBDbGF1ZGUsINC+0LbQuNC00LDQtdGCIEpTT04g0LIg0L7RgtCy0LXRgtC1LiDQn9Cw0YDRgdC40YIg0Lgg0LLQvtC30LLRgNCw0YnQsNC10YIgZGljdC4KICAgINCh0L7QstC80LXRgdGC0LjQvNC+INGB0L4g0YHRgtCw0YDRi9C8INC4INC90L7QstGL0LwgU0RLOiDQvdC+0LLRi9C1INCy0LXRgNGB0LjQuCBhbnRocm9waWMg0YPQsdGA0LDQu9C4CiAgICDQv9Cw0YDQsNC80LXRgtGAIHRlbXBlcmF0dXJlINC40LcgbWVzc2FnZXMuY3JlYXRlKCkg4oCUINC/0YDQuCBUeXBlRXJyb3Ig0L/QvtCy0YLQvtGA0Y/QtdC8INCx0LXQtyDQvdC10LPQvi4KICAgICIiIgogICAgY2xpZW50ID0gX2dldF9jbGllbnQoKQogICAga3dhcmdzID0gZGljdCgKICAgICAgICBtb2RlbD1NT0RFTCwKICAgICAgICBtYXhfdG9rZW5zPW1heF90b2tlbnMsCiAgICAgICAgc3lzdGVtPXN5c3RlbSwKICAgICAgICBtZXNzYWdlcz1beyJyb2xlIjogInVzZXIiLCAiY29udGVudCI6IHVzZXJ9XSwKICAgICkKICAgIHRyeToKICAgICAgICByZXNwb25zZSA9IGNsaWVudC5tZXNzYWdlcy5jcmVhdGUodGVtcGVyYXR1cmU9dGVtcGVyYXR1cmUsICoqa3dhcmdzKQogICAgZXhjZXB0IFR5cGVFcnJvcjoKICAgICAgICAjINC90L7QstGL0LkgU0RLINCx0LXQtyB0ZW1wZXJhdHVyZQogICAgICAgIHJlc3BvbnNlID0gY2xpZW50Lm1lc3NhZ2VzLmNyZWF0ZSgqKmt3YXJncykKICAgIHJhdyA9IHJlc3BvbnNlLmNvbnRlbnRbMF0udGV4dC5zdHJpcCgpCgogICAgIyDRgdC90LjQvNCw0LXQvCBtYXJrZG93bi3QvtCx0YDQsNC80LvQtdC90LjQtSDQtdGB0LvQuCDQtdGB0YLRjAogICAgaWYgcmF3LnN0YXJ0c3dpdGgoImBgYCIpOgogICAgICAgIHJhdyA9IHJlLnN1YihyIl5gYGAoPzpqc29uKT9ccyoiLCAiIiwgcmF3KQogICAgICAgIHJhdyA9IHJlLnN1YihyIlxzKmBgYCQiLCAiIiwgcmF3KQoKICAgIHRyeToKICAgICAgICByZXR1cm4ganNvbi5sb2FkcyhyYXcpCiAgICBleGNlcHQganNvbi5KU09ORGVjb2RlRXJyb3I6CiAgICAgICAgIyDQv9GL0YLQsNC10LzRgdGPINCy0YvQtNC10YDQvdGD0YLRjCBKU09OLdC+0LHRitC10LrRgiDQuNC3INGC0LXQutGB0YLQsAogICAgICAgIG0gPSByZS5zZWFyY2gociJcey4qXH0iLCByYXcsIHJlLkRPVEFMTCkKICAgICAgICBpZiBub3QgbToKICAgICAgICAgICAgcmFpc2UgUnVudGltZUVycm9yKGYi0J3QtSBKU09OINCyINC+0YLQstC10YLQtSBDbGF1ZGU6IHtyYXdbOjUwMF19IikKICAgICAgICByZXR1cm4ganNvbi5sb2FkcyhtLmdyb3VwKDApKQo=' | base64 -d > scripts/claude_api.py
-          wc -c scripts/claude_api.py
+      - name: Validate current text client
+        run: python -c 'import ast; from pathlib import Path; ast.parse(Path("scripts/claude_api.py").read_text(encoding="utf-8"))'
       - name: Publish missed Friday article
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -39,7 +36,7 @@ jobs:
       - name: Commit & push
         run: |
           git add -A
-          git diff --cached --quiet || (git commit -m "Fix: совместимость с новым anthropic SDK (temperature) + пятничная статья" && git push origin HEAD:main)
+          git diff --cached --quiet || (git commit -m "Generate DZEN article with the current OpenAI text client" && git push origin HEAD:main)
       - name: Ping IndexNow after deploy
         if: success()
         run: |
