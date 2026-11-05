@@ -3,6 +3,13 @@
   "content_plan_index": 24,
   "history": [
     {
+      "date": "2026-11-05T17:51:03.674342+00:00",
+      "cycle_position": 5,
+      "topic_type": "food",
+      "title": "Как выбрать Каберне Совиньон к разным блюдам из баранины",
+      "source_url": "https://addwine.ru/catalogue/category/kuxnya/blyuda"
+    },
+    {
       "date": "2026-11-04T07:09:30.405166+00:00",
       "cycle_position": 4,
       "topic_type": "trend",
@@ -1602,7 +1609,7 @@
   "last_russian_post": "2026-11-03T17:37:19.001324+00:00",
   "last_digest_post": "2026-11-01T15:47:15.948069+00:00",
   "last_spirits_post": "2026-10-31T18:08:48.132289+00:00",
-  "last_food_post": "2026-10-15T14:46:50.604386+00:00",
+  "last_food_post": "2026-11-05T17:51:03.674359+00:00",
   "last_water_post": "2026-08-11T15:29:24.347781+00:00",
   "last_beer_post": "2026-08-10T15:32:53.185630+00:00",
   "last_fortified_post": "2026-08-12T15:03:14.416127+00:00"
