@@ -3,6 +3,13 @@
   "content_plan_index": 30,
   "history": [
     {
+      "date": "2026-11-10T17:32:59.352313+00:00",
+      "cycle_position": 2,
+      "topic_type": "russian",
+      "title": "Почему донские виноградники укрывают на зиму и как это влияет на вино",
+      "source_url": ""
+    },
+    {
       "date": "2026-11-09T07:09:12.405866+00:00",
       "cycle_position": 1,
       "topic_type": "trend",
@@ -1634,7 +1641,7 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-11-03T17:37:19.001324+00:00",
+  "last_russian_post": "2026-11-10T17:32:59.352336+00:00",
   "last_digest_post": "2026-11-08T15:48:41.304085+00:00",
   "last_spirits_post": "2026-11-07T18:27:32.689721+00:00",
   "last_food_post": "2026-11-05T17:51:03.674359+00:00",
