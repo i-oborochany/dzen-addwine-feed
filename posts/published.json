@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "url": "https://addwine.ru/catalogue/category/servirovka",
+      "title": "Сервировка вина: как подобрать бокалы и подать вино гостям",
+      "published_at": "2026-11-18T07:08:50.702673+00:00"
+    },
+    {
       "url": "https://addwine.ru/catalogue",
       "title": "Как хранить открытое вино: лучшие аксессуары для вина и сроки хранения",
       "published_at": "2026-11-06T07:08:44.401551+00:00"
@@ -132,12 +137,12 @@
     }
   ],
   "urls": [
-    "https://addwine.ru/catalogue",
-    "https://addwine.ru/catalogue/category/servirovka/shtopory",
     "https://addwine.ru/catalogue/category/podacha/bokaly-dlya-vina",
-    "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68",
-    "https://addwine.ru/catalogue/category/izuchenie",
     "https://addwine.ru/catalogue/category/servirovka",
-    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake"
+    "https://addwine.ru/catalogue",
+    "https://www.decanter.com/learn/food/pizza-and-wine-pairing-surprisingly-great-matches-from-lambrusco-to-sake",
+    "https://addwine.ru/catalogue/category/servirovka/shtopory",
+    "https://addwine.ru/catalogue/category/izuchenie",
+    "https://addwine.ru/catalogue/category/izuchenie/podarochnye-nabory_68"
   ]
 }
