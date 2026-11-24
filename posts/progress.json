@@ -3,6 +3,13 @@
   "content_plan_index": 31,
   "history": [
     {
+      "date": "2026-11-24T20:32:00.207613+00:00",
+      "cycle_position": 3,
+      "topic_type": "russian",
+      "title": "Разбор: как устроено современное виноделие Долины Дона",
+      "source_url": ""
+    },
+    {
       "date": "2026-11-23T07:09:20.455379+00:00",
       "cycle_position": 2,
       "topic_type": "trend",
@@ -1732,7 +1739,7 @@
       "source_url": ""
     }
   ],
-  "last_russian_post": "2026-11-17T18:59:50.930422+00:00",
+  "last_russian_post": "2026-11-24T20:32:00.207647+00:00",
   "last_digest_post": "2026-11-22T16:54:20.879668+00:00",
   "last_spirits_post": "2026-11-21T20:21:29.779792+00:00",
   "last_food_post": "2026-11-19T18:50:30.066545+00:00",
